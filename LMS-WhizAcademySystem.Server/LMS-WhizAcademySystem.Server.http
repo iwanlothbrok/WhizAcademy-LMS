@@ -1,0 +1,6 @@
+@LMS_WhizAcademySystem.Server_HostAddress = http://localhost:5115
+
+GET {{LMS_WhizAcademySystem.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
