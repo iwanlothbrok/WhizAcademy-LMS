@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "environmentVariables": {
+        "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "false"
+      }
+    },
+    "LMS-WhizAcademySystem": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT": "false"
+      }
+    }
+  }
+}
