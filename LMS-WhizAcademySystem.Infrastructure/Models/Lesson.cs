@@ -23,7 +23,5 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
         public int StudentId { get; set; }
         public Student Student { get; set; }
 
-
-        // TODO: Add payment or bool isPaid | 
     }
 }

@@ -33,12 +33,12 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
 
 
         public List<Lesson> Lessons = new List<Lesson>();
-        //public ICollection<Payment> Payments { get; set; }
-        //public ICollection<Progress> Progresses { get; set; }
+        public List<Payment> Payments = new List<Payment>();
+        public List<WeekProgress> Progresses = new List<WeekProgress>();
 
         /// <summary>
         /// TODO: check what type should be the excel file
         /// </summary>
-        //public char[] Roadmap { get; set; }
+        public byte[]? Roadmap { get; set; }
     }
 }
