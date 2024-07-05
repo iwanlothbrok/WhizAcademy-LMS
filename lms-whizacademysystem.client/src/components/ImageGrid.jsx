@@ -1,30 +1,27 @@
-// src/components/ImageGrid.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
+import images from './database/images';
 
-const images = [
-    { id: 1, src: 'https://wallsdesk.com/bmw-logo/', link: '/page1' },
-    { id: 2, src: 'https://wallsdesk.com/bmw-logo/', link: '/page2' },
-    { id: 3, src: 'https://wallsdesk.com/bmw-logo/', link: '/page3' },
-    { id: 4, src: 'https://wallsdesk.com/bmw-logo/', link: '/page4' },
-    { id: 5, src: 'https://wallsdesk.com/bmw-logo/', link: '/page5' },
-    { id: 6, src: 'https://wallsdesk.com/bmw-logo/', link: '/page6' },
-];
+export default function ImageGrid() {
+    console.log(images);
 
-const ImageGrid = () => {
     return (
-        <div className="container mx-auto p-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="w-screen  h-screen flex justify-center items-center">
+
+            <div className="grid grid-cols-2 m-6 sm:grid-cols-4 md:grid-cols-3 gap-2  text-textGreen">
                 {images.map(image => (
-                    <div key={image.id} className="border rounded overflow-hidden">
-                        <Link to={image.link}>
-                            <img src={image.src} alt={`Image ${image.id}`} className="w-full h-auto" />
-                        </Link>
+                    <div >
+
+                        <div key={image.id} className="border px-5 m-1 mb-2 p-8 rounded overflow-hidden flex flex-col items-center homeContainer">
+                            <Link to={image.link}>
+                                <img src={image.src} alt={`Image ${image.id}`} className="w-56 h-auto homeContainerImage" />
+                            </Link>
+                            <h3 className='font-bold font-sans text-2xl mt-1'>{image.information}</h3>
+                        </div>
+
                     </div>
                 ))}
             </div>
         </div>
     );
 };
-
-export default ImageGrid;
