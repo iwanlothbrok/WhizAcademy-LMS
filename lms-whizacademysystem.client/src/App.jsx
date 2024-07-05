@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 import './assets/css/tailwind.css'
 import Navigation from './components/Navigation';
 import ImageGrid from './components/ImageGrid';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 function App() {
     return (
         <>
             <ImageGrid />
-            <h1 className="text-3xl text-red-600 font-bold underline">
-                helllpooo
-            </h1>
         </>
     );
 
