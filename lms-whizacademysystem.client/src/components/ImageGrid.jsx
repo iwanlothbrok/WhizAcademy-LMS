@@ -12,11 +12,11 @@ export default function ImageGrid() {
                 {images.map(image => (
                     <div >
 
-                        <div key={image.id} className="border px-5 m-1 mb-2 p-8 rounded overflow-hidden flex flex-col items-center homeContainer">
+                        <div key={image.id} className="border px-5 m-1 mb-2 p-8 rounded overflow-hidden flex flex-col items-center  transform transition-transform duration-300 hover:scale-110 bg-black">
                             <Link to={image.link}>
                                 <img src={image.src} alt={`Image ${image.id}`} className="w-56 h-auto homeContainerImage" />
                             </Link>
-                            <h3 className='font-bold font-sans text-2xl mt-1'>{image.information}</h3>
+                            <h3 className='font-bold font-sans text-2xl  mt-1'>{image.information}</h3>
                         </div>
 
                     </div>
