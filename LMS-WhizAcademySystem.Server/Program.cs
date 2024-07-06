@@ -43,10 +43,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapFallbackToFile("index.html"); // This handles the client-side routing
-});
+
+    app.MapFallbackToFile("index.html"); // This handles the client-side routing
 
 app.Run();

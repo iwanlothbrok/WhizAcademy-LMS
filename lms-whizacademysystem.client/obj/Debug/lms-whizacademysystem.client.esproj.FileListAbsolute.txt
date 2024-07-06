@@ -1,1 +1,2 @@
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\lms-whizacademysystem.client\obj\Debug\lms-whizacademysystem.client.esproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\lms-whizacademysystem.client\obj\Debug\lms-whizacademysystem.client.esproj.CoreCompileInputs.cache
