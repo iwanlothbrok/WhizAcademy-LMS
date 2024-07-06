@@ -11,7 +11,7 @@ export default function OperationsCard({cards}) {
                 {cards.map(x => (
                     <div >
 
-                        <div key={x.id} className="border px-5 m-1 mb-2 p-8 rounded overflow-hidden flex flex-col items-center homeContainer">
+                        <div key={x.id} className="border px-5 m-1 mb-2 p-8 rounded overflow-hidden flex flex-col items-center  transform transition-transform duration-300 hover:scale-110 bg-black">
                             <Link to={x.link}>
                                 <img src={x.src} alt={`Image ${x.id}`} className="w-56 h-auto homeContainerImage" />
                             </Link>
