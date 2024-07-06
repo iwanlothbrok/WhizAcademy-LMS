@@ -11,7 +11,7 @@ const AddMentor = () => {
         const mentor = { name, email, password };
 
         try {
-            const response = await fetch('https://your-api-url.com/api/mentors', {
+            const response = await fetch('https://localhost:7090/api/mentor', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
