@@ -1,32 +1,37 @@
-﻿// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace LMS_WhizAcademySystem.Server.Controllers
+﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
-	using LMS_WhizAcademySystem.Infrastructure.Models;
-	using LMS_WhizAcademySystem.Server.Models;
+	using Models;
 	using Microsoft.AspNetCore.Mvc;
+    using Core.Services.Interfaces;
+    using Core.Services;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNet.Identity;
 
-	[Route("api/mentors")]
+    [Route("api/mentors")]
 	[ApiController]
 	public class MentorsApiController : ControllerBase
-	{
+    {
+        private readonly IMentorService _mentorService;
+
+        public MentorsApiController(IMentorService mentorService)
+        {
+            this._mentorService = mentorService;
+        }
+        
 		// GET: api/mentors/all
 		[HttpGet("all")]
 		public IEnumerable<MentorInformationDTO> Get()
 		{
-			MentorInformationDTO mentor = new MentorInformationDTO()
-			{
-				Email = "pepi@abv.bg",
-				Name = "Pepi",
-				EarnedMoney = 15000,
-				LastLessonDate = DateTime.Now,
-				LessonsCount = 15,
-			};
+			//MentorInformationDTO mentor = new MentorInformationDTO()
+			//{
+			//	Email = "pepi@abv.bg",
+			//	Name = "Pepi",
+			//	EarnedMoney = 15000,
+			//	LastLessonDate = DateTime.Now,
+			//	LessonsCount = 15,
+			//};
 
-			List<MentorInformationDTO> mentors = new List<MentorInformationDTO>
-			{
-				mentor
-			};
+            IEnumerable<MentorInformationDTO> mentors = _mentorService.GetAll();
 
 			return mentors;
 		}
@@ -41,14 +46,29 @@ namespace LMS_WhizAcademySystem.Server.Controllers
 		[HttpPost("add")] // api/mentors/add
 		public IActionResult Post([FromBody] MentorFormDTO mentor) //[
 		{
-			//if (mentor == null)
+			if (mentor == null)
 			{
-				return BadRequest("Mentor is null");
+				return BadRequest("Mentor is null.");
 			}
 
-			// Add mentor to the database (this part is not implemented in this example)
-			// _context.Mentors.Add(mentor);
-			// _context.SaveChanges();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Invalid ModelState.");
+            }
+
+            try
+            {
+                PasswordHasher hasher = new PasswordHasher();
+                mentor.Password = hasher.HashPassword(mentor.Password);
+
+                _mentorService.Add(mentor);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+				//TODO handle exception properly
+                throw;
+            }
 
 			return Ok("Mentor added successfully");
 		}
