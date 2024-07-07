@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../tailwind.css'; // Tailwind styles
 
 const AddMentor = () => {
     const [name, setName] = useState('');
@@ -8,10 +9,11 @@ const AddMentor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const mentor = { name, email, password };
+        const mentor = { Name: name, Email: email, Password: password };
 
+        console.log(mentor);
         try {
-            const response = await fetch('https://localhost:7090/api/mentor', {
+            const response = await fetch('https://localhost:44357/api/mentors/add/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,10 +31,12 @@ const AddMentor = () => {
             console.error('Error:', error);
             alert('Failed to add mentor');
         }
+
     };
 
     return (
-        <div className="w-screen  h-screen flex justify-center items-center m-a ">
+
+        <div className="w-screen  h-screen flex justify-center items-center">
             <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-green-500">Добави Ментор</h2>
                 <form onSubmit={handleSubmit}>
