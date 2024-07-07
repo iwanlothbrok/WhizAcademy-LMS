@@ -44,7 +44,7 @@ namespace LMS_WhizAcademySystem.Infrastructure.Data
           .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
         }
 
-        public DbSet<Mentor> Mentros { get; set; }
+        public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Relative> Relatives { get; set; }
         public DbSet<Lesson> Lessons { get; set; }
         public DbSet<Student> Students { get; set; }
