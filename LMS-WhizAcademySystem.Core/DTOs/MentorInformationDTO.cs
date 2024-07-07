@@ -15,5 +15,7 @@
 		public DateTime LastLessonDate { get; set; }
 
 		public List<Student> Students = new List<Student>();
-	}
+
+		public int StudentsCount => Students.Count;
+    }
 }
