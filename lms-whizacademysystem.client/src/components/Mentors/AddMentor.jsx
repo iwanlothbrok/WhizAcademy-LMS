@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import '../../tailwind.css'; // Tailwind styles
-
+import { useNavigate } from 'react-router-dom'
 const AddMentor = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    // how to use redirect with react-router-dom v6
+    let navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,6 +30,9 @@ const AddMentor = () => {
             }
 
             alert('Mentor added successfully');
+            console.log('redirect');
+            return navigate("/");
+            // resetForm();
         } catch (error) {
             console.error('Error:', error);
             alert('Failed to add mentor');
@@ -34,6 +40,12 @@ const AddMentor = () => {
 
     };
 
+
+    function resetForm() {
+        setName('');
+        setPassword('');
+        setEmail('');
+    }
     return (
 
         <div className="w-screen  h-screen  flex justify-center items-center">
