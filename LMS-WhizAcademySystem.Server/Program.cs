@@ -1,4 +1,7 @@
+using LMS_WhizAcademySystem.Core.Services;
+using LMS_WhizAcademySystem.Core.Services.Interfaces;
 using LMS_WhizAcademySystem.Infrastructure.Data;
+using LMS_WhizAcademySystem.Server.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +15,8 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(connectionString));
+
+builder.Services.AddApplicationServices();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 	options.SignIn.RequireConfirmedAccount = true)
