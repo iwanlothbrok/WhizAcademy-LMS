@@ -36,10 +36,10 @@ const AddMentor = () => {
 
     return (
 
-        <div className="w-screen  h-screen flex justify-center items-center">
-            <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+        <div className="w-screen  h-screen  flex justify-center items-center">
+            <div className="bg-white px-8  py-16 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-green-500">Добави Ментор</h2>
-                <form onSubmit={handleSubmit}>
+                <form className='text-lg ' onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor='name' className="block text-gray-700">Две Имена</label>
                         <input
@@ -47,7 +47,7 @@ const AddMentor = () => {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded mt-1"
+                            className="w-full p-2 border bg-black text-white     border-gray-300 rounded mt-1"
                             required
                         />
                     </div>
@@ -62,14 +62,14 @@ const AddMentor = () => {
                             required
                         />
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-5">
                         <label htmlFor='password' className="block text-gray-700">Парола</label>
                         <input
                             id='password'
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded mt-1"
+                            className="w-full p-2 border  bg-black text-white   border-gray-300 rounded mt-1"
                             required
                         />
                     </div>
