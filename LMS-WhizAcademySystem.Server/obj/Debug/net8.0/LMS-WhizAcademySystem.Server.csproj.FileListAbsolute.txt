@@ -276,9 +276,9 @@ C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcadem
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.pdb
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.genruntimeconfig.cache
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\ref\LMS-WhizAcademySystem.Server.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\spa.proxy.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\appsettings.json
-C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\spa.proxy.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\launchSettings.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Server.staticwebassets.runtime.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Server.exe
@@ -300,6 +300,7 @@ C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.SpaProxy.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
@@ -554,4 +555,4 @@ C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.pdb
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.genruntimeconfig.cache
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\ref\LMS-WhizAcademySystem.Server.dll
-C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\System.Web.Cors.dll
