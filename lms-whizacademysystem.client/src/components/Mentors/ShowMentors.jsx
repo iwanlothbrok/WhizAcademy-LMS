@@ -21,9 +21,10 @@ export default function ShowMentors() {
         };
 
         fetchMentors();
+        console.log(mentors);
     }, []);
 
-    let greenCounter = 300;
+    let greenCounter = 200;
 
     return (
         <div className="w-screen flex justify-center items-center ">
@@ -38,19 +39,21 @@ export default function ShowMentors() {
                                 <th className="py-2 px-4 text-left">Lessons Count</th>
                                 <th className="py-2 px-4 text-left">Earned Money</th>
                                 <th className="py-2 px-4 text-left">Last Lesson Date</th>
+                                <th className="py-2 px-4 text-left">Students Count</th>
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">
                             {mentors.map((mentor, index) => {
-                                const bgColorClass = `bg-lime-${greenCounter}`;
-                                greenCounter = (greenCounter + 100) % 900;
+                                const bgColorClass = `bg-green-${greenCounter}`;
+                                greenCounter = (greenCounter + 100) % 600;
                                 return (
-                                    <tr key={index} className={`border-t ${bgColorClass} hover:bg-green-200 transition duration-300 ease-in-out`}>
+                                    <tr key={index} className={`border-t ${bgColorClass} hover:bg-green-${greenCounter + 100} transition duration-300 ease-in-out`}>
                                         <td className="py-2 px-4">{mentor.name}</td>
                                         <td className="py-2 px-4">{mentor.email}</td>
                                         <td className="py-2 px-4">{mentor.lessonsCount}</td>
                                         <td className="py-2 px-4">${mentor.earnedMoney.toLocaleString()}</td>
                                         <td className="py-2 px-4">{new Date(mentor.lastLessonDate).toLocaleString()}</td>
+                                        {/* <td className="py-2 px-4">{mentor.}</td> */}
                                     </tr>
                                 );
                             })}
