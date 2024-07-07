@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CvFb6vRfuf1hqeMKrw11I9Dyx5eW+OCyD1BM4sGJ/GY+tzJG2f8Wgmo3zIGUJH9CO3FrJO/U8C5RPi36fbGP7Q==",
+  "dgSpecHash": "NaRNB2b7sm77BbX7wbkhXa5lkpxftKFVzLf+MWIHyXOAAFICdJ9U/BwlWwoHv/TuJFUqGAgTJdVr1FU17AnZcQ==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
+  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

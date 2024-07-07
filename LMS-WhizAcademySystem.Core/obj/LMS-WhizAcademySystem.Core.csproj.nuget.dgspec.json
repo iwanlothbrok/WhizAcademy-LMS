@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj": {}
+    "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj": {}
   },
   "projects": {
-    "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj": {
+    "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
         "projectName": "LMS-WhizAcademySystem.Core",
-        "projectPath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +28,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj": {
-                "projectPath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj"
+              "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj"
               }
             }
           }
@@ -44,9 +40,7 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -74,25 +68,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj": {
+    "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj",
         "projectName": "LMS-WhizAcademySystem.Infrastructure",
-        "projectPath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -114,9 +104,7 @@
           ]
         },
         "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
+          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -168,7 +156,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

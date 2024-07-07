@@ -840,3 +840,7 @@ D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-Whiz
 D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
 D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
+C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
