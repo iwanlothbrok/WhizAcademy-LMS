@@ -1,0 +1,16 @@
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.deps.json
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\bin\Debug\net8.0\LMS-WhizAcademySystem.Infrastructure.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\bin\Debug\net8.0\LMS-WhizAcademySystem.Infrastructure.pdb
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.csproj.AssemblyReference.cache
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.AssemblyInfoInputs.cache
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.AssemblyInfo.cs
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.csproj.CoreCompileInputs.cache
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.sourcelink.json
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-Whiz.AF1B02C2.Up2Date
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\refint\LMS-WhizAcademySystem.Core.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Core\obj\Debug\net8.0\ref\LMS-WhizAcademySystem.Core.dll

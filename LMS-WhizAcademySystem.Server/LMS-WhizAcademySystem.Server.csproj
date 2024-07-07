@@ -13,6 +13,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.Cors" Version="5.3.0" />
+		<PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.4" />
@@ -39,7 +40,7 @@
 		<ProjectReference Include="..\lms-whizacademysystem.client\lms-whizacademysystem.client.esproj">
 			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
 		</ProjectReference>
-		<ProjectReference Include="..\LMS-WhizAcademySystem.Infrastructure\LMS-WhizAcademySystem.Infrastructure.csproj" />
+		<ProjectReference Include="..\LMS-WhizAcademySystem.Core\LMS-WhizAcademySystem.Core.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "Hash": "ixPuu2RQ8xqOuCTLcLcFp203Nr5Qrq37QnY1syldhIM=",
+  "Hash": "Yw9UQYIuPfr7b2AgViuhRFXuQYqR0X4HzyIWdWcSfsE=",
   "Source": "LMS-WhizAcademySystem.Server",
   "BasePath": "_content/LMS-WhizAcademySystem.Server",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\lms-whizacademysystem.client\\lms-whizacademysystem.client.esproj",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\lms-whizacademysystem.client\\lms-whizacademysystem.client.esproj",
       "Version": 2,
       "Source": "lms-whizacademysystem.client",
       "GetPublishAssetsTargets": "GetCurrentProjectPublishStaticWebAssetItems",
@@ -22,7 +22,7 @@
     {
       "Name": "LMS-WhizAcademySystem.Server\\wwwroot",
       "Source": "LMS-WhizAcademySystem.Server",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "Pattern": "**"
     }
@@ -1207,10 +1207,10 @@
       "OriginalItemSpec": "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.4\\staticwebassets\\V5\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LMS-WhizAcademySystem.Server.styles.css",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LMS-WhizAcademySystem.Server.styles.css",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "LMS-WhizAcademySystem.Server.styles.css",
       "AssetKind": "All",
@@ -1223,13 +1223,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LMS-WhizAcademySystem.Server.styles.css"
+      "OriginalItemSpec": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\obj\\Debug\\net8.0\\scopedcss\\bundle\\LMS-WhizAcademySystem.Server.styles.css"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\css\\site.css",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\css\\site.css",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -1245,10 +1245,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\favicon.ico",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\favicon.ico",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",
@@ -1264,10 +1264,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\js\\site.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\js\\site.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "js/site.js",
       "AssetKind": "All",
@@ -1283,10 +1283,10 @@
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css",
       "AssetKind": "All",
@@ -1302,10 +1302,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.css.map",
       "AssetKind": "All",
@@ -1321,10 +1321,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css",
       "AssetKind": "All",
@@ -1340,10 +1340,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/css/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -1359,10 +1359,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.js",
       "AssetKind": "All",
@@ -1378,10 +1378,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/dist/js/bootstrap.min.js",
       "AssetKind": "All",
@@ -1397,10 +1397,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\bootstrap\\LICENSE",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/bootstrap/LICENSE",
       "AssetKind": "All",
@@ -1416,10 +1416,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\bootstrap\\LICENSE"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery/dist/jquery.js",
       "AssetKind": "All",
@@ -1435,10 +1435,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery/dist/jquery.min.js",
       "AssetKind": "All",
@@ -1454,10 +1454,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery/dist/jquery.min.map",
       "AssetKind": "All",
@@ -1473,10 +1473,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery/LICENSE.txt",
       "AssetKind": "All",
@@ -1492,10 +1492,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.js",
       "AssetKind": "All",
@@ -1511,10 +1511,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min.js",
       "AssetKind": "All",
@@ -1530,10 +1530,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.js",
       "AssetKind": "All",
@@ -1549,10 +1549,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min.js",
       "AssetKind": "All",
@@ -1568,10 +1568,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation/LICENSE.md",
       "AssetKind": "All",
@@ -1587,10 +1587,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
       "AssetKind": "All",
@@ -1606,10 +1606,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "LMS-WhizAcademySystem.Server",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
+      "ContentRoot": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\wwwroot\\",
       "BasePath": "_content/LMS-WhizAcademySystem.Server",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
       "AssetKind": "All",
