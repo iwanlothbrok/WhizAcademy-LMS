@@ -39,8 +39,9 @@
 
         public IEnumerable<MentorInformationDTO> GetAll()
         {
-            IEnumerable<MentorInformationDTO> mentors = _dbContext.Mentors.Select(m => new MentorInformationDTO()
+            var mentors = _dbContext.Mentors.Select(m => new MentorInformationDTO()
             {
+                Id = m.Id,
                 Name = m.Name,
                 Email = m.Email,
                 LessonsCount = 69,
@@ -49,7 +50,7 @@
 
                 // STUDENTS WILL BE EVERYTIME EMPTY LIST
                 // - GET THE STUDENTS WITH FK - MENTOR ID	 
-                Students = { }
+                Students = new List<Student>()
             });
 
             return mentors;
@@ -64,5 +65,20 @@
 
             return hash;
         }
+
+        public void Delete(int id)
+        {
+            var selectedMentor = GetById(id);
+
+            if (selectedMentor == null)
+            {
+                throw new Exception();
+            }
+
+            _dbContext.Mentors.Remove(selectedMentor);
+            _dbContext.SaveChanges();
+        }
+
+        public Mentor? GetById(int id) => _dbContext.Mentors.FirstOrDefault(m => m.Id == id);
     }
 }
