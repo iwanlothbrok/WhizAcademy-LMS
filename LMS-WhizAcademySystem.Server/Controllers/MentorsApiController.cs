@@ -19,15 +19,6 @@
         [HttpGet("all")]
         public IEnumerable<MentorInformationDTO> Get()
         {
-            //MentorInformationDTO mentor = new MentorInformationDTO()
-            //{
-            //	Email = "pepi@abv.bg",
-            //	Name = "Pepi",
-            //	EarnedMoney = 15000,
-            //	LastLessonDate = DateTime.Now,
-            //	LessonsCount = 15,
-            //};
-
             IEnumerable<MentorInformationDTO> mentors = _mentorService.GetAll();
 
             return mentors;
@@ -57,11 +48,9 @@
             {
                 _mentorService.Add(mentor);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine(ex.Message);
-                //TODO handle exception properly
-                throw;
+                return BadRequest();
             }
 
             return Ok("Mentor added successfully");

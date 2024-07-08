@@ -844,3 +844,9 @@ C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\BouncyCastle.Crypto.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\System.Web.Cors.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
