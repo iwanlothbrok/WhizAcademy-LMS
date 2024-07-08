@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router-dom';
 export default function ShowMentors() {
     const [mentors, setMentors] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [alert, setAlert] = useState(null); // State to manage alerts
+    const [alert, setAlert] = useState(null);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchMentors = async () => {
+            setLoading(true);
             try {
                 const response = await fetch('https://localhost:44357/api/mentors/all');
                 if (!response.ok) {
@@ -18,10 +20,12 @@ export default function ShowMentors() {
 
                 const data = await response.json();
                 setMentors(data);
-                console.log(data); // Log data once when fetched
+                console.log(data);
             } catch (error) {
                 console.error('Error:', error);
                 showAlert('An error occurred while fetching mentors.', 'Be Warned', 'red');
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -34,6 +38,7 @@ export default function ShowMentors() {
     };
 
     const handleDelete = async (id) => {
+        setLoading(true);
         try {
             const response = await fetch(`https://localhost:44357/api/mentors/${id}`, {
                 method: 'DELETE',
@@ -45,10 +50,14 @@ export default function ShowMentors() {
             }
 
             setMentors(mentors.filter((mentor) => mentor.id !== id));
-            showAlert('Mentor deleted successfully', 'Success', 'green');
+            showAlert('', 'Mentor deleted successfully', 'green');
         } catch (error) {
             console.error('Error:', error);
             showAlert('An error occurred while deleting the mentor.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 500); // Slight delay to ensure the loading GIF is displayed properly
         }
     };
 
@@ -60,7 +69,7 @@ export default function ShowMentors() {
         setAlert({ message, title, color });
         setTimeout(() => {
             setAlert(null);
-        }, 3000); // Hide alert after 3 seconds
+        }, 3000);
     };
 
     const filteredMentors = mentors.filter((mentor) =>
@@ -69,14 +78,19 @@ export default function ShowMentors() {
     );
 
     return (
-        <div className="w-screen p-2 flex justify-center items-center flex-col">
+        <div className="w-screen p-2 flex justify-center items-center flex-col relative">
             {alert && (
-                <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 bg-${alert.color} text-${alert.color}-700 p-4 mb-4`} role="alert">
-                    <p className="font-bold">{alert.title}</p>
+                <div className={`top-5 mb-2 w-3/6 flex justify-center items-center bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 `} role="alert">
+                    <p className="font-bold">{alert.title} </p> <br />
                     <p>{alert.message}</p>
                 </div>
             )}
             <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-4xl mb-4">
+                {loading && (
+                    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                        <img src={'https://i.gifer.com/4SHX.gif'} alt="Loading..." className="w-56 h-56" />
+                    </div>
+                )}
                 <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Mentors</h1>
                 <input
                     type="text"
