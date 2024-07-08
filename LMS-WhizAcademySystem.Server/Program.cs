@@ -1,5 +1,3 @@
-using LMS_WhizAcademySystem.Core.Services;
-using LMS_WhizAcademySystem.Core.Services.Interfaces;
 using LMS_WhizAcademySystem.Infrastructure.Data;
 using LMS_WhizAcademySystem.Server.Extensions;
 using Microsoft.AspNetCore.Identity;
