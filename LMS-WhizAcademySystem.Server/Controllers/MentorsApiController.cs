@@ -26,13 +26,6 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return mentors;
         }
 
-        // GET api/mentors/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost("add")] // api/mentors/add
         public IActionResult Post([FromBody] MentorFormDTO mentor) //[
         {
@@ -58,21 +51,22 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return Ok("Mentor added successfully");
         }
 
-        [HttpGet("update")] // api/mentors/update
-        public IActionResult Update(int id)
+
+        // GET api/mentors/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
+            var mentor = _mentorService.GetById(id);
 
-            MentorEditDTO? editForm = _mentorService.GetEditDTOById(id);
-
-            if (editForm == null)
+            if (mentor == null)
             {
                 return BadRequest();
             }
-            
-            return Ok(editForm);
+
+            return Ok(mentor);
         }
 
-        [HttpPost("update")] // api/mentors/update
+        [HttpPut("edit")] // api/mentors/edit
         public IActionResult Update([FromBody] MentorEditDTO editForm)
         {
             if (editForm == null)
@@ -87,7 +81,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
 
             try
             {
-                _mentorService.Update(editForm);
+                _mentorService.Edit(editForm);
             }
             catch (Exception e)
             {
@@ -97,13 +91,13 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return Ok("Mentor updated successfully");
         }
 
-        // PUT api/<MentorsApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<MentorsApiController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<MentorsApiController>/5
+        // DELETE api/mentor/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
