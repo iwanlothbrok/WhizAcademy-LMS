@@ -1,4 +1,6 @@
-﻿namespace LMS_WhizAcademySystem.Server.Controllers
+﻿using LMS_WhizAcademySystem.Core.DTOs;
+
+namespace LMS_WhizAcademySystem.Server.Controllers
 {
     using Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
@@ -54,6 +56,45 @@
             }
 
             return Ok("Mentor added successfully");
+        }
+
+        [HttpGet("update")] // api/mentors/update
+        public IActionResult Update(int id)
+        {
+
+            MentorEditDTO? editForm = _mentorService.GetEditDTOById(id);
+
+            if (editForm == null)
+            {
+                return BadRequest();
+            }
+            
+            return Ok(editForm);
+        }
+
+        [HttpPost("update")] // api/mentors/update
+        public IActionResult Update([FromBody] MentorEditDTO editForm)
+        {
+            if (editForm == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _mentorService.Update(editForm);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error in mentor update");
+            }
+
+            return Ok("Mentor updated successfully");
         }
 
         // PUT api/<MentorsApiController>/5
