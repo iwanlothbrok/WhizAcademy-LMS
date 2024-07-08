@@ -67,7 +67,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
         }
 
         [HttpPut("edit")] // api/mentors/edit
-        public IActionResult Update([FromBody] MentorEditDTO editForm)
+        public IActionResult Edit([FromBody] MentorEditDTO editForm)
         {
             if (editForm == null)
             {
