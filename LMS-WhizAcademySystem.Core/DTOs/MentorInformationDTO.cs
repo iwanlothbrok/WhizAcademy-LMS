@@ -1,21 +1,22 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Models
 {
-	using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
 
-	public class MentorInformationDTO
-	{
-		public string Name { get; set; } = null!;
+    public class MentorInformationDTO
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
 
-		public string Email { get; set; } = null!;
+        public string Email { get; set; } = null!;
 
-		public int LessonsCount { get; set; }
+        public int LessonsCount { get; set; }
 
-		public decimal EarnedMoney { get; set; }
+        public decimal EarnedMoney { get; set; }
 
-		public DateTime LastLessonDate { get; set; }
+        public DateTime LastLessonDate { get; set; }
 
-		public List<Student> Students = new List<Student>();
+        public List<Student> Students = new List<Student>();
 
-		public int StudentsCount => Students.Count;
+        public int StudentsCount => Students.Count;
     }
 }
