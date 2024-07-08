@@ -8,7 +8,7 @@ namespace LMS_WhizAcademySystem.Core.Services.Interfaces
     {
         public void Add(MentorFormDTO mentorForm);
 
-        public void Update(MentorEditDTO editForm);
+        public void Edit(MentorEditDTO editForm);
 
         public void Delete(int id);
 

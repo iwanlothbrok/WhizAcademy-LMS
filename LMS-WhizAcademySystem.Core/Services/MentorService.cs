@@ -38,7 +38,7 @@ namespace LMS_WhizAcademySystem.Core.Services
             _dbContext.SaveChanges();
         }
 
-        public void Update(MentorEditDTO editForm)
+        public void Edit(MentorEditDTO editForm)
         {
             Mentor? mentor = GetById(editForm.Id);
 
