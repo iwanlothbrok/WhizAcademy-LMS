@@ -64,8 +64,24 @@
 
         // DELETE api/<MentorsApiController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _mentorService.Delete(id);
+            }
+            catch (Exception)
+            {
+
+                return BadRequest();
+            }
+
+            return Ok();
         }
     }
 }
