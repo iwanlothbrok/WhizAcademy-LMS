@@ -1,12 +1,13 @@
-﻿namespace LMS_WhizAcademySystem.Core.Services
-{
-    using LMS_WhizAcademySystem.Core.Services.Interfaces;
-    using LMS_WhizAcademySystem.Infrastructure.Data;
-    using LMS_WhizAcademySystem.Infrastructure.Models;
-    using LMS_WhizAcademySystem.Server.Models;
-    using System.Security.Cryptography;
-    using System.Text;
+﻿using LMS_WhizAcademySystem.Core.Services.Interfaces;
+using LMS_WhizAcademySystem.Infrastructure.Data;
+using LMS_WhizAcademySystem.Infrastructure.Models;
+using LMS_WhizAcademySystem.Server.Models;
+using System.Security.Cryptography;
+using System.Text;
+using LMS_WhizAcademySystem.Core.DTOs;
 
+namespace LMS_WhizAcademySystem.Core.Services
+{
     public class MentorService : IMentorService
     {
         private readonly ApplicationDbContext _dbContext;
@@ -37,6 +38,22 @@
             _dbContext.SaveChanges();
         }
 
+        public void Update(MentorEditDTO editForm)
+        {
+            Mentor? mentor = GetById(editForm.Id);
+
+            if (mentor == null)
+            {
+                throw new Exception("Mentor is null, invalid id.");
+            }
+
+            mentor.Name = editForm.Name;
+            mentor.Email = editForm.Email;
+            mentor.PasswordHash = HashPassword(editForm.Password);
+
+            _dbContext.SaveChanges();
+        }
+
         public IEnumerable<MentorInformationDTO> GetAll()
         {
             var mentors = _dbContext.Mentors.Select(m => new MentorInformationDTO()
@@ -56,16 +73,6 @@
             return mentors;
         }
 
-        private static string HashPassword(string password)
-        {
-            using var sha256 = SHA256.Create();
-
-            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-            var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-
-            return hash;
-        }
-
         public void Delete(int id)
         {
             var selectedMentor = GetById(id);
@@ -80,5 +87,26 @@
         }
 
         public Mentor? GetById(int id) => _dbContext.Mentors.FirstOrDefault(m => m.Id == id);
+
+        public MentorEditDTO? GetEditDTOById(int id) => _dbContext.Mentors
+            .Where(m => m.Id == id)
+            .Select(m =>
+            new MentorEditDTO()
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Email = m.Email,
+                Password = m.PasswordHash
+            }).FirstOrDefault();
+        
+        private static string HashPassword(string password)
+        {
+            using var sha256 = SHA256.Create();
+
+            var hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            var hash = BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+
+            return hash;
+        }
     }
 }
