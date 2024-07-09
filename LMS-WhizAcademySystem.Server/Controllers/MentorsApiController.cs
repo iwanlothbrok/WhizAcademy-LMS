@@ -85,7 +85,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             }
             catch (Exception e)
             {
-                throw new Exception("Error in mentor update");
+                return BadRequest("Error in mentor update");
             }
 
             return Ok("Mentor updated successfully");

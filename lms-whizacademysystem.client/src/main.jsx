@@ -5,7 +5,8 @@ import App from './App.jsx';
 import './index.css';
 import './tailwind.css'; // Tailwind styles
 import OperationsCard from './components/OperationsCard.jsx';
-import mentorsCards from './components/database/mentorsCards.js';
+import { mentorsCards, title } from './components/database/mentorsCards.js';
+import { studentCards, studentTitle } from './components/database/studentCards.js';
 import AddMentor from './components/Mentors/AddMentor.jsx';
 import ShowMentors from './components/Mentors/ShowMentors.jsx';
 import Navigation from './components/Navigation.jsx';
@@ -17,10 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Navigation />
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/mentors" element={<OperationsCard cards={mentorsCards} />} />
+        <Route path="/mentors" element={<OperationsCard cards={mentorsCards} title={title} />} />
         <Route path='/mentors/add' element={<AddMentor />} />
         <Route path='/mentors/all' element={<ShowMentors />} />
         <Route path='/edit-mentor/:id' element={<EditMentor />} />
+        <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
 
       </Routes>
     </Router>

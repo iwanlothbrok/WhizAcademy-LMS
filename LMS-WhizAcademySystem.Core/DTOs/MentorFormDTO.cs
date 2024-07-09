@@ -12,6 +12,7 @@
 		public string Email { get; set; } = null!;
 
 		[Required]
+		[MinLength(5), MaxLength(14)]
 		public string Password { get; set; } = null!;
 	}
 }

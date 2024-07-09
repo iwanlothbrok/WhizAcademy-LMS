@@ -5,6 +5,7 @@ using LMS_WhizAcademySystem.Server.Models;
 using System.Security.Cryptography;
 using System.Text;
 using LMS_WhizAcademySystem.Core.DTOs;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LMS_WhizAcademySystem.Core.Services
 {
@@ -21,7 +22,9 @@ namespace LMS_WhizAcademySystem.Core.Services
 
             if (string.IsNullOrWhiteSpace(mentorForm.Name) ||
                 string.IsNullOrWhiteSpace(mentorForm.Email) ||
-                string.IsNullOrWhiteSpace(mentorForm.Password))
+                string.IsNullOrWhiteSpace(mentorForm.Password) ||
+                mentorForm.Password.Length < 4 ||
+                mentorForm.Password.Length > 14)
             {
                 throw new Exception("Null value passed in form.");
             }
@@ -45,6 +48,15 @@ namespace LMS_WhizAcademySystem.Core.Services
             if (mentor == null)
             {
                 throw new Exception("Mentor is null, invalid id.");
+            }
+
+            if (string.IsNullOrWhiteSpace(editForm.Name) ||
+           string.IsNullOrWhiteSpace(editForm.Email) ||
+           string.IsNullOrWhiteSpace(editForm.Password) ||
+           editForm.Password.Length < 4 ||
+           editForm.Password.Length > 14)
+            {
+                throw new Exception("Null value passed in form.");
             }
 
             mentor.Name = editForm.Name;
@@ -98,7 +110,7 @@ namespace LMS_WhizAcademySystem.Core.Services
                 Email = m.Email,
                 Password = m.PasswordHash
             }).FirstOrDefault();
-        
+
         private static string HashPassword(string password)
         {
             using var sha256 = SHA256.Create();
