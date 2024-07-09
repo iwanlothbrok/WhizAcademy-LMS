@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace LMS_WhizAcademySystem.Infrastructure.Models
+﻿namespace LMS_WhizAcademySystem.Infrastructure.Models
 {
+    using Microsoft.EntityFrameworkCore;
+    using System.ComponentModel.DataAnnotations;
     public class Student
     {
         [Key]
@@ -23,7 +22,7 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
         public string? Address { get; set; }
 
         /// <summary>
-        /// Father or mother
+        /// Father or mother    
         /// </summary>
         public int? RelativeId { get; set; }
         public Relative? Relative { get; set; }

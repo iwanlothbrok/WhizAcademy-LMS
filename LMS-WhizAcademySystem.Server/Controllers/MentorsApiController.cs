@@ -1,7 +1,6 @@
-﻿using LMS_WhizAcademySystem.Core.DTOs;
-
-namespace LMS_WhizAcademySystem.Server.Controllers
+﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
+    using LMS_WhizAcademySystem.Core.DTOs;
     using Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
     using Models;
