@@ -96,10 +96,10 @@ export default function ShowMentors() {
                 </div>
             )}
             <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-4xl mb-4">
-                <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Mentors</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Ментори</h1>
                 <input
                     type="text"
-                    placeholder="Search by name or email"
+                    placeholder="Потърси по имейл или имена"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full p-2 mb-4 border bg-white text-black border-gray-300 rounded"
@@ -108,13 +108,13 @@ export default function ShowMentors() {
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                         <thead className="bg-green-500 text-white">
                             <tr>
-                                <th className="py-2 px-4 text-left">Name</th>
-                                <th className="py-2 px-4 text-left">Email</th>
-                                <th className="py-2 px-4 text-left">Lessons Count</th>
-                                <th className="py-2 px-4 text-left">Earned Money</th>
-                                <th className="py-2 px-4 text-left">Last Lesson Date</th>
-                                <th className="py-2 px-4 text-left">Students Count</th>
-                                <th className="py-2 px-4 text-left">Actions</th>
+                                <th className="py-2 px-4 text-left">Имена</th>
+                                <th className="py-2 px-4 text-left">Имейл</th>
+                                <th className="py-2 px-4 text-left">Брой Уроци</th>
+                                <th className="py-2 px-4 text-left">Изкарани Пари</th>
+                                <th className="py-2 px-4 text-left">Последен Урок</th>
+                                <th className="py-2 px-4 text-left">Брой Студенти</th>
+                                <th className="py-2 px-4 text-left">Операции</th>
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">
@@ -131,13 +131,13 @@ export default function ShowMentors() {
                                             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 mr-2"
                                             onClick={() => handleDelete(mentor.id)}
                                         >
-                                            Delete
+                                            Изтрий
                                         </button>
                                         <button
                                             className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
                                             onClick={() => handleEdit(mentor.id)}
                                         >
-                                            Edit
+                                            Промяна
                                         </button>
                                     </td>
                                 </tr>
