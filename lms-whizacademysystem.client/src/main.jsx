@@ -11,6 +11,7 @@ import AddMentor from './components/Mentors/AddMentor.jsx';
 import ShowMentors from './components/Mentors/ShowMentors.jsx';
 import Navigation from './components/Navigation.jsx';
 import EditMentor from './components/Mentors/EditMentor.jsx';
+import AddStudent from './components/Students/AddStudent.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/mentors/all' element={<ShowMentors />} />
         <Route path='/edit-mentor/:id' element={<EditMentor />} />
         <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
+        <Route path='/students/add' element={<AddStudent />} />
 
       </Routes>
     </Router>
