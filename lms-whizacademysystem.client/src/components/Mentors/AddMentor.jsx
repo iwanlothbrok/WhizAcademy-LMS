@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../tailwind.css'; // Tailwind styles
 
 const AddMentor = () => {
     const [name, setName] = useState('');
@@ -36,7 +35,9 @@ const AddMentor = () => {
             showAlert('Mentor added successfully', 'Success', 'green');
 
             resetForm();
-            navigate("/");
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
         } catch (error) {
             console.error('Error:', error);
             showAlert('Failed to add mentor', 'Be Warned', 'orange');
@@ -62,11 +63,17 @@ const AddMentor = () => {
     return (
         <div className="w-screen h-screen flex justify-center items-center p-3">
             {alert && (
-                <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
+                <div className={`absolute bg-${alert.color}-100 top-0 left-1/2 transform -translate-x-1/2 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
                     <p className="font-bold">{alert.title}</p>
                     <p>{alert.message}</p>
                 </div>
             )}
+            {/* {alert && (
+                <div className={`absolute bg-${alert.color}-100 top-0 left-1/2 transform -translate-x-1/2 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
+                    <p className="font-bold">{alert.title}</p>
+                    <p>{alert.message}</p>
+                </div>
+            )} */}
             <div className="bg-white px-8 py-16 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Добави Ментор</h2>
                 <form className="text-lg" onSubmit={handleSubmit}>

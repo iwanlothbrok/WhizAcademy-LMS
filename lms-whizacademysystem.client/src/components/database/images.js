@@ -8,7 +8,7 @@ import progress from '../../assets/images/graffits/14.png'
 
 const images = [
     { id: 1, src: mentor, link: '/mentors', information: 'Ментори' },
-    { id: 2, src: student, link: '/page2', information: 'Обучаеми' },
+    { id: 2, src: student, link: '/students', information: 'Обучаеми' },
     { id: 3, src: lesson, link: '/page3', information: 'График' },
     { id: 4, src: relative, link: '/page4', information: 'Разплащатели' },
     { id: 5, src: payment, link: '/page5', information: 'Плащания' },
