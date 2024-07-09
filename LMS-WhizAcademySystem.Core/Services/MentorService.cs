@@ -1,14 +1,12 @@
-﻿using LMS_WhizAcademySystem.Core.Services.Interfaces;
-using LMS_WhizAcademySystem.Infrastructure.Data;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using LMS_WhizAcademySystem.Server.Models;
-using System.Security.Cryptography;
-using System.Text;
-using LMS_WhizAcademySystem.Core.DTOs;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-namespace LMS_WhizAcademySystem.Core.Services
+﻿namespace LMS_WhizAcademySystem.Core.Services
 {
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
+    using LMS_WhizAcademySystem.Infrastructure.Data;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Server.Models;
+    using System.Security.Cryptography;
+    using System.Text;
     public class MentorService : IMentorService
     {
         private readonly ApplicationDbContext _dbContext;
