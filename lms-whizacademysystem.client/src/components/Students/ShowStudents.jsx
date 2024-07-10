@@ -46,6 +46,12 @@ export default function ShowStudents() {
         student.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+
+    const handleProgress = (id) => {
+        navigate(`/roadmap/${id}`);
+    };
+
+
     const showAlert = (message, title, color) => {
         setAlert({ message, title, color });
         setTimeout(() => {
@@ -115,7 +121,7 @@ export default function ShowStudents() {
                                         </button>
                                         <button
                                             className="bg-purple-900 text-white px-2 py-1 rounded hover:bg-amber-700"
-                                            onClick={() => handleEdit(mentor.id)}
+                                            onClick={() => handleProgress(student.id)}
                                         >
                                             Прогрес
                                         </button>

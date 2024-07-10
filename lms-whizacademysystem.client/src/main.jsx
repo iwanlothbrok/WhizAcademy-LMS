@@ -14,7 +14,7 @@ import Navigation from './components/Navigation.jsx';
 import EditMentor from './components/Mentors/EditMentor.jsx';
 import AddStudent from './components/Students/AddStudent.jsx';
 import ShowStudents from './components/Students/ShowStudents.jsx';
-
+import ExcelPage from './components/Students/ExcelViewer.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
@@ -28,6 +28,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
         <Route path='/students/add' element={<AddStudent />} />
         <Route path='/students/all' element={<ShowStudents />} />
+        <Route path='/roadmap/:id' element={<ExcelPage />} />
+
 
       </Routes>
     </Router>

@@ -25,5 +25,7 @@
         /// TODO: check what type should be the excel file
         /// </summary>
         public byte[]? Roadmap { get; set; }
+
+        //public FileContentResult FileContentResult { get; set; }
     }
 }
