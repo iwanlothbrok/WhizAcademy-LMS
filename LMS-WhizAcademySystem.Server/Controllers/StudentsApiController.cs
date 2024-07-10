@@ -6,7 +6,7 @@
     using LMS_WhizAcademySystem.Infrastructure.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using static Org.BouncyCastle.Math.EC.ECCurve;
+    using Microsoft.IdentityModel.Tokens;
 
     [Route("api/students")]
     [ApiController]
@@ -75,9 +75,24 @@
             //{
             //    x.Roadmap = [];
             //}
-            FileContentResult a = File(students[0].Roadmap, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "roadmap.xlsx");
-
             return students;
         }
+
+        [HttpGet("get/roadmap/{id}")]
+        public IActionResult GetRoadmap(int id)
+        {
+            var student = this.data.Students.FirstOrDefault(x => x.Id == id);
+
+            if (student == null || student.Roadmap == null)
+            {
+                return NotFound("Roadmap not found for the specified student.");
+            }
+
+            return File(student.Roadmap, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "roadmap.xlsx");
+
+            //return Ok(student.Roadmap);
+        }
+
+
     }
 }

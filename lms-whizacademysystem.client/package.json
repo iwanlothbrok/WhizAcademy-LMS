@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "antd": "^5.19.1",
+    "file-saver": "^2.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-excel-renderer": "^1.1.0",
     "react-router-dom": "^6.24.1",
     "react-table": "^7.8.0",
     "xlsx": "^0.18.5"
