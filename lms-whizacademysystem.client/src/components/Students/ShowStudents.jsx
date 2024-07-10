@@ -42,7 +42,8 @@ export default function ShowStudents() {
 
     const filteredStudents = students.filter((student) =>
         student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        student.email.toLowerCase().includes(searchQuery.toLowerCase())
+        student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        student.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const showAlert = (message, title, color) => {
@@ -53,9 +54,9 @@ export default function ShowStudents() {
     };
 
     return (
-        <div className="w-screen p-2 flex justify-center items-center flex-col">
+        <div className="w-screen p-4 flex justify-center items-center flex-col">
             {alert && (
-                <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
+                <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-5 mb-4`} role="alert">
                     <p className="font-bold">{alert.title}</p>
                     <p>{alert.message}</p>
                 </div>
@@ -65,14 +66,14 @@ export default function ShowStudents() {
                     <img src="https://i.gifer.com/4SHX.gif" alt="Loading..." className="w-56 h-56" />
                 </div>
             )}
-            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-4xl mb-4">
-                <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Ментори</h1>
+            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
+                <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Студенти</h1>
                 <input
                     type="text"
-                    placeholder="Потърси по имейл или имена"
+                    placeholder="Потърси по имейл, имена или тел. номер"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full p-2 mb-4 border bg-white text-black border-gray-300 rounded"
+                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border bg-white text-black border-gray-300 rounded"
                 />
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -80,11 +81,13 @@ export default function ShowStudents() {
                             <tr>
                                 <th className="py-2 px-4 text-left">Имена</th>
                                 <th className="py-2 px-4 text-left">Имейл</th>
-                                <th className="py-2 px-4 text-left">Брой Уроци</th>
-                                <th className="py-2 px-4 text-left">Изкарани Пари</th>
-                                <th className="py-2 px-4 text-left">Последен Урок</th>
-                                <th className="py-2 px-4 text-left">Брой Студенти</th>
-                                <th className="py-2 px-4 text-left">Операции</th>
+                                <th className="py-2 px-4 text-left">Телефонен Номер</th>
+                                <th className="py-2 px-4 text-left">Цена на Урок</th>
+                                <th className="py-2 px-4 text-left">Адрес</th>
+                                <th className="py-2 px-4 text-left">Ментор</th>
+                                <th className="py-2 px-4 text-left">Разплащател</th>
+                                <th className="py-2 px-4 text-left">Функции</th>
+
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">
@@ -92,10 +95,11 @@ export default function ShowStudents() {
                                 <tr key={index} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-600 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{student.name}</td>
                                     <td className="py-2 px-4">{student.email}</td>
-                                    {/* <td className="py-2 px-4">{student.lessonsCount}</td>
-                                    <td className="py-2 px-4">${student.earnedMoney.toLocaleString()}</td>
-                                    <td className="py-2 px-4">{new Date(student.lastLessonDate).toLocaleString()}</td>
-                                    <td className="py-2 px-4">{student.studentsCount}</td> */}
+                                    <td className="py-2 px-4">{student.phoneNumber}</td>
+                                    <td className="py-2 px-4">${student.priceForHour.toLocaleString()}</td>
+                                    <td className="py-2 px-4">{student.address}</td>
+                                    <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добавен ментор'}</td>
+                                    <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавени близки'}</td>
                                     <td className="py-2 px-4">
                                         <button
                                             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 mr-2"
@@ -108,6 +112,12 @@ export default function ShowStudents() {
                                         // onClick={() => handleEdit(student.id)}
                                         >
                                             Промяна
+                                        </button>
+                                        <button
+                                            className="bg-purple-900 text-white px-2 py-1 rounded hover:bg-amber-700"
+                                            onClick={() => handleEdit(mentor.id)}
+                                        >
+                                            Прогрес
                                         </button>
                                     </td>
                                 </tr>

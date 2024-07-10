@@ -102,7 +102,7 @@ export default function ShowMentors() {
                     placeholder="Потърси по имейл или имена"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full p-2 mb-4 border bg-white text-black border-gray-300 rounded"
+                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border bg-white text-black border-gray-300 rounded"
                 />
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -139,6 +139,7 @@ export default function ShowMentors() {
                                         >
                                             Промяна
                                         </button>
+                                        
                                     </td>
                                 </tr>
                             ))}
