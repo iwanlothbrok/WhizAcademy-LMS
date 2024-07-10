@@ -13,8 +13,7 @@
         [Phone]
         public string PhoneNumber { get; set; } = null!;
 
-        [Precision(2)]
-        public decimal PriceForHours { get; set; }
+        public decimal PriceForHour { get; set; }
 
         public string? Address { get; set; }
 
