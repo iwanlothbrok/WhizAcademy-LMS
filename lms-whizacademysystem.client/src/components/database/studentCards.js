@@ -6,7 +6,7 @@ import edit from '../../assets/images/graffits/18.png'
 
 const studentCards = [
     { id: 1, src: add, link: '/students/add', information: 'Добави' },
-    { id: 2, src: all, link: '/mentors/all', information: 'Ментори' },
+    { id: 2, src: all, link: '/students/all', information: 'Студенти' },
     // { id: 3, src: remove, link: '/page3', information: 'Изтрий' },
     // { id: 4, src: edit, link: '/page4', information: 'Промени' },
 ];
