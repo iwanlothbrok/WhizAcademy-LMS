@@ -850,3 +850,5 @@ C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcadem
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\BouncyCastle.Crypto.dll
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.dll
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\LMS-WhizAcademySystem.Core.pdb
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\System.Text.Json.dll
