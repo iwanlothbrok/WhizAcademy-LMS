@@ -126,6 +126,58 @@
                 return BadRequest(new { message = ex.Message });
             }
         }
-        
+        [HttpPost("update/{id}")]
+        public IActionResult UpdateExcelData(int id, [FromBody] List<Dictionary<string, string>> updatedData)
+        {
+            try
+            {
+                // Fetch the byte array from the database
+                var excelBytes = data.Students.FirstOrDefault(x => x.Id == id)?.Roadmap;
+                if (excelBytes == null)
+                {
+                    return NotFound(new { message = "Student not found or roadmap is empty." });
+                }
+
+                // Set the license context
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                // Update the Excel file with the new data
+                using (var package = new ExcelPackage(new MemoryStream(excelBytes)))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+
+                    // Update the worksheet with the new data
+                    for (int row = 0; row < updatedData.Count; row++)
+                    {
+                        var rowDict = updatedData[row];
+                        int col = 1;
+                        foreach (var key in rowDict.Keys)
+                        {
+                            worksheet.Cells[row + 2, col].Value = rowDict[key];
+                            col++;
+                        }
+                    }
+
+                    // Save the updated Excel file
+                    var memoryStream = new MemoryStream();
+                    package.SaveAs(memoryStream);
+                    excelBytes = memoryStream.ToArray();
+
+                    // Update the byte array in the database
+                    var student = data.Students.FirstOrDefault(x => x.Id == id);
+                    if (student != null)
+                    {
+                        student.Roadmap = excelBytes;
+                        data.SaveChanges();
+                    }
+                }
+
+                return Ok(new { message = "Excel file updated successfully." });
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }
