@@ -6,7 +6,6 @@
     using LMS_WhizAcademySystem.Infrastructure.Models;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.IdentityModel.Tokens;
     using OfficeOpenXml;
 
     [Route("api/students")]
@@ -77,6 +76,34 @@
             //    x.Roadmap = [];
             //}
             return students;
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var student = this.data.Students.FirstOrDefault(data => data.Id == id);
+
+                if (student == null)
+                {
+                    return BadRequest();
+                }
+
+                this.data.Remove(student);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
         }
 
         [HttpGet("get/roadmap/{id}")]

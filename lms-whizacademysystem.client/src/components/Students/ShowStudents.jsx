@@ -35,10 +35,37 @@ export default function ShowStudents() {
         fetchStudents();
     }, []);
 
+    const handleDelete = async (id) => {
+        setLoading(true);
+
+        try {
+            const response = await fetch(`https://localhost:44357/api/students/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                showAlert('Failed to delete mentor', 'Be Warned', 'red');
+                return;
+            }
+
+            setStudents(students.filter((s) => s.id !== id));
+            showAlert('Mentor deleted successfully', 'Success', 'green');
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('An error occurred while deleting the mentor.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000); // Slight delay to ensure the loading GIF is displayed properly
+        }
+    };
+
+
     const getRowBgColorClass = (index) => {
         const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400', 'bg-green-500'];
         return colors[index % colors.length];
     };
+
 
     const filteredStudents = students.filter((student) =>
         student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -79,7 +106,7 @@ export default function ShowStudents() {
                     placeholder="Потърси по имейл, имена или тел. номер"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border bg-white text-black border-gray-300 rounded"
+                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border flex justify-center bg-white text-black border-gray-300 rounded"
                 />
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -108,23 +135,24 @@ export default function ShowStudents() {
                                     <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавени близки'}</td>
                                     <td className="py-2 px-4">
                                         <button
-                                            className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 mr-2"
-                                        // onClick={() => handleDelete(student.id)}
+                                            className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            onClick={() => handleDelete(student.id)}
                                         >
                                             Изтрий
                                         </button>
                                         <button
-                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
+                                            className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
                                         // onClick={() => handleEdit(student.id)}
                                         >
                                             Промяна
                                         </button>
                                         <button
-                                            className="bg-purple-900 text-white px-2 py-1 rounded hover:bg-amber-700"
+                                            className="bg-purple-600 text-white px-2 py-2 my-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleProgress(student.id)}
                                         >
                                             Прогрес
                                         </button>
+
                                     </td>
                                 </tr>
                             ))}
