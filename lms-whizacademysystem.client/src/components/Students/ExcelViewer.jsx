@@ -1,258 +1,116 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
-import { Table, Button, Popconfirm, Row, Col, Upload, message, Form, Input } from "antd";
-import { PlusOutlined, UploadOutlined, DeleteFilled } from '@ant-design/icons';
-import { ExcelRenderer } from "react-excel-renderer";
-import * as XLSX from "xlsx";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import * as XLSX from 'xlsx';
+import Pagination from './Pagination';
 
-const EditableContext = React.createContext(null);
-
-const EditableRow = ({ index, ...props }) => {
-    const [form] = Form.useForm();
-    return (
-        <Form form={form} component={false}>
-            <EditableContext.Provider value={form}>
-                <tr {...props} />
-            </EditableContext.Provider>
-        </Form>
-    );
-};
-
-const EditableCell = ({ title, editable, children, dataIndex, record, handleSave, ...restProps }) => {
-    const [editing, setEditing] = useState(false);
-    const inputRef = useRef(null);
-    const form = useContext(EditableContext);
+export default function ExcelViewer() {
+    const [data, setData] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage] = useState(10);
+    const [isEditing, setIsEditing] = useState(false);
+    const [editData, setEditData] = useState([]);
 
     useEffect(() => {
-        if (editing) {
-            inputRef.current.focus();
-        }
-    }, [editing]);
-
-    const toggleEdit = () => {
-        setEditing(!editing);
-        form.setFieldsValue({ [dataIndex]: record[dataIndex] });
-    };
-
-    const save = async () => {
-        try {
-            const values = await form.validateFields();
-            toggleEdit();
-            handleSave({ ...record, ...values });
-        } catch (errInfo) {
-            console.log("Save failed:", errInfo);
-        }
-    };
-
-    let childNode = children;
-
-    if (editable) {
-        childNode = editing ? (
-            <Form.Item style={{ margin: 0 }} name={dataIndex} rules={[{ required: true, message: `${title} is required.` }]}>
-                <Input ref={inputRef} onPressEnter={save} onBlur={save} />
-            </Form.Item>
-        ) : (
-            <div className="editable-cell-value-wrap" style={{ paddingRight: 24 }} onClick={toggleEdit}>
-                {children}
-            </div>
-        );
-    }
-
-    return <td {...restProps}>{childNode}</td>;
-};
-
-const ExcelPage = () => {
-    const [cols, setCols] = useState([]);
-    const [rows, setRows] = useState([]);
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [columns, setColumns] = useState([
-        { title: "NAME", dataIndex: "name", editable: true },
-        { title: "AGE", dataIndex: "age", editable: true },
-        { title: "GENDER", dataIndex: "gender", editable: true },
-        {
-            title: "Action",
-            dataIndex: "action",
-            render: (text, record) =>
-                rows.length >= 1 ? (
-                    <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-                        <DeleteFilled style={{ color: "red", fontSize: "20px" }} />
-                    </Popconfirm>
-                ) : null
-        }
-    ]);
-
-    const { id } = useParams(); // useParams to get route parameters
-
-    useEffect(() => {
-        if (id) {
-            fetchAndVisualizeFile(id);
-        }
-    }, [id]);
-
-    const handleSave = (row) => {
-        const newData = [...rows];
-        const index = newData.findIndex((item) => row.key === item.key);
-        const item = newData[index];
-        newData.splice(index, 1, { ...item, ...row });
-        setRows(newData);
-    };
-
-    const fileHandler = (file) => {
-        let fileObj = file;
-        if (!fileObj) {
-            setErrorMessage("No file uploaded!");
-            return false;
-        }
-        if (
-            !(
-                fileObj.type === "application/vnd.ms-excel" ||
-                fileObj.type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
-        ) {
-            setErrorMessage("Unknown file format. Only Excel files are uploaded!");
-            return false;
-        }
-        ExcelRenderer(fileObj, (err, resp) => {
-            if (err) {
-                console.log(err);
-            } else {
-                let newRows = [];
-                resp.rows.slice(1).forEach((row, index) => {
-                    if (row && row !== "undefined") {
-                        newRows.push({ key: index, name: row[0], age: row[1], gender: row[2] });
-                    }
-                });
-                if (newRows.length === 0) {
-                    setErrorMessage("No data found in file!");
-                    return false;
-                } else {
-                    setCols(resp.cols);
-                    setRows(newRows);
-                    setErrorMessage(null);
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://localhost:44357/api/students/get/roadmap/2`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
                 }
+                const jsonData = await response.json();
+                setData(jsonData);
+                setEditData(jsonData);
+
+                console.log(jsonData);
+            } catch (error) {
+                console.error('Error fetching and parsing data:', error);
             }
-        });
-        return false;
-    };
-
-    const fetchAndVisualizeFile = async (fileId) => {
-        try {
-            const response = await fetch(`https://localhost:44357/api/students/get/roadmap/${fileId}`);
-            const arrayBuffer = await response.arrayBuffer();
-            const data = new Uint8Array(arrayBuffer);
-            const workbook = XLSX.read(data, { type: "array" });
-            const sheetName = workbook.SheetNames[0];
-            const sheet = workbook.Sheets[sheetName];
-            const json = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-
-            let newRows = [];
-            json.slice(1).forEach((row, index) => {
-                if (row && row !== "undefined") {
-                    newRows.push({ key: index, name: row[0], age: row[1], gender: row[2] });
-                }
-            });
-            setCols(sheet);
-            setRows(newRows);
-            setErrorMessage(null);
-        } catch (error) {
-            console.error("Error visualizing the file", error);
-            message.error("Failed to fetch or parse the Excel file");
-        }
-    };
-
-    const handleSubmit = async () => {
-        console.log("submitting: ", rows);
-        // submit to API
-        // if successful, banigate and clear the data
-        // setRows([]);
-    };
-
-    const handleDelete = (key) => {
-        const newRows = rows.filter((item) => item.key !== key);
-        setRows(newRows);
-    };
-
-    const handleAdd = () => {
-        const newData = { key: rows.length, name: "User's name", age: "22", gender: "Female" };
-        setRows([newData, ...rows]);
-    };
-
-    const components = { body: { row: EditableRow, cell: EditableCell } };
-    const tableColumns = columns.map((col) => {
-        if (!col.editable) {
-            return col;
-        }
-        return {
-            ...col,
-            onCell: (record) => ({
-                record,
-                editable: col.editable,
-                dataIndex: col.dataIndex,
-                title: col.title,
-                handleSave: handleSave
-            })
         };
-    });
+
+        fetchData();
+    }, []);
+
+    const totalPages = Math.ceil(data.length / rowsPerPage);
+    const currentData = editData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
+
+    const handleEdit = (rowIndex, key, value) => {
+        const updatedData = [...editData];
+        updatedData[rowIndex][key] = value;
+        setEditData(updatedData);
+    };
+
+    const handleSave = async () => {
+        try {
+            const response = await fetch(`https://localhost:44357/api/students/update/1`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editData),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            alert('Data saved successfully!');
+        } catch (error) {
+            console.error('Error saving data:', error);
+        }
+    };
 
     return (
-        <>
-            <h1>Importing Excel Component</h1>
-            <Row gutter={16}>
-                <Col
-                    span={8}
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        marginBottom: "5%"
-                    }}
+        <div className="w-screen p-4 flex justify-center items-center flex-col">
+            <h1 className="text-2xl font-bold mb-4">Excel Data Visualization</h1>
+            <div className="overflow-x-auto">
+                <table className={`min-w-full bg-white border border-gray-200 ${isEditing ? 'text-white' : 'text-black'}`}>
+                    <thead>
+                        <tr className="bg-green-500 border-b">
+                            {data.length > 0 && Object.keys(data[0]).map((key) => (
+                                <th key={key} className="text-left py-2 px-4 border-r">{key}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {currentData.map((row, rowIndex) => (
+                            <tr key={rowIndex} className="border-b">
+                                {Object.keys(row).map((key, idx) => (
+                                    <td key={idx} className={`py-2 px-4 border-r ${isEditing ? 'bg-gray-700' : ''}`}>
+                                        {isEditing ? (
+                                            <input
+                                                type="text"
+                                                value={row[key]}
+                                                onChange={(e) => handleEdit((currentPage - 1) * rowsPerPage + rowIndex, key, e.target.value)}
+                                                className="w-full border rounded px-2 py-1 bg-gray-800 text-white"
+                                            />
+                                        ) : (
+                                            row[key]
+                                        )}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={(page) => setCurrentPage(page)}
+            />
+            <div className="flex justify-end mt-4">
+                <button
+                    onClick={() => setIsEditing(!isEditing)}
+                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
                 >
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <div className="page-title">Upload User Data</div>
-                    </div>
-                </Col>
-                <Col span={8}>
-                    <a
-                        href="https://res.cloudinary.com/bryta/raw/upload/v1562751445/Sample_Excel_Sheet_muxx6s.xlsx"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        download
+                    {isEditing ? 'Cancel' : 'Edit'}
+                </button>
+                {isEditing && (
+                    <button
+                        onClick={handleSave}
+                        className="px-4 py-2 mx-1 bg-yellow-600 text-white rounded"
                     >
-                        Sample excel sheet
-                    </a>
-                </Col>
-                <Col
-                    span={8}
-                    align="right"
-                    style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                    {rows.length > 0 && (
-                        <>
-                            <Button onClick={handleAdd} size="large" type="info" style={{ marginBottom: 16 }}>
-                                <PlusOutlined /> Add a row
-                            </Button>{" "}
-                            <Button onClick={handleSubmit} size="large" type="primary" style={{ marginBottom: 16, marginLeft: 10 }}>
-                                Submit Data
-                            </Button>
-                        </>
-                    )}
-                </Col>
-            </Row>
-            <div>
-                <Upload name="file" beforeUpload={fileHandler} onRemove={() => setRows([])} multiple={false}>
-                    <Button icon={<UploadOutlined />}>
-                        Click to Upload Excel File
-                    </Button>
-                </Upload>
+                        Save
+                    </button>
+                )}
             </div>
-            <div style={{ marginTop: 20 }}>
-                <Table components={components} rowClassName={() => "editable-row"} dataSource={rows} columns={tableColumns} />
-            </div>
-            <div>
-                <Button onClick={() => fetchAndVisualizeFile(id)}>Fetch and Visualize File from API</Button>
-            </div>
-        </>
+        </div>
     );
-};
-
-export default ExcelPage;
+}
