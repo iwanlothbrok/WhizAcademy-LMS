@@ -74,7 +74,7 @@ const AddMentor = () => {
                     <p>{alert.message}</p>
                 </div>
             )} */}
-            <div className="bg-white px-8 py-16 rounded shadow-md w-full max-w-md">
+            <div className="bg-white px-8 py-10 rounded shadow-md w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Добави Ментор</h2>
                 <form className="text-lg" onSubmit={handleSubmit}>
                     <div className="mb-4">

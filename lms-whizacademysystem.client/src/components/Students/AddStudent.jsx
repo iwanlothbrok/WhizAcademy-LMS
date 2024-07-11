@@ -6,9 +6,9 @@ export default function AddStudent() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [priceForHours, setPriceForHours] = useState('');
+    const [priceForHour, setPriceForHour] = useState('');
     const [address, setAddress] = useState('');
-    // const [relativeId, setRelativeId] = useState('');
+    const [relativeId, setRelativeId] = useState('');
     const [mentorId, setMentorId] = useState('');
     const [roadmap, setRoadmap] = useState(null);
     const [loading, setLoading] = useState(false); // Loading state
@@ -51,13 +51,13 @@ export default function AddStudent() {
 
         const formData = new FormData();
         formData.append('Name', name);
-        formData.append('Email', email);
+        formData.append('Email', email ? email : 'няма въведен имейл');
         formData.append('PhoneNumber', phoneNumber);
-        formData.append('PriceForHours', priceForHours);
+        formData.append('PriceForHour', priceForHour);
         formData.append('Address', address);
         formData.append('MentorId', mentorId);
 
-        console.log(roadmap);
+        console.log(formData);
 
         if (roadmap) {
             formData.append('Roadmap', roadmap);
@@ -102,7 +102,7 @@ export default function AddStudent() {
                 </div>
             )}
             <div className="bg-white px-6 py-10 rounded shadow-md w-full max-w-md">
-                <h2 className="text-1xl font-bold mb-6 text-center text-green-600">Добави Ментор</h2>
+                <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Добави Студент</h2>
                 <form className="text-lg" onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-700">Две Имена</label>
@@ -111,21 +111,12 @@ export default function AddStudent() {
                             type="text"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
+                            placeholder='Янаки Янакиев'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                             required
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700">Имейл</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                            required
-                        />
-                    </div>
+
                     <div className="mb-4">
                         <label htmlFor="phoneNumber" className="block text-gray-700">Телефонен Номер</label>
                         <input
@@ -142,8 +133,8 @@ export default function AddStudent() {
                             id="priceForHours"
                             type="number"
                             step="0.01"
-                            value={priceForHours}
-                            onChange={(e) => setPriceForHours(e.target.value)}
+                            value={priceForHour}
+                            onChange={(e) => setPriceForHour(e.target.value)}
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
@@ -167,7 +158,16 @@ export default function AddStudent() {
                             ))}
                         </select>
                     </div>
-
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block text-gray-700">Имейл</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
+                        />
+                    </div>
                     <div className="mb-4">
                         <label htmlFor="roadmap" className="block text-gray-700">Пътна карта</label>
                         <input

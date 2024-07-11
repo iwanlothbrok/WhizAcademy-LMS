@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 import './tailwind.css'; // Tailwind styles
+
 import OperationsCard from './components/OperationsCard.jsx';
 import { mentorsCards, title } from './components/database/mentorsCards.js';
 import { studentCards, studentTitle } from './components/database/studentCards.js';
@@ -15,21 +16,28 @@ import EditMentor from './components/Mentors/EditMentor.jsx';
 import AddStudent from './components/Students/AddStudent.jsx';
 import ShowStudents from './components/Students/ShowStudents.jsx';
 import ExcelPage from './components/Students/ExcelViewer.jsx';
+import ImageGrid from './components/ImageGrid.jsx';
+import DetailsStudent from './components/Students/DetailsStudent.jsx';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Router>
       <Navigation />
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<ImageGrid />} />
+
+        {/* mentors */}
         <Route path="/mentors" element={<OperationsCard cards={mentorsCards} title={title} />} />
         <Route path='/mentors/add' element={<AddMentor />} />
         <Route path='/mentors/all' element={<ShowMentors />} />
         <Route path='/edit-mentor/:id' element={<EditMentor />} />
+
+        {/* students */}
         <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
         <Route path='/students/add' element={<AddStudent />} />
         <Route path='/students/all' element={<ShowStudents />} />
         <Route path='/roadmap/:id' element={<ExcelPage />} />
-
+        <Route path='/details' element={<DetailsStudent />} />
 
       </Routes>
     </Router>
