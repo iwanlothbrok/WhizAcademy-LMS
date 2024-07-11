@@ -85,7 +85,7 @@
             try
             {
                 // Fetch the byte array from the database
-                var excelBytes = data.Students.FirstOrDefault(x => x.Id == 2)?.Roadmap;
+                var excelBytes = data.Students.FirstOrDefault(x => x.Id == id)?.Roadmap;
                 if (excelBytes == null)
                 {
                     return NotFound(new { message = "Student not found or roadmap is empty." });

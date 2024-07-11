@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from './Pagination';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function ExcelViewer() {
     const [data, setData] = useState([]);
@@ -11,10 +12,13 @@ export default function ExcelViewer() {
     const [searchStartDate, setSearchStartDate] = useState('');
     const [searchEndDate, setSearchEndDate] = useState('');
 
+    const { id } = useParams(); // Get the mentor ID from the URL
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`https://localhost:44357/api/students/get/roadmap/2`);
+                const response = await fetch(`https://localhost:44357/api/students/get/roadmap/${id}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -50,7 +54,7 @@ export default function ExcelViewer() {
 
     const handleSave = async () => {
         try {
-            const response = await fetch(`https://localhost:44357/api/students/update/1`, {
+            const response = await fetch(`https://localhost:44357/api/students/update/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -67,7 +71,7 @@ export default function ExcelViewer() {
     };
 
     return (
-        <div className="w-screen p-4 flex justify-center items-center flex-col">
+        <div className="w-screen p-10 flex justify-center items-center flex-col">
             <h1 className="text-2xl font-bold mb-4">Excel Data Visualization</h1>
             <div className="mb-4">
                 <div className="flex space-x-4">
@@ -100,8 +104,8 @@ export default function ExcelViewer() {
                     </button>
                 </div>
             </div>
-            <div className="overflow-x-auto">
-                <table className={`min-w-full bg-white border border-gray-200 ${isEditing ? 'text-white' : 'text-black'}`}>
+            <div className="overflow-x-auto rounded-lg">
+                <table className={`min-w-full bg-white border border-gray-200 rounded-lg ${isEditing ? 'text-white' : 'text-black'}`}>
                     <thead>
                         <tr className="bg-green-500 border-b">
                             {data.length > 0 && Object.keys(data[0]).map((key) => (
