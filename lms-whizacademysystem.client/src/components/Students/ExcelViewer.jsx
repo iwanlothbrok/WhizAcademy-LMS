@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import * as XLSX from 'xlsx';
 import Pagination from './Pagination';
 
 export default function ExcelViewer() {
@@ -8,6 +7,9 @@ export default function ExcelViewer() {
     const [rowsPerPage] = useState(10);
     const [isEditing, setIsEditing] = useState(false);
     const [editData, setEditData] = useState([]);
+    const [searchTask, setSearchTask] = useState('');
+    const [searchStartDate, setSearchStartDate] = useState('');
+    const [searchEndDate, setSearchEndDate] = useState('');
 
     useEffect(() => {
         const fetchData = async () => {
@@ -19,8 +21,6 @@ export default function ExcelViewer() {
                 const jsonData = await response.json();
                 setData(jsonData);
                 setEditData(jsonData);
-
-                console.log(jsonData);
             } catch (error) {
                 console.error('Error fetching and parsing data:', error);
             }
@@ -29,7 +29,17 @@ export default function ExcelViewer() {
         fetchData();
     }, []);
 
-    const totalPages = Math.ceil(data.length / rowsPerPage);
+    const handleSearch = () => {
+        const filteredData = data.filter(row =>
+            (row['Task'] || '').toLowerCase().includes(searchTask.toLowerCase()) &&
+            (row['Start Date'] || '').toLowerCase().includes(searchStartDate.toLowerCase()) &&
+            (row['End Date'] || '').toLowerCase().includes(searchEndDate.toLowerCase())
+        );
+        setEditData(filteredData);
+        setCurrentPage(1); // Reset to first page
+    };
+
+    const totalPages = Math.ceil(editData.length / rowsPerPage);
     const currentData = editData.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     const handleEdit = (rowIndex, key, value) => {
@@ -59,6 +69,37 @@ export default function ExcelViewer() {
     return (
         <div className="w-screen p-4 flex justify-center items-center flex-col">
             <h1 className="text-2xl font-bold mb-4">Excel Data Visualization</h1>
+            <div className="mb-4">
+                <div className="flex space-x-4">
+                    <input
+                        type="text"
+                        placeholder="Search Task"
+                        value={searchTask}
+                        onChange={(e) => setSearchTask(e.target.value)}
+                        className="w-full border rounded px-2 py-1"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Search Start Date"
+                        value={searchStartDate}
+                        onChange={(e) => setSearchStartDate(e.target.value)}
+                        className="w-full border rounded px-2 py-1"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Search End Date"
+                        value={searchEndDate}
+                        onChange={(e) => setSearchEndDate(e.target.value)}
+                        className="w-full border rounded px-2 py-1"
+                    />
+                    <button
+                        onClick={handleSearch}
+                        className="px-4 py-2 bg-blue-500 text-white rounded"
+                    >
+                        Search
+                    </button>
+                </div>
+            </div>
             <div className="overflow-x-auto">
                 <table className={`min-w-full bg-white border border-gray-200 ${isEditing ? 'text-white' : 'text-black'}`}>
                     <thead>
