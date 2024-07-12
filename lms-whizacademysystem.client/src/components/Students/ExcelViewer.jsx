@@ -71,7 +71,7 @@ export default function ExcelViewer() {
     };
 
     return (
-        <div className="w-screen p-10 flex justify-center items-center flex-col">
+        <div className="w-screen p-10 mt-10 flex justify-center items-center flex-col">
             <h1 className="text-2xl font-bold mb-4">Excel Data Visualization</h1>
             <div className="mb-4">
                 <div className="flex space-x-4">
@@ -98,7 +98,7 @@ export default function ExcelViewer() {
                     />
                     <button
                         onClick={handleSearch}
-                        className="px-4 py-2 bg-blue-500 text-white rounded"
+                        className="px-4 py-2 bg-yellow-600 text-white rounded transform transition-transform duration-300  hover:bg-yellow-700 hover:scale-125"
                     >
                         Search
                     </button>
@@ -143,14 +143,14 @@ export default function ExcelViewer() {
             <div className="flex justify-end mt-4">
                 <button
                     onClick={() => setIsEditing(!isEditing)}
-                    className="px-4 py-2 mx-1 bg-blue-500 text-white rounded"
+                    className="px-4 py-2 mx-2 bg-blue-500 text-white rounded transform transition-transform duration-300  hover:bg-blue-700 hover:scale-125"
                 >
                     {isEditing ? 'Cancel' : 'Edit'}
                 </button>
                 {isEditing && (
                     <button
                         onClick={handleSave}
-                        className="px-4 py-2 mx-1 bg-yellow-600 text-white rounded"
+                        className="px-4 py-2 mx-1 bg-yellow-600 text-white rounded transform transition-transform duration-300  hover:bg-yellow-700 hover:scale-125"
                     >
                         Save
                     </button>
