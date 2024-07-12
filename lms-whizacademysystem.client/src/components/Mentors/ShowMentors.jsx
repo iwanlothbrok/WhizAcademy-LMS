@@ -81,6 +81,7 @@ export default function ShowMentors() {
         mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         mentor.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
+    console.log(filteredMentors);
 
     return (
         <div className="w-screen p-2 flex justify-center items-center flex-col">
@@ -90,11 +91,13 @@ export default function ShowMentors() {
                     <p>{alert.message}</p>
                 </div>
             )}
+
             {loading && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <img src="https://i.gifer.com/4SHX.gif" alt="Loading..." className="w-56 h-56" />
                 </div>
             )}
+
             <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-4xl mb-4">
                 <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Ментори</h1>
                 <input
@@ -104,6 +107,8 @@ export default function ShowMentors() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border bg-white text-black border-gray-300 rounded"
                 />
+
+
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                         <thead className="bg-green-500 text-white">
@@ -139,7 +144,7 @@ export default function ShowMentors() {
                                         >
                                             Промяна
                                         </button>
-                                        
+
                                     </td>
                                 </tr>
                             ))}
