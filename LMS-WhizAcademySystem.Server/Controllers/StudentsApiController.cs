@@ -202,5 +202,15 @@
 				return BadRequest(new { message = ex.Message });
 			}
 		}
+
+		[HttpGet("details/{id}")]
+		public async Task<IActionResult> GetStudentDetailsAsync(int id)
+		{
+			var student = await this.data.Students.FirstOrDefaultAsync(x => x.Id == id);
+
+			if (student == null) { return BadRequest(); }
+			student.Roadmap = null;
+			return Ok(student);
+		}
 	}
 }
