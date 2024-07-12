@@ -124,6 +124,7 @@ export default function AddStudent() {
                             type="tel"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
+                            placeholder='+359 88 888 8888'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
@@ -135,6 +136,7 @@ export default function AddStudent() {
                             step="0.01"
                             value={priceForHour}
                             onChange={(e) => setPriceForHour(e.target.value)}
+                            placeholder='150'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
@@ -145,12 +147,13 @@ export default function AddStudent() {
                             type="text"
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
+                            placeholder='Sofia, blok 40'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
                     <div className="mb-4">
 
-                        <label htmlFor="mentors" className="block text-gray-700">Пътна карта</label>
+                        <label htmlFor="mentors" className="block text-gray-700">Ментор</label>
                         <select id="mentors" onChange={(e) => setMentorId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" disabled selected>Избери Ментор</option>
                             {mentors.map(x => (
@@ -165,11 +168,12 @@ export default function AddStudent() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            placeholder='example@example.com'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="roadmap" className="block text-gray-700">Пътна карта</label>
+                        <label htmlFor="roadmap" className="block text-gray-700">Пътека За Обучение</label>
                         <input
                             id="roadmap"
                             type="file"
@@ -182,7 +186,7 @@ export default function AddStudent() {
                         className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-800 hover:scale-105'}`}
                         disabled={loading}
                     >
-                        {loading ? 'Loading...' : 'ДОБАВИ'}
+                        {loading ? 'Зарежда...' : 'ДОБАВИ'}
                     </button>
                 </form>
             </div>
