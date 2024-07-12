@@ -1,6 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function DetailsStudent() {
+    const [student, setStudent] = useState({})
+    const { id } = useParams(); // Get the mentor ID from the URL
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch(`https://localhost:44357/api/students/details/${id}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const jsonData = await response.json();
+                setStudent(jsonData);
+                console.log(student);
+            } catch (error) {
+                console.error('Error fetching and parsing data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
     return (
         <div className='w-screen p-4 flex justify-center items-center text-black'>
             <div >
@@ -12,7 +35,7 @@ export default function DetailsStudent() {
                                     <img src="https://randomuser.me/api/portraits/men/94.jpg" class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
                                     </img>
-                                    <h1 class="text-xl font-bold">John Doe</h1>
+                                    <h1 class="text-xl font-bold">{student.name}</h1>
                                     <p class="text-gray-700">Software Developer</p>
                                     <div class="mt-6 flex flex-wrap gap-4 justify-center">
                                         <a href="#" class="bg-blue-500 hover:bg-blue-600 text-black py-2 px-4 rounded">Contact</a>
