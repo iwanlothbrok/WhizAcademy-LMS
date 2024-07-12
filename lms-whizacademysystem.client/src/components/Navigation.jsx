@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function Navigation() {
     return (
-        <nav className="fixed top-0 w-full flex items-center justify-center flex-wrap   p-2 z-50">
+        <nav className="fixed top-0 w-full flex items-center justify-center flex-wrap p-1 z-50">
             <div className="flex items-center flex-shrink-0 text-white">
                 <button>
                     <Link to='/'>

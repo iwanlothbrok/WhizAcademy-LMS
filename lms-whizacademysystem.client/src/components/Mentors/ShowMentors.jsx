@@ -84,7 +84,7 @@ export default function ShowMentors() {
     console.log(filteredMentors);
 
     return (
-        <div className="w-screen p-2 flex justify-center items-center flex-col">
+        <div className="w-screen p-2 mt-10 flex justify-center items-center flex-col">
             {alert && (
                 <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
                     <p className="font-bold">{alert.title}</p>
