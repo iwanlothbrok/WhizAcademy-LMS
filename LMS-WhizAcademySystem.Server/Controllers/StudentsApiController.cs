@@ -40,7 +40,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             }
 			catch (Exception)
 			{
-			    return BadRequest();
+			    return BadRequest("Error adding student in Student Service.");
 			}
 
 			return Ok("Student added successfully");
@@ -53,33 +53,25 @@ namespace LMS_WhizAcademySystem.Server.Controllers
 			return students;
 		}
 
-		//[HttpDelete("{id}")]
-		//public IActionResult Delete(int id)
-		//{
-		//	if (id < 0)
-		//	{
-		//		return BadRequest();
-		//	}
+		[HttpDelete("{id}")]
+		public IActionResult Delete(int id)
+		{
+			if (id < 0)
+			{
+				return BadRequest();
+			}
 
-		//	try
-		//	{
-		//		var student = this.data.Students.FirstOrDefault(data => data.Id == id);
+			try
+			{
+				this._studentService.Delete(id);
+			}
+			catch (Exception)
+			{
+				return BadRequest("Error in deleting student in Student Service.");
+			}
 
-		//		if (student == null)
-		//		{
-		//			return BadRequest();
-		//		}
-
-		//		this.data.Remove(student);
-		//		this.data.SaveChanges();
-		//	}
-		//	catch (Exception)
-		//	{
-		//		return BadRequest();
-		//	}
-
-		//	return Ok();
-		//}
+			return Ok();
+		}
 
 		//[HttpGet("get/roadmap/{id}")]
 		//public IActionResult GetRoadmap(int id) // int id

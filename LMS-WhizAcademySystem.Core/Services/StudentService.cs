@@ -50,15 +50,24 @@ namespace LMS_WhizAcademySystem.Core.Services
             
         }
 
+        public void Delete(int id)
+        {
+            Student? student = this._dbContext.Students.FirstOrDefault(x => x.Id == id);
+
+            if (student == null)
+            {
+                throw new Exception("Student is null. Invalid Id!");
+            }
+
+            this._dbContext.Students.Remove(student);
+            this._dbContext.SaveChanges();
+        }
         public void Update(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public Student Details(int id)
         {
