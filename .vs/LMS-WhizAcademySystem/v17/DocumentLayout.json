@@ -7,6 +7,26 @@
       "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\dtos\\studentformdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\services\\mentorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\services\\mentorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\automapper\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\automapper\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2F3C5C6-A21C-4D80-A843-3A23DB3E0ED8}|LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.infrastructure\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2F3C5C6-A21C-4D80-A843-3A23DB3E0ED8}|LMS-WhizAcademySystem.Infrastructure\\LMS-WhizAcademySystem.Infrastructure.csproj|solutionrelative:lms-whizacademysystem.infrastructure\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.server\\controllers\\studentsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\controllers\\studentsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,28 +35,12 @@
       "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\automapper\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\automapper\\automapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\services\\interfaces\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\services\\interfaces\\istudentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.server\\controllers\\studentsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\controllers\\studentsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.core\\services\\mentorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}|LMS-WhizAcademySystem.Core\\LMS-WhizAcademySystem.Core.csproj|solutionrelative:lms-whizacademysystem.core\\services\\mentorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.server\\controllers\\mentorsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\controllers\\mentorsapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|d:\\github\\whizacademy-lms\\lms-whizacademysystem.server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42797128-9151-4FAB-B521-8E917B5920EA}|LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj|solutionrelative:lms-whizacademysystem.server\\extensions\\servicecollectionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -63,19 +67,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "Student.cs",
+              "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\Models\\Student.cs",
+              "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Infrastructure\\Models\\Student.cs",
+              "ToolTip": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Infrastructure\\Models\\Student.cs",
+              "RelativeToolTip": "LMS-WhizAcademySystem.Infrastructure\\Models\\Student.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-13T12:00:21.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "AutoMapper.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\AutoMapper\\AutoMapper.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Core\\AutoMapper\\AutoMapper.cs",
               "ToolTip": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\AutoMapper\\AutoMapper.cs",
               "RelativeToolTip": "LMS-WhizAcademySystem.Core\\AutoMapper\\AutoMapper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAVAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-13T11:53:17.258Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "MentorService.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\Services\\MentorService.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Core\\Services\\MentorService.cs",
@@ -92,16 +109,16 @@
               "Title": "StudentFormDTO.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs",
-              "ToolTip": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs*",
-              "RelativeToolTip": "LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAApAAAA",
+              "ToolTip": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs",
+              "RelativeToolTip": "LMS-WhizAcademySystem.Core\\DTOs\\StudentFormDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-13T11:34:29.454Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MentorsApiController.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\Controllers\\MentorsApiController.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Server\\Controllers\\MentorsApiController.cs",
@@ -114,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "StudentService.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\Services\\StudentService.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Core\\Services\\StudentService.cs",
@@ -127,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "IStudentService.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Core\\Services\\Interfaces\\IStudentService.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Core\\Services\\Interfaces\\IStudentService.cs",
@@ -140,20 +157,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "StudentsApiController.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\Controllers\\StudentsApiController.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Server\\Controllers\\StudentsApiController.cs",
               "ToolTip": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\Controllers\\StudentsApiController.cs",
               "RelativeToolTip": "LMS-WhizAcademySystem.Server\\Controllers\\StudentsApiController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAADgvzgAAAAnAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAAAqwDUAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-12T15:58:13.302Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "ServiceCollectionExtensions.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\Extensions\\ServiceCollectionExtensions.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Server\\Extensions\\ServiceCollectionExtensions.cs",
@@ -166,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\Program.cs",
               "RelativeDocumentMoniker": "LMS-WhizAcademySystem.Server\\Program.cs",

@@ -23,7 +23,7 @@ namespace LMS_WhizAcademySystem.Core.DTOs
 
         public int MentorId { get; set; }
 
-        public Mentor? Mentor { get; set; }
+        public MentorFormDTO? Mentor { get; set; }
 
         /// <summary>
         /// TODO: check what type should be the excel file

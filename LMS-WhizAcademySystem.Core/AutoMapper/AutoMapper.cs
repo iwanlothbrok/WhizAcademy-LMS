@@ -9,7 +9,8 @@ namespace LMS_WhizAcademySystem.Core.AutoMapper
 	{
 		public AutoMapper()
 		{
-			CreateMap<Student, StudentFormDTO>();
+			CreateMap<Student, StudentFormDTO>()
+                .ForMember(dest => dest.Mentor, opt => opt.MapFrom(src => src.Mentor));
 			CreateMap<StudentFormDTO, Student>();
 
 			CreateMap<Mentor, MentorFormDTO>();
