@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../tailwind.css'; // Tailwind styles
 
 export default function AddStudent() {
     const [name, setName] = useState('');

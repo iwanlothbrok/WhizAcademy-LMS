@@ -25,8 +25,8 @@
 			return mentors;
 		}
 
-		[HttpPost("add")] // api/mentors/add
-		public IActionResult Post([FromBody] MentorFormDTO mentor) //[
+		[HttpPost("add")] // api/mentors/add FROM QUERY
+		public IActionResult Post( [FromBody] MentorFormDTO mentor) //[
 		{
 			if (mentor == null)
 			{

@@ -98,10 +98,22 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                         .HasPrecision(2)
                         .HasColumnType("decimal(2,2)");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("FirstLessonDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("LastLessonDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("LessonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LessonsCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RelativeId")
                         .HasColumnType("int");
 
                     b.Property<int>("StudentId")
@@ -110,6 +122,8 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LessonId");
+
+                    b.HasIndex("RelativeId");
 
                     b.HasIndex("StudentId");
 
@@ -245,6 +259,10 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Relative", "Relative")
+                        .WithMany()
+                        .HasForeignKey("RelativeId");
+
                     b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Student", "Student")
                         .WithMany("Payments")
                         .HasForeignKey("StudentId")
@@ -252,6 +270,8 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Lesson");
+
+                    b.Navigation("Relative");
 
                     b.Navigation("Student");
                 });
