@@ -69,9 +69,21 @@ namespace LMS_WhizAcademySystem.Core.Services
 
         
 
-        public Student Details(int id)
+        public async Task<StudentFormDTO> Details(int id)
         {
-            throw new NotImplementedException();
+            var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+
+            StudentFormDTO studentForm = null;
+            mapper.Map(student, studentForm);
+
+            if (student == null)
+            {
+                throw new Exception("Student is null. Invalid Id");
+            }
+
+            student.Roadmap = null;
+
+            return studentForm;
         }
 
         public async Task<List<StudentFormDTO>> GetAll()

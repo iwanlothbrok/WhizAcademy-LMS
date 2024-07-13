@@ -10,7 +10,7 @@ namespace LMS_WhizAcademySystem.Core.Services.Interfaces
 
         public void Update(int id);
         public void Delete(int id);
-        public Student Details(int id);
+        public Task<StudentFormDTO> Details(int id);
 
         public Task<List<StudentFormDTO>> GetAll();
 
