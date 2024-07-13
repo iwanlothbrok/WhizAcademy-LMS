@@ -12,7 +12,7 @@ namespace LMS_WhizAcademySystem.Core.Services.Interfaces
         public void Delete(int id);
         public Student Details(int id);
 
-        public List<Student> GetAll();
+        public Task<List<StudentFormDTO>> GetAll();
 
         public byte[] GetRoadMap(int id);
     }

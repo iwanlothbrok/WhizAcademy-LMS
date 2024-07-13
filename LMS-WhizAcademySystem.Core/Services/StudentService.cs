@@ -4,6 +4,7 @@ using LMS_WhizAcademySystem.Core.Services.Interfaces;
 using LMS_WhizAcademySystem.Infrastructure.Data;
 using LMS_WhizAcademySystem.Infrastructure.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_WhizAcademySystem.Core.Services
 {
@@ -64,9 +65,13 @@ namespace LMS_WhizAcademySystem.Core.Services
             throw new NotImplementedException();
         }
 
-        public List<Student> GetAll()
+        public async Task<List<StudentFormDTO>> GetAll()
         {
-            throw new NotImplementedException();
+            var students = await _dbContext.Students.Include(s => s.Mentor).ToListAsync();
+
+            var studentDTOs = mapper.Map<List<StudentFormDTO>>(students);
+
+            return studentDTOs;
         }
 
         public byte[] GetRoadMap(int id)

@@ -46,15 +46,12 @@ namespace LMS_WhizAcademySystem.Server.Controllers
 			return Ok("Student added successfully");
 		}
 
-		//[HttpGet("all")]
-		//public List<Student> GetAllStudents()
-		//{
-		//	List<Student> students = this.data.Students.Include(x => x.Mentor).Include(x => x.Relative).ToList();
-
-		//	List<StudentFormDTO> stu = mapper.Map<List<StudentFormDTO>>(students);
-
-		//	return students;
-		//}
+		[HttpGet("all")]
+		public async Task<List<StudentFormDTO>> GetAllStudents()
+        {
+            List<StudentFormDTO> students = await this._studentService.GetAll();
+			return students;
+		}
 
 		//[HttpDelete("{id}")]
 		//public IActionResult Delete(int id)
