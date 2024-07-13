@@ -18,6 +18,7 @@ import ShowStudents from './components/Students/ShowStudents.jsx';
 import ExcelPage from './components/Students/ExcelViewer.jsx';
 import ImageGrid from './components/ImageGrid.jsx';
 import DetailsStudent from './components/Students/DetailsStudent.jsx';
+import AddPayment from './components/Payments/AddPayment.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -38,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/students/all' element={<ShowStudents />} />
         <Route path='/roadmap/:id' element={<ExcelPage />} />
         <Route path='/details/:id' element={<DetailsStudent />} />
-
+        <Route path='/payment/add' element={<AddPayment />} />
       </Routes>
     </Router>
   </React.StrictMode>
