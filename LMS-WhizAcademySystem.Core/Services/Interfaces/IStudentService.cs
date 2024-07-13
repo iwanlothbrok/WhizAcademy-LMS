@@ -14,6 +14,6 @@ namespace LMS_WhizAcademySystem.Core.Services.Interfaces
 
         public Task<List<StudentFormDTO>> GetAll();
 
-        public byte[] GetRoadMap(int id);
+        public List<Dictionary<string, object>> GetRoadMap(int id);
     }
 }

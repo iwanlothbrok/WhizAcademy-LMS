@@ -90,53 +90,19 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return Ok(student);
         }
 
-        //[HttpGet("get/roadmap/{id}")]
-        //public IActionResult GetRoadmap(int id) // int id
-        //{
-        //	try
-        //	{
-        //		// Fetch the byte array from the database
-        //		var excelBytes = data.Students.FirstOrDefault(x => x.Id == id)?.Roadmap;
-        //		if (excelBytes == null)
-        //		{
-        //			return NotFound(new { message = "Student not found or roadmap is empty." });
-        //		}
-
-        //		// Save the byte array as an Excel file
-        //		var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFile.xlsx");
-        //		System.IO.File.WriteAllBytes(filePath, excelBytes);
-
-
-        //		ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-        //		// Process the Excel file and convert it to JSON
-        //		var jsonData = new List<Dictionary<string, object>>();
-        //		using (var package = new ExcelPackage(new FileInfo(filePath)))
-        //		{
-        //			var worksheet = package.Workbook.Worksheets[0];
-        //			var rowCount = worksheet.Dimension.Rows;
-        //			var colCount = worksheet.Dimension.Columns;
-
-        //			for (int row = 2; row <= rowCount; row++) // Assuming the first row is the header
-        //			{
-        //				var rowDict = new Dictionary<string, object>();
-        //				for (int col = 1; col <= colCount; col++)
-        //				{
-        //					var key = worksheet.Cells[1, col].Text; // Header as key
-        //					var value = worksheet.Cells[row, col].Text;
-        //					rowDict[key] = string.IsNullOrWhiteSpace(value) ? "NaN" : value; // Replace empty cells with "NaN"
-        //				}
-        //				jsonData.Add(rowDict);
-        //			}
-        //		}
-
-        //		return Ok(jsonData);
-        //	}
-        //	catch (System.Exception ex)
-        //	{
-        //		return BadRequest(new { message = ex.Message });
-        //	}
-        //}
+        [HttpGet("get/roadmap/{id}")]
+        public IActionResult GetRoadmap(int id) // int id
+        {
+            try
+            {
+                var jsonData = this._studentService.GetRoadMap(id);
+                return Ok(jsonData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
 
         //[HttpPost("update/{id}")]
         //public IActionResult UpdateExcelData(int id, [FromBody] List<Dictionary<string, string>> updatedData)

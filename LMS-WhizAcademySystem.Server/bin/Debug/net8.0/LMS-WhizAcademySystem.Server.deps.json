@@ -2265,6 +2265,7 @@
       "LMS-WhizAcademySystem.Core/1.0.0": {
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "EPPlus": "7.2.1",
           "LMS-WhizAcademySystem.Infrastructure": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17",
           "Portable.BouncyCastle": "1.9.0"
