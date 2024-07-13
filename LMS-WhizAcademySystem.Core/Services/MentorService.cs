@@ -1,14 +1,16 @@
-﻿namespace LMS_WhizAcademySystem.Core.Services
+﻿using AutoMapper;
+using LMS_WhizAcademySystem.Core.DTOs;
+using LMS_WhizAcademySystem.Core.Services.Interfaces;
+using LMS_WhizAcademySystem.Infrastructure.Data;
+using LMS_WhizAcademySystem.Infrastructure.Models;
+using LMS_WhizAcademySystem.Server.Models;
+using System.Security.Cryptography;
+using System.Text;
+
+namespace LMS_WhizAcademySystem.Core.Services
 {
-	using AutoMapper;
-	using LMS_WhizAcademySystem.Core.DTOs;
-	using LMS_WhizAcademySystem.Core.Services.Interfaces;
-	using LMS_WhizAcademySystem.Infrastructure.Data;
-	using LMS_WhizAcademySystem.Infrastructure.Models;
-	using LMS_WhizAcademySystem.Server.Models;
-	using System.Security.Cryptography;
-	using System.Text;
-	public class MentorService : IMentorService
+    
+    public class MentorService : IMentorService
 	{
 		private readonly ApplicationDbContext _dbContext;
 		private readonly IMapper mapper;
@@ -33,10 +35,10 @@
 
 			//Mentor mentor = new()
 			//{
-			//    Name = mentorForm.Name,
-			//    Email = mentorForm.Email,
-			//    PasswordHash = HashPassword(mentorForm.Password),
-			//    Students = new List<Student>()
+			//	Name = mentorForm.Name,
+			//	Email = mentorForm.Email,
+			//	PasswordHash = HashPassword(mentorForm.Password),
+			//	Students = new List<Student>()
 			//};
 
 			var mentor = mapper.Map<Mentor>(mentorForm);
