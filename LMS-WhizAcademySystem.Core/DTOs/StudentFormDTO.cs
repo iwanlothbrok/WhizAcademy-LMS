@@ -1,4 +1,7 @@
-﻿namespace LMS_WhizAcademySystem.Core.DTOs
+﻿using LMS_WhizAcademySystem.Infrastructure.Models;
+using LMS_WhizAcademySystem.Server.Models;
+
+namespace LMS_WhizAcademySystem.Core.DTOs
 {
     using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
@@ -19,6 +22,8 @@
         public int? RelativeId { get; set; }
 
         public int MentorId { get; set; }
+
+        public Mentor? Mentor { get; set; }
 
         /// <summary>
         /// TODO: check what type should be the excel file
