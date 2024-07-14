@@ -26,6 +26,8 @@ namespace LMS_WhizAcademySystem.Core.DTOs
 
         public MentorFormDTO? Mentor { get; set; }
 
+        public Relative? Relative{ get; set; }
+
         /// <summary>
         /// TODO: check what type should be the excel file
         /// </summary>
