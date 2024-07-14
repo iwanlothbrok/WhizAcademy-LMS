@@ -7,6 +7,7 @@ namespace LMS_WhizAcademySystem.Core.DTOs
     using System.ComponentModel.DataAnnotations;
     public class StudentFormDTO
     {
+        public int Id { get; set; }
         [Required, StringLength(100)]
         public string Name { get; set; } = null!;
 

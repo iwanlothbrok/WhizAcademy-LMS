@@ -9,8 +9,8 @@ using System.Text;
 
 namespace LMS_WhizAcademySystem.Core.Services
 {
-    
-    public class MentorService : IMentorService
+
+	public class MentorService : IMentorService
 	{
 		private readonly ApplicationDbContext _dbContext;
 		private readonly IMapper mapper;
@@ -108,7 +108,8 @@ namespace LMS_WhizAcademySystem.Core.Services
 
 		public Mentor? GetById(int id) => _dbContext.Mentors.FirstOrDefault(m => m.Id == id);
 
-		public MentorEditDTO? GetEditDTOById(int id) => _dbContext.Mentors
+		public MentorEditDTO? GetEditDTOById(int id)
+			=> _dbContext.Mentors
 			.Where(m => m.Id == id)
 			.Select(m =>
 			new MentorEditDTO()

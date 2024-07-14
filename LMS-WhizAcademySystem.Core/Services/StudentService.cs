@@ -5,13 +5,11 @@ using LMS_WhizAcademySystem.Infrastructure.Data;
 using LMS_WhizAcademySystem.Infrastructure.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 using OfficeOpenXml;
-using LicenseContext = System.ComponentModel.LicenseContext;
 
 namespace LMS_WhizAcademySystem.Core.Services
 {
-    public class StudentService : IStudentService
+	public class StudentService : IStudentService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper mapper;
@@ -65,11 +63,11 @@ namespace LMS_WhizAcademySystem.Core.Services
             this._dbContext.Students.Remove(student);
             this._dbContext.SaveChanges();
         }
+
         public void Update(int id)
         {
             throw new NotImplementedException();
         }
-
         
 
         public async Task<StudentFormDTO> Details(int id)
@@ -77,16 +75,19 @@ namespace LMS_WhizAcademySystem.Core.Services
             var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
 
             StudentFormDTO studentForm = null;
-            mapper.Map(student, studentForm);
 
-            if (student == null)
+
+           // mapper.Map(student, studentForm);
+			var studentDto = mapper.Map<StudentFormDTO>(student);
+
+			if (student == null)
             {
                 throw new Exception("Student is null. Invalid Id");
             }
 
             student.Roadmap = null;
 
-            return studentForm;
+            return studentDto;
         }
 
         public async Task<List<StudentFormDTO>> GetAll()
