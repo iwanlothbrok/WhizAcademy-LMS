@@ -10,18 +10,18 @@ using OfficeOpenXml;
 namespace LMS_WhizAcademySystem.Core.Services
 {
 	public class StudentService : IStudentService
-    {
-        private readonly ApplicationDbContext _dbContext;
-        private readonly IMapper mapper;
+	{
+		private readonly ApplicationDbContext _dbContext;
+		private readonly IMapper mapper;
 
-        public StudentService(ApplicationDbContext dbContext, IMapper mapper)
-        {
-            this._dbContext = dbContext;
-            this.mapper = mapper;
-        }
-        public async void Add(StudentFormDTO student, IFormFile roadmap)
-        {
-            if (roadmap != null && roadmap.Length > 0)
+		public StudentService(ApplicationDbContext dbContext, IMapper mapper)
+		{
+			this._dbContext = dbContext;
+			this.mapper = mapper;
+		}
+		public async void Add(StudentFormDTO student, IFormFile roadmap)
+		{
+			if (roadmap != null && roadmap.Length > 0)
 			{
 				using (var memoryStream = new MemoryStream())
 				{
@@ -29,110 +29,119 @@ namespace LMS_WhizAcademySystem.Core.Services
 					student.Roadmap = memoryStream.ToArray();
 				}
 			}
-            else
-            {
-                throw new Exception("Error in roadmap!");
-            }
+			else
+			{
+				throw new Exception("Error in roadmap!");
+			}
 
-            try
-            {
-                Student stu = mapper.Map<Student>(student);
+			try
+			{
+				Student stu = mapper.Map<Student>(student);
 
-                //TODO Error in save changes. Trying to access a disposed dbContext.
+				//TODO Error in save changes. Trying to access a disposed dbContext.
 
-                this._dbContext.Students.Add(stu); 
-                this._dbContext.SaveChanges();
+				this._dbContext.Students.Add(stu);
+				this._dbContext.SaveChanges();
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error in mapping or adding new student!");
-            }
-            
-        }
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Error in mapping or adding new student!");
+			}
 
-        public void Delete(int id)
-        {
-            Student? student = this._dbContext.Students.FirstOrDefault(x => x.Id == id);
+		}
 
-            if (student == null)
-            {
-                throw new Exception("Student is null. Invalid Id!");
-            }
+		public void Delete(int id)
+		{
+			Student? student = this._dbContext.Students.FirstOrDefault(x => x.Id == id);
 
-            this._dbContext.Students.Remove(student);
-            this._dbContext.SaveChanges();
-        }
+			if (student == null)
+			{
+				throw new Exception("Student is null. Invalid Id!");
+			}
 
-        public void Update(int id)
-        {
-            throw new NotImplementedException();
-        }
-        
+			this._dbContext.Students.Remove(student);
+			this._dbContext.SaveChanges();
+		}
 
-        public async Task<StudentFormDTO> Details(int id)
-        {
-            var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
-
-            StudentFormDTO studentForm = null;
+		public void Update(int id)
+		{
+			throw new NotImplementedException();
+		}
 
 
-           // mapper.Map(student, studentForm);
+		public async Task<StudentFormDTO> Details(int id)
+		{
+			var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+
+			StudentFormDTO studentForm = null;
+
+
+			// mapper.Map(student, studentForm);
 			var studentDto = mapper.Map<StudentFormDTO>(student);
 
 			if (student == null)
-            {
-                throw new Exception("Student is null. Invalid Id");
-            }
+			{
+				throw new Exception("Student is null. Invalid Id");
+			}
 
-            student.Roadmap = null;
+			student.Roadmap = null;
 
-            return studentDto;
-        }
+			return studentDto;
+		}
 
-        public async Task<List<StudentFormDTO>> GetAll()
-        {
-            var students = await _dbContext.Students.Include(s => s.Mentor).ToListAsync();
+		public async Task<List<StudentFormDTO>> GetAll()
+		{
+			var students = await _dbContext.Students.Include(s => s.Mentor).ToListAsync();
 
-            var studentDTOs = mapper.Map<List<StudentFormDTO>>(students);
+			var studentDTOs = mapper.Map<List<StudentFormDTO>>(students);
 
-            return studentDTOs;
-        }
+			return studentDTOs;
+		}
 
-        public List<Dictionary<string, object>> GetRoadMap(int id)
-        {
-            var excelBytes = this._dbContext.Students.FirstOrDefault(x => x.Id == id)?.Roadmap;
-            if (excelBytes == null)
-            {
-               throw new Exception("Student not found or roadmap is empty.");
-            }
+		public async Task<List<StudentFormDTO>> GetAllForMentors(int mentorId)
+		{
+			var students = await _dbContext.Students.Where(x => x.MentorId == mentorId).ToListAsync();
 
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFile.xlsx");
-            File.WriteAllBytes(filePath, excelBytes);
+			var studentDTOs = mapper.Map<List<StudentFormDTO>>(students);
 
-            ExcelPackage.LicenseContext =  OfficeOpenXml.LicenseContext.NonCommercial;
+			return studentDTOs;
+		}
 
-            var jsonData = new List<Dictionary<string, object>>();
-            using (var package = new ExcelPackage(new FileInfo(filePath)))
-            {
-                var worksheet = package.Workbook.Worksheets[0];
-                var rowCount = worksheet.Dimension.Rows;
-                var colCount = worksheet.Dimension.Columns;
+		public List<Dictionary<string, object>> GetRoadMap(int id)
+		{
+			var excelBytes = this._dbContext.Students.FirstOrDefault(x => x.Id == id)?.Roadmap;
+			if (excelBytes == null)
+			{
+				throw new Exception("Student not found or roadmap is empty.");
+			}
 
-                for (int row = 2; row <= rowCount; row++) // Assuming the first row is the header
-                {
-                    var rowDict = new Dictionary<string, object>();
-                    for (int col = 1; col <= colCount; col++)
-                    {
-                        var key = worksheet.Cells[1, col].Text; // Header as key
-                        var value = worksheet.Cells[row, col].Text;
-                        rowDict[key] = string.IsNullOrWhiteSpace(value) ? "NaN" : value; // Replace empty cells with "NaN"
-                    }
-                    jsonData.Add(rowDict);
-                }
-            }
+			var filePath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedFile.xlsx");
+			File.WriteAllBytes(filePath, excelBytes);
 
-            return jsonData;
-        }
-    }
+			ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+			var jsonData = new List<Dictionary<string, object>>();
+			using (var package = new ExcelPackage(new FileInfo(filePath)))
+			{
+				var worksheet = package.Workbook.Worksheets[0];
+				var rowCount = worksheet.Dimension.Rows;
+				var colCount = worksheet.Dimension.Columns;
+
+				for (int row = 2; row <= rowCount; row++) // Assuming the first row is the header
+				{
+					var rowDict = new Dictionary<string, object>();
+					for (int col = 1; col <= colCount; col++)
+					{
+						var key = worksheet.Cells[1, col].Text; // Header as key
+						var value = worksheet.Cells[row, col].Text;
+						rowDict[key] = string.IsNullOrWhiteSpace(value) ? "NaN" : value; // Replace empty cells with "NaN"
+					}
+					jsonData.Add(rowDict);
+				}
+			}
+
+			return jsonData;
+		}
+	}
 }
