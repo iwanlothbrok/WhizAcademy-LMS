@@ -3,13 +3,14 @@ using LMS_WhizAcademySystem.Core.DTOs;
 using LMS_WhizAcademySystem.Infrastructure.Models;
 using LMS_WhizAcademySystem.Server.Models;
 
-namespace LMS_WhizAcademySystem.Server.Extensions
+namespace LMS_WhizAcademySystem.Core.AutoMapper
 {
 	public class AutoMapper : Profile
 	{
 		public AutoMapper()
 		{
-			CreateMap<Student, StudentFormDTO>();
+			CreateMap<Student, StudentFormDTO>()
+                .ForMember(dest => dest.Mentor, opt => opt.MapFrom(src => src.Mentor));
 			CreateMap<StudentFormDTO, Student>();
 
 			CreateMap<Mentor, MentorFormDTO>();
