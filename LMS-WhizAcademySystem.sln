@@ -9,7 +9,7 @@ Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "lms-whizacademysystem.clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMS-WhizAcademySystem.Infrastructure", "LMS-WhizAcademySystem.Infrastructure\LMS-WhizAcademySystem.Infrastructure.csproj", "{E2F3C5C6-A21C-4D80-A843-3A23DB3E0ED8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMS-WhizAcademySystem.Core", "LMS-WhizAcademySystem.Core\LMS-WhizAcademySystem.Core.csproj", "{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMS-WhizAcademySystem.Core", "LMS-WhizAcademySystem.Core\LMS-WhizAcademySystem.Core.csproj", "{87E49AD9-7856-43C4-8A30-7844F8B0AAFC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
