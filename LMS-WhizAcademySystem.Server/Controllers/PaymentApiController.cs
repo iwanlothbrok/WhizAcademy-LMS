@@ -4,30 +4,33 @@
 	using LMS_WhizAcademySystem.Core.DTOs;
 	using LMS_WhizAcademySystem.Infrastructure.Data;
 	using LMS_WhizAcademySystem.Infrastructure.Models;
-	using Microsoft.AspNetCore.Http;
 	using Microsoft.AspNetCore.Mvc;
+	using System.Threading.Tasks;
 
-	[Route("api/[controller]")]
+	[Route("api/payment")]
 	[ApiController]
 	public class PaymentApiController : ControllerBase
 	{
 		private readonly ApplicationDbContext data;
+		private readonly IMapper mapper;
 
-		public PaymentApiController(ApplicationDbContext data)
+		public PaymentApiController(ApplicationDbContext data, IMapper mapper)
 		{
 			this.data = data;
+			this.mapper = mapper;
 		}
 
 		[HttpPost("add")] // api/payment/add
-		public async Task<IActionResult> Add([FromForm] Payment payment) //[
+		public IActionResult Add([FromForm] PaymentFormDTO payment) //[
 		{
 
-			//Student stu = mapper.Map<Student>(student);
+			var paymentEntity = mapper.Map<Payment>(payment);
 
 			// TODO: REMOVE DATA
+			paymentEntity.PaymentDate = DateTime.UtcNow;
 
-			//await this.data.Students.AddAsync(stu);
-			//await this.data.SaveChangesAsync();
+			 this.data.Payments.Add(paymentEntity);
+			 this.data.SaveChanges();
 
 			return Ok("Mentor added successfully");
 		}
