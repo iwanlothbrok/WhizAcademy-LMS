@@ -1,5 +1,5 @@
-import add from '../../assets/images/graffits/15.png'
-import all from '../../assets/images/graffits/16.png'
+import add from '../../assets/images/students/20.png'
+import all from '../../assets/images/students/19.png'
 import remove from '../../assets/images/graffits/17.png'
 import edit from '../../assets/images/graffits/18.png'
 
