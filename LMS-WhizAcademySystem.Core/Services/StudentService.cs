@@ -74,9 +74,10 @@ namespace LMS_WhizAcademySystem.Core.Services
 
         public async Task<StudentFormDTO> Details(int id)
         {
-            var student = await this._dbContext.Students.Include(s => s.Mentor).FirstOrDefaultAsync(x => x.Id == id);
+            var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
 
-            var studentForm = mapper.Map<StudentFormDTO>(student);
+            StudentFormDTO studentForm = null;
+            mapper.Map(student, studentForm);
 
             if (student == null)
             {
