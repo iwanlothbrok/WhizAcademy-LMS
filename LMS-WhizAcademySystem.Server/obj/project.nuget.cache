@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dlToESqGnqf2pUUiC82BZ237ryXGjJV7pjWfi5bjCeeZxIqGuKv1jV1Ie3zAizU7g9t0qm5OEkei83HUPHaMjg==",
+  "dgSpecHash": "YbvOFJVyPr/TgRozQR9YMYuqwY7vUnyAM4Qsy7hmdH89cXZX1QPpuSSnYuVnnrc9Av8aTL+CTiUJh4R3FqxyLQ==",
   "success": true,
-  "projectFilePath": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj",
+  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\LMS-WhizAcademySystem.Server.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

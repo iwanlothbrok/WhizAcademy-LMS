@@ -3,7 +3,7 @@
 "ServerUrl": "https://localhost:5173",
 "RedirectUrl": "",
 "LaunchCommand": "npm run dev",
-"WorkingDirectory": "D:\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\..\\lms-whizacademysystem.client",
+"WorkingDirectory": "C:\\Users\\user\\Documents\\GitHub\\WhizAcademy-LMS\\LMS-WhizAcademySystem.Server\\..\\lms-whizacademysystem.client",
 "MaxTimeoutInSeconds": "120",
 "KeepRunning": "false"
 }

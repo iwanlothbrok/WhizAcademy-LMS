@@ -95,8 +95,7 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<decimal>("Amount")
-                        .HasPrecision(2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("FirstLessonDate")
                         .HasColumnType("datetime2");
@@ -104,26 +103,21 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                     b.Property<DateTime>("LastLessonDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LessonId")
+                    b.Property<int>("LessonsCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("LessonsCount")
+                    b.Property<int?>("MentorId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("RelativeId")
-                        .HasColumnType("int");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LessonId");
-
-                    b.HasIndex("RelativeId");
+                    b.HasIndex("MentorId");
 
                     b.HasIndex("StudentId");
 
@@ -253,15 +247,9 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Payment", b =>
                 {
-                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Lesson", "Lesson")
+                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Mentor", "Mentor")
                         .WithMany()
-                        .HasForeignKey("LessonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Relative", "Relative")
-                        .WithMany()
-                        .HasForeignKey("RelativeId");
+                        .HasForeignKey("MentorId");
 
                     b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Student", "Student")
                         .WithMany("Payments")
@@ -269,9 +257,7 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Lesson");
-
-                    b.Navigation("Relative");
+                    b.Navigation("Mentor");
 
                     b.Navigation("Student");
                 });

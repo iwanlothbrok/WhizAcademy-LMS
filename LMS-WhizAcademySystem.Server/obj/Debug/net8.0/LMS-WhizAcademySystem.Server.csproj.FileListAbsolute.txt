@@ -572,6 +572,12 @@ C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcadem
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.Interfaces.dll
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.System.Drawing.dll
 C:\Users\user1\Documents\GitHub\LMS-WhizAcademySystem\WhizAcademy-LMS\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\AutoMapper.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.Interfaces.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.System.Drawing.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\spa.proxy.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\appsettings.json
@@ -862,9 +868,3 @@ C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.pdb
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\LMS-WhizAcademySystem.Server.genruntimeconfig.cache
 C:\Users\user\Documents\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\obj\Debug\net8.0\ref\LMS-WhizAcademySystem.Server.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\AutoMapper.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.Interfaces.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\EPPlus.System.Drawing.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
-D:\GitHub\WhizAcademy-LMS\LMS-WhizAcademySystem.Server\bin\Debug\net8.0\System.Text.Json.dll

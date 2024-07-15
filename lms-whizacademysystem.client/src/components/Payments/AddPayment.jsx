@@ -10,17 +10,14 @@ export default function AddPayment() {
     const [lastLessonDate, setLastLessonDate] = useState(null) // datetime
 
     const [students, setStudents] = useState([]);
-    const [mentors, setMentors] = useState({});
+    const [mentors, setMentors] = useState([]);
 
-    const [student, setStudent] = useState([]);
+    const [studentId, setStudentId] = useState({});
     const [mentorId, setMentorId] = useState('');
-
-    const [relative, setRelative] = useState('');
 
     const [loading, setLoading] = useState(false); // Loading state
     const [alert, setAlert] = useState(null); // State to manage alerts
 
-    // getting the mentors 
     useEffect(() => {
         const fetchMentors = async () => {
             setLoading(true);
@@ -33,18 +30,17 @@ export default function AddPayment() {
                 }
 
                 const data = await response.json();
-                console.log(data);
                 setMentors(data);
-
-                console.log(data);
+                console.log(data); // Log data once when fetched
             } catch (error) {
+                console.error('Error:', error);
                 showAlert('An error occurred while fetching mentors.', 'Be Warned', 'red');
             } finally {
                 setTimeout(() => {
                     setLoading(false);
                 }, 500);
             }
-        }
+        };
 
         fetchMentors();
     }, []);
@@ -52,23 +48,30 @@ export default function AddPayment() {
 
     // getting the mentors 
     useEffect(() => {
-        const fetchMentors = async () => {
+        const fetchStudents = async () => {
             setLoading(true);
 
+            if (mentorId === 0 || mentorId === '' || mentorId === undefined) {
+                return;
+            }
+
+
             try {
-                const response = await fetch('https://localhost:44357/api/mentors/all');
+                console.log(mentorId);
+                const id = mentorId;
+                const response = await fetch(`https://localhost:44357/api/students/all/mentor/${id}`);
                 if (!response.ok) {
-                    showAlert('Failed to fetch mentors', 'Be Warned', 'red');
+                    showAlert('Failed to fetch students', 'Be Warned', 'red');
                     return;
                 }
 
                 const data = await response.json();
                 console.log(data);
-                setMentors(data);
+                setStudents(data);
 
                 console.log(data);
             } catch (error) {
-                showAlert('An error occurred while fetching mentors.', 'Be Warned', 'red');
+                showAlert('An error occurred while fetching students.', 'Be Warned', 'red');
             } finally {
                 setTimeout(() => {
                     setLoading(false);
@@ -76,30 +79,26 @@ export default function AddPayment() {
             }
         }
 
-        fetchMentors();
+        fetchStudents();
     }, [mentorId]);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
-        // const formData = new FormData();
-        // // formData.append('Name', name);
-        // formData.append('Email', email ? email : 'няма въведен имейл');
-        // formData.append('PhoneNumber', phoneNumber);
-        // formData.append('PriceForHour', priceForHour);
-        // formData.append('Address', address);
-        // formData.append('MentorId', mentorId);
+        const formData = new FormData();
+        formData.append('Amount', amount);
+        formData.append('LessonsCount', lessonsCount);
+        formData.append('StudentId', studentId);
+        formData.append('MentorId', mentorId);
+        formData.append('FirstLessonDate', firstLessonDate);
+        formData.append('LastLessonDate', lastLessonDate);
 
         console.log(formData);
 
-        if (roadmap) {
-            formData.append('Roadmap', roadmap);
-        }
-        console.log(formData);
+
         try {
-            const response = await fetch('https://localhost:44357/api/students/add/', {
+            const response = await fetch('https://localhost:44357/api/payment/add/', {
                 method: 'POST',
                 body: formData,
             });
@@ -182,15 +181,8 @@ export default function AddPayment() {
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
-                    {/* <div className="mb-4">
-                        <label htmlFor="students" className="block text-gray-700">Студент</label>
-                        <select id="students" onChange={(e) => setStudent(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="" disabled selected>Избери Студент</option>
-                            {students.map(x => (
-                                <option key={x.id} value={x.id}>{x.name}</option>
-                            ))}
-                        </select>
-                    </div> */}
+
+
                     <div className="mb-4">
                         <label htmlFor="mentors" className="block text-gray-700">Ментор</label>
                         <select id="mentors" onChange={(e) => setMentorId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -200,17 +192,17 @@ export default function AddPayment() {
                             ))}
                         </select>
                     </div>
+
                     <div className="mb-4">
-                        <label htmlFor="relative" className="block text-gray-700">Роднина</label>
-                        <input
-                            id="relative"
-                            type="text"
-                            value={relative}
-                            onChange={(e) => setRelative(e.target.value)}
-                            placeholder='Relative'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                        />
+                        <label htmlFor="students" className="block text-gray-700">Студент</label>
+                        <select id="students" onChange={(e) => setStudentId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="" disabled selected>Избери Студент</option>
+                            {students.map(x => (
+                                <option key={x.id} value={x.id}>{x.name}</option>
+                            ))}
+                        </select>
                     </div>
+
                     <button
                         type="submit"
                         className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-800 hover:scale-105'}`}

@@ -7,6 +7,7 @@ namespace LMS_WhizAcademySystem.Core.DTOs
     using System.ComponentModel.DataAnnotations;
     public class StudentFormDTO
     {
+        public int Id { get; set; }
         [Required, StringLength(100)]
         public string Name { get; set; } = null!;
 
@@ -24,6 +25,8 @@ namespace LMS_WhizAcademySystem.Core.DTOs
         public int MentorId { get; set; }
 
         public MentorFormDTO? Mentor { get; set; }
+
+        public Relative? Relative{ get; set; }
 
         /// <summary>
         /// TODO: check what type should be the excel file

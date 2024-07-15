@@ -8,7 +8,6 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
 		[Key]
 		public int Id { get; set; }
 
-		[Precision(2)]
 		public decimal Amount { get; set; }
 
 		public int LessonsCount { get; set; }
@@ -21,12 +20,12 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
 		public int StudentId { get; set; }
 		public Student Student { get; set; }
 
-		public int LessonId { get; set; }
-		public Lesson Lesson { get; set; }
+		//public int? LessonId { get; set; }
+		//public Lesson? Lesson { get; set; }
 
-		public int? RelativeId { get; set; }
-		public Relative? Relative { get; set; }
+		public int? MentorId { get; set; }
+		public Mentor? Mentor { get; set; }
 
-        //public List<Lesson> PayedLessons { get; set; }
-    }
+		//public List<Lesson> PayedLessons { get; set; }
+	}
 }
