@@ -18,6 +18,8 @@ export default function AddPayment() {
     const [loading, setLoading] = useState(false); // Loading state
     const [alert, setAlert] = useState(null); // State to manage alerts
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchMentors = async () => {
             setLoading(true);
@@ -103,6 +105,8 @@ export default function AddPayment() {
                 body: formData,
             });
 
+            console.log(response);
+
             if (!response.ok) {
                 const errorText = await response.text();
                 showAlert(errorText, 'Be Warned', 'red');
@@ -111,7 +115,10 @@ export default function AddPayment() {
             }
 
             showAlert('Student added successfully', 'Success', 'green');
-            navigate("/");
+            resetForm();
+            setTimeout(() => {
+                navigate("/");
+            }, 1000);
         } catch (error) {
             console.error('Error:', error);
             showAlert('Failed to add student', 'Be Warned', 'red');
@@ -119,6 +126,14 @@ export default function AddPayment() {
             setLoading(false);
         }
     };
+
+
+    const resetForm = () => {
+        setAmount('');
+        setFirstLessonDate(null);
+        setLessonsCount(0);
+    };
+
 
     const showAlert = (message, title, color) => {
         setAlert({ message, title, color });
