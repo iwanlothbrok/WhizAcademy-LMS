@@ -8,7 +8,7 @@ import './tailwind.css'; // Tailwind styles
 import OperationsCard from './components/OperationsCard.jsx';
 import { mentorsCards, title } from './components/database/mentorsCards.js';
 import { studentCards, studentTitle } from './components/database/studentCards.js';
-
+import { paymentCards, PaymentTitle as paymentTitle } from './components/database/paymentCards.js';
 import AddMentor from './components/Mentors/AddMentor.jsx';
 import ShowMentors from './components/Mentors/ShowMentors.jsx';
 import Navigation from './components/Navigation.jsx';
@@ -19,6 +19,7 @@ import ExcelPage from './components/Students/ExcelViewer.jsx';
 import ImageGrid from './components/ImageGrid.jsx';
 import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
+import ShowPayments from './components/Payments/ShowPayments.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -40,6 +41,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/roadmap/:id' element={<ExcelPage />} />
         <Route path='/details/:id' element={<DetailsStudent />} />
         <Route path='/payment/add' element={<AddPayment />} />
+
+        {/* payments */}
+        <Route path="/payment" element={<OperationsCard cards={paymentCards} title={paymentTitle} />} />
+        <Route path="/payment/all" element={<ShowPayments />} />
+        <Route path="/payment/add" element={<AddPayment />} />
       </Routes>
     </Router>
   </React.StrictMode>
