@@ -101,7 +101,7 @@ export default function AddStudent() {
                 </div>
             )}
             <div className="bg-white px-6 py-10 rounded shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Добави Студент</h2>
+                <h2 className="text-2xl font-bold mb-6 text-center text-red-600">Добави Студент</h2>
                 <form className="text-lg" onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="name" className="block text-gray-700">Две Имена</label>
@@ -182,7 +182,7 @@ export default function AddStudent() {
                     </div>
                     <button
                         type="submit"
-                        className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-800 hover:scale-105'}`}
+                        className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-800 hover:scale-105'}`}
                         disabled={loading}
                     >
                         {loading ? 'Зарежда...' : 'ДОБАВИ'}

@@ -6,6 +6,8 @@ export default function ShowStudents() {
     const [searchQuery, setSearchQuery] = useState('');
     const [alert, setAlert] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 3;
 
     const navigate = useNavigate();
 
@@ -62,7 +64,7 @@ export default function ShowStudents() {
     };
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400', 'bg-green-500'];
+        const colors = ['bg-red-200', 'bg-red-300', 'bg-red-400'];
         return colors[index % colors.length];
     };
 
@@ -71,6 +73,20 @@ export default function ShowStudents() {
         student.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
         student.phoneNumber.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const indexOfLastStudent = currentPage * itemsPerPage;
+    const indexOfFirstStudent = indexOfLastStudent - itemsPerPage;
+    const currentStudents = filteredStudents.slice(indexOfFirstStudent, indexOfLastStudent);
+
+    const totalPages = Math.ceil(filteredStudents.length / itemsPerPage);
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
 
     const handleProgress = (id) => {
         navigate(`/roadmap/${id}`);
@@ -97,68 +113,84 @@ export default function ShowStudents() {
                 </div>
             )}
 
-            {filteredStudents.length === 0 ? (
-                <h1 className='text-3xl  text-red-400'>Няма добавени ученици.</h1>
-            ) : (
-                <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
-                    <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Студенти</h1>
-                    <input
-                        type="text"
-                        placeholder="Потърси по имейл, имена или тел. номер"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border flex justify-center bg-white text-black border-gray-300 rounded"
-                    />
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                            <thead className="bg-green-500 text-white">
-                                <tr>
-                                    <th className="py-2 px-4 text-left">Имена</th>
-                                    <th className="py-2 px-4 text-left">Имейл</th>
-                                    <th className="py-2 px-4 text-left">Телефонен Номер</th>
-                                    <th className="py-2 px-4 text-left">Цена на Урок</th>
-                                    <th className="py-2 px-4 text-left">Адрес</th>
-                                    <th className="py-2 px-4 text-left">Ментор</th>
-                                    <th className="py-2 px-4 text-left">Разплащател</th>
-                                    <th className="py-2 px-4 text-left">Функции</th>
+
+            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
+                <h1 className="text-3xl font-bold mb-6 text-center text-red-500">Студенти</h1>
+                <input
+                    type="text"
+                    placeholder="Потърси по имейл, имена или тел. номер"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border flex justify-center bg-white text-black border-gray-300 rounded"
+                />
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                        <thead className="bg-red-500 text-white">
+                            <tr>
+                                <th className="py-2 px-4 text-left">Имена</th>
+                                <th className="py-2 px-4 text-left">Имейл</th>
+                                <th className="py-2 px-4 text-left">Телефонен Номер</th>
+                                <th className="py-2 px-4 text-left">Цена на Урок</th>
+                                <th className="py-2 px-4 text-left">Адрес</th>
+                                <th className="py-2 px-4 text-left">Ментор</th>
+                                <th className="py-2 px-4 text-left">Разплащател</th>
+                                <th className="py-2 px-4 text-left">Функции</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-gray-700">
+                            {currentStudents.map((student, index) => (
+                                <tr key={student.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-red-300 transition duration-300 ease-in-out`}>
+                                    <td className="py-2 px-4">{student.name}</td>
+                                    <td className="py-2 px-4">{student.email}</td>
+                                    <td className="py-2 px-4">{student.phoneNumber}</td>
+                                    <td className="py-2 px-4">${student.priceForHour.toLocaleString()}</td>
+                                    <td className="py-2 px-4">{student.address}</td>
+                                    <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добавен ментор'}</td>
+                                    <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавени близки'}</td>
+                                    <td className="py-2 px-4">
+                                        <button
+                                            className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            onClick={() => handleDelete(student.id)}
+                                        >
+                                            Изтрий
+                                        </button>
+                                        <button
+                                            className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                        >
+                                            Промяна
+                                        </button>
+                                        <button
+                                            className="bg-purple-600 text-white px-2 py-2 my-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
+                                            onClick={() => handleProgress(student.id)}
+                                        >
+                                            Прогрес
+                                        </button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody className="text-gray-700">
-                                {filteredStudents.map((student, index) => (
-                                    <tr key={student.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-600 transition duration-300 ease-in-out`}>
-                                        <td className="py-2 px-4">{student.name}</td>
-                                        <td className="py-2 px-4">{student.email}</td>
-                                        <td className="py-2 px-4">{student.phoneNumber}</td>
-                                        <td className="py-2 px-4">${student.priceForHour.toLocaleString()}</td>
-                                        <td className="py-2 px-4">{student.address}</td>
-                                        <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добавен ментор'}</td>
-                                        <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавени близки'}</td>
-                                        <td className="py-2 px-4">
-                                            <button
-                                                className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-                                                onClick={() => handleDelete(student.id)}
-                                            >
-                                                Изтрий
-                                            </button>
-                                            <button
-                                                className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-                                            >
-                                                Промяна
-                                            </button>
-                                            <button
-                                                className="bg-purple-600 text-white px-2 py-2 my-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
-                                                onClick={() => handleProgress(student.id)}
-                                            >
-                                                Прогрес
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            )}
+
+                <div className="flex justify-between mt-4">
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    >
+                        Предишна
+                    </button>
+                    <span className="text-white">Страница {currentPage} от {totalPages}</span>
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    >
+                        Следваща
+                    </button>
+                </div>
+            </div>
+
         </div>
     );
 }
