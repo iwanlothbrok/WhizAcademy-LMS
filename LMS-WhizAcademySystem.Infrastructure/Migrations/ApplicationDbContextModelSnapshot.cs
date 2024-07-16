@@ -132,29 +132,18 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("StudentId")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("StudentId")
-                        .IsUnique()
-                        .HasFilter("[StudentId] IS NOT NULL");
+                        .IsUnique();
 
                     b.ToTable("Relatives");
                 });
@@ -266,7 +255,9 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                 {
                     b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Student", "Student")
                         .WithOne("Relative")
-                        .HasForeignKey("LMS_WhizAcademySystem.Infrastructure.Models.Relative", "StudentId");
+                        .HasForeignKey("LMS_WhizAcademySystem.Infrastructure.Models.Relative", "StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Student");
                 });

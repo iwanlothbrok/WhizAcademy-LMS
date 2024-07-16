@@ -1,6 +1,5 @@
 ﻿namespace LMS_WhizAcademySystem.Infrastructure.Models
 {
-    using Microsoft.EntityFrameworkCore;
     using System.ComponentModel.DataAnnotations;
     public class Student
     {

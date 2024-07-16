@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace LMS_WhizAcademySystem.Infrastructure.Models
 {
@@ -10,19 +11,12 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
         [Required, StringLength(100)]
         public string Name { get; set; } = null!;
 
-        [EmailAddress]
-        public string? Email { get; set; }
-
-        [Phone]
-        public string PhoneNumber { get; set; } = null!;
-
-        public string? Address { get; set; }
-
-
         /// <summary>
         /// Relative child
         /// </summary>
-        public int? StudentId { get; set; }
+        public int StudentId { get; set; }
+        
+        [JsonIgnore]
         public Student? Student { get; set; }
     }
 }
