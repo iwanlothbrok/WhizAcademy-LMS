@@ -151,7 +151,7 @@ export default function AddPayment() {
                 </div>
             )}
             <div className="bg-white px-6 py-10 rounded shadow-md w-full max-w-md">
-                <h2 className="text-2xl font-bold mb-6 text-center text-green-600">Добави Студент</h2>
+                <h2 className="text-2xl font-bold mb-6 text-center text-yellow-600">Добави Плащане</h2>
                 <form className="text-lg" onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="amount" className="block text-gray-700">Сума</label>
@@ -200,7 +200,7 @@ export default function AddPayment() {
 
                     <div className="mb-4">
                         <label htmlFor="mentors" className="block text-gray-700">Ментор</label>
-                        <select id="mentors" onChange={(e) => setMentorId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="mentors" onChange={(e) => setMentorId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-yellow-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" disabled selected>Избери Ментор</option>
                             {mentors.map(x => (
                                 <option key={x.id} value={x.id}>{x.name}</option>
@@ -210,7 +210,7 @@ export default function AddPayment() {
 
                     <div className="mb-4">
                         <label htmlFor="students" className="block text-gray-700">Студент</label>
-                        <select id="students" onChange={(e) => setStudentId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="students" onChange={(e) => setStudentId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 block w-full p-2.5 dark:bg-yellow-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" disabled selected>Избери Студент</option>
                             {students.map(x => (
                                 <option key={x.id} value={x.id}>{x.name}</option>
@@ -220,7 +220,7 @@ export default function AddPayment() {
 
                     <button
                         type="submit"
-                        className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-800 hover:scale-105'}`}
+                        className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-yellow-600 hover:bg-yellow-800 hover:scale-105'}`}
                         disabled={loading}
                     >
                         {loading ? 'Зарежда...' : 'ДОБАВИ'}

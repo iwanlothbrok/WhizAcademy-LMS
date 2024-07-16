@@ -38,6 +38,31 @@ export default function ShowPayments() {
         fetchPayments();
     }, []);
 
+    const handleDelete = async (id) => {
+        setLoading(true);
+
+        try {
+            const response = await fetch(`https://localhost:44357/api/payment/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                showAlert('Failed to delete payment', 'Be Warned', 'red');
+                return;
+            }
+
+            setPayments(payments.filter((s) => s.id !== id));
+            showAlert('payment deleted successfully', 'Success', 'green');
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('An error occurred while deleting the payment.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+        }
+    };
+
     const filteredPayments = payments.filter(payment =>
         payment.student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         payment.mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -53,7 +78,7 @@ export default function ShowPayments() {
     const totalPages = Math.ceil(filteredPayments.length / itemsPerPage);
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400', 'bg-green-500'];
+        const colors = ['bg-yellow-100', 'bg-yellow-200', 'bg-yellow-300'];
         return colors[index % colors.length];
     };
 
@@ -90,7 +115,7 @@ export default function ShowPayments() {
                 <h1 className='text-3xl text-red-400'>Няма добавени плащания.</h1>
             ) : (
                 <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
-                    <h1 className="text-3xl font-bold mb-6 text-center text-green-400">Плащания</h1>
+                    <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">Плащания</h1>
                     <input
                         type="text"
                         placeholder="Потърси по имейл, имена или тел. номер"
@@ -100,11 +125,11 @@ export default function ShowPayments() {
                     />
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                            <thead className="bg-green-500 text-white">
+                            <thead className="bg-yellow-600 text-white">
                                 <tr>
                                     <th className="py-2 px-4 text-left">Студент</th>
-                                    <th className="py-2 px-4 text-left">Адрес</th>
                                     <th className="py-2 px-4 text-left">Ментор</th>
+                                    <th className="py-2 px-4 text-left">Разплащател</th>
                                     <th className="py-2 px-4 text-left">Сума</th>
                                     <th className="py-2 px-4 text-left">Брой Уроци</th>
                                     <th className="py-2 px-4 text-left">От</th>
@@ -115,10 +140,10 @@ export default function ShowPayments() {
                             </thead>
                             <tbody className="text-gray-700">
                                 {currentPayments.map((payment, index) => (
-                                    <tr key={payment.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-600 transition duration-300 ease-in-out`}>
+                                    <tr key={payment.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-yellow-400 transition duration-300 ease-in-out`}>
                                         <td className="py-2 px-4">{payment.student.name}</td>
-                                        <td className="py-2 px-4">{payment.student.address}</td>
                                         <td className="py-2 px-4">{payment.mentor.name}</td>
+                                        <td className="py-2 px-4">{payment.student.relative.name === undefined ? 'няма добавени близки' : payment.student.relative.name }</td>
                                         <td className="py-2 px-4">{payment.amount}</td>
                                         <td className="py-2 px-4">{payment.lessonsCount}</td>
                                         <td className="py-2 px-4">{new Date(payment.firstLessonDate).toLocaleDateString()}</td>
@@ -127,7 +152,7 @@ export default function ShowPayments() {
                                         <td className="py-2 px-4">
                                             <button
                                                 className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-                                            // onClick={() => handleDelete(payment.id)}
+                                                onClick={() => handleDelete(payment.id)}
                                             >
                                                 Изтрий
                                             </button>
@@ -135,11 +160,6 @@ export default function ShowPayments() {
                                                 className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
                                             >
                                                 Промяна
-                                            </button>
-                                            <button
-                                                className="bg-purple-600 text-white px-2 py-2 my-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
-                                            >
-                                                Прогрес
                                             </button>
                                         </td>
                                     </tr>
