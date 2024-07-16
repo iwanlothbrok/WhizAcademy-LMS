@@ -6,6 +6,8 @@ export default function ShowMentors() {
     const [searchQuery, setSearchQuery] = useState('');
     const [alert, setAlert] = useState(null); // State to manage alerts
     const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 6;
 
     const navigate = useNavigate();
 
@@ -37,7 +39,7 @@ export default function ShowMentors() {
     }, []);
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400', 'bg-green-500'];
+        const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400'];
         return colors[index % colors.length];
     };
 
@@ -81,7 +83,21 @@ export default function ShowMentors() {
         mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         mentor.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    console.log(filteredMentors);
+
+    const indexOfLastMentor = currentPage * itemsPerPage;
+    const indexOfFirstMentor = indexOfLastMentor - itemsPerPage;
+    const currentMentors = filteredMentors.slice(indexOfFirstMentor, indexOfLastMentor);
+
+    const totalPages = Math.ceil(filteredMentors.length / itemsPerPage);
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) setCurrentPage(currentPage - 1);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+    };
+
 
     return (
         <div className="w-screen p-2 mt-10 flex justify-center items-center flex-col">
@@ -108,10 +124,9 @@ export default function ShowMentors() {
                     className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border bg-white text-black border-gray-300 rounded"
                 />
 
-
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <thead className="bg-green-500 text-white">
+                        <thead className="bg-green-600 text-white">
                             <tr>
                                 <th className="py-2 px-4 text-left">Имена</th>
                                 <th className="py-2 px-4 text-left">Имейл</th>
@@ -123,8 +138,8 @@ export default function ShowMentors() {
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">
-                            {filteredMentors.map((mentor, index) => (
-                                <tr key={index} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-600 transition duration-300 ease-in-out`}>
+                            {currentMentors.map((mentor, index) => (
+                                <tr key={mentor.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-500 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{mentor.name}</td>
                                     <td className="py-2 px-4">{mentor.email}</td>
                                     <td className="py-2 px-4">{mentor.lessonsCount}</td>
@@ -144,12 +159,29 @@ export default function ShowMentors() {
                                         >
                                             Промяна
                                         </button>
-
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                </div>
+
+                <div className="flex justify-between mt-4">
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    >
+                        Предишна
+                    </button>
+                    <span className="text-white">Страница {currentPage} от {totalPages}</span>
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-20"
+                    >
+                        Следваща
+                    </button>
                 </div>
             </div>
         </div>
