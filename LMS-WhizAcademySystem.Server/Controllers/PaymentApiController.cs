@@ -35,17 +35,38 @@
             return Ok("Mentor added successfully");
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var payment = this.data.Payments.FirstOrDefault(x => x.Id == id);
+                this.data.Payments.Remove(payment);
+                this.data.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error in deleting student in Student Service.");
+            }
+
+            return Ok();
+        }
 
         [HttpGet("all")] // api/payment/add
         public List<PaymentInformationDTO> All() //[
         {
-            var payments = this.data.Payments.Include(m => m.Mentor).Include(s => s.Student).ToList();
+            var payments = this.data.Payments.Include(m => m.Mentor).Include(s => s.Student).Include(r => r.Student.Relative).ToList();
 
             var paymentsDtos = mapper.Map<List<PaymentInformationDTO>>(payments);
 
             foreach (var p in paymentsDtos)
             {
-                p.Student.Roadmap = null; 
+                p.Student.Roadmap = null;
             }
             // var paymentEntity = mapper.Map<Payment>(payment);
 
