@@ -7,13 +7,17 @@ export default function AddPayment() {
     const [lessonsCount, setLessonsCount] = useState(0);
 
     const [firstLessonDate, setFirstLessonDate] = useState(null) // datetime
-    const [lastLessonDate, setLastLessonDate] = useState(null) // datetime
+    const [paymentDate, setPaymentDate] = useState(null) // datetime
 
     const [students, setStudents] = useState([]);
     const [mentors, setMentors] = useState([]);
 
     const [studentId, setStudentId] = useState({});
     const [mentorId, setMentorId] = useState('');
+
+    const [payedLessons, setPayedLessons] = useState(0)
+    const [lessonsCompleted, setLessonsCompleted] = useState(0);
+
 
     const [loading, setLoading] = useState(false); // Loading state
     const [alert, setAlert] = useState(null); // State to manage alerts
@@ -89,12 +93,17 @@ export default function AddPayment() {
         setLoading(true);
 
         const formData = new FormData();
+
         formData.append('Amount', amount);
-        formData.append('LessonsCount', lessonsCount);
         formData.append('StudentId', studentId);
         formData.append('MentorId', mentorId);
-        formData.append('FirstLessonDate', firstLessonDate);
-        formData.append('LastLessonDate', lastLessonDate);
+        if (firstLessonDate != undefined) {
+
+            formData.append('FirstLessonDate', firstLessonDate);
+        }
+        formData.append('PaymentDate', paymentDate);
+        formData.append('PayedLessons', payedLessons);
+        formData.append('LessonsCompleted', lessonsCompleted);
 
         console.log(formData);
 
@@ -166,16 +175,28 @@ export default function AddPayment() {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="lessonsCount" className="block text-gray-700">Брой уроци</label>
+                        <label htmlFor="lessonsCount" className="block text-gray-700">Платени Уроци</label>
                         <input
                             id="lessonsCount"
                             type="number"
-                            value={lessonsCount}
-                            onChange={(e) => setLessonsCount(e.target.value)}
+                            value={payedLessons}
+                            onChange={(e) => setPayedLessons(e.target.value)}
                             placeholder='10'
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
+                    <div className="mb-4">
+                        <label htmlFor="lessonsCount" className="block text-gray-700">Завършени Уроци</label>
+                        <input
+                            id="lessonsCount"
+                            type="number"
+                            value={lessonsCompleted}
+                            onChange={(e) => setLessonsCompleted(e.target.value)}
+                            placeholder='10'
+                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
+                        />
+                    </div>
+
                     <div className="mb-4">
                         <label htmlFor="firstLessonDate" className="block text-gray-700">Дата на първия урок</label>
                         <input
@@ -187,12 +208,12 @@ export default function AddPayment() {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="lastLessonDate" className="block text-gray-700">Дата на последния урок</label>
+                        <label htmlFor="lastLessonDate" className="block text-gray-700">Дата на плащане</label>
                         <input
                             id="lastLessonDate"
                             type="datetime-local"
-                            value={lastLessonDate}
-                            onChange={(e) => setLastLessonDate(e.target.value)}
+                            value={paymentDate}
+                            onChange={(e) => setPaymentDate(e.target.value)}
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
