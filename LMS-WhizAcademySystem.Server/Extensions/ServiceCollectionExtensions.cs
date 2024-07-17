@@ -12,6 +12,7 @@ namespace LMS_WhizAcademySystem.Server.Extensions
         {
             services.AddScoped<IMentorService, MentorService>();
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
