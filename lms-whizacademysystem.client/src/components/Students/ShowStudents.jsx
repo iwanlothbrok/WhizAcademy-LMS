@@ -63,6 +63,45 @@ export default function ShowStudents() {
         }
     };
 
+    const handleClickIncreaseUnpayedLessons = async (id) => {
+        setLoading(true);
+
+        const response = await fetch(`https://localhost:44357/api/students/increase-lessons/${id}`, {
+            method: 'PUT',
+        });
+
+        if (!response.ok) {
+            showAlert('Failed to delete payment', 'Be Warned', 'red');
+            return;
+        }
+
+        await fetchPayments(); // Refresh the payments after decreasing the lesson count
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
+    };
+
+    const handleClickDecreaseUnpayedLessons = async (id) => {
+        setLoading(true);
+
+        const response = await fetch(`https://localhost:44357/api/students/decrease-lessons/${id}`, {
+            method: 'PUT',
+        });
+
+        if (!response.ok) {
+            showAlert('Failed to delete payment', 'Be Warned', 'red');
+            return;
+        }
+
+        await fetchPayments(); // Refresh the payments after decreasing the lesson count
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
+    };
+
+
     const getRowBgColorClass = (index) => {
         const colors = ['bg-red-200', 'bg-red-300', 'bg-red-400'];
         return colors[index % colors.length];
@@ -131,6 +170,7 @@ export default function ShowStudents() {
                                 <th className="py-2 px-4 text-left">Имейл</th>
                                 <th className="py-2 px-4 text-left">Телефонен Номер</th>
                                 <th className="py-2 px-4 text-left">Цена на Урок</th>
+                                <th className="py-2 px-4 text-left">Не Платени Уроци</th>
                                 <th className="py-2 px-4 text-left">Адрес</th>
                                 <th className="py-2 px-4 text-left">Ментор</th>
                                 <th className="py-2 px-4 text-left">Разплащател</th>
@@ -144,9 +184,25 @@ export default function ShowStudents() {
                                     <td className="py-2 px-4">{student.email}</td>
                                     <td className="py-2 px-4">{student.phoneNumber}</td>
                                     <td className="py-2 px-4">${student.priceForHour.toLocaleString()}</td>
+                                    <td className="py-2 px-4">
+                                        {student.unpaidLessons}
+                                        <button
+                                            onClick={() => handleClickIncreaseUnpayedLessons(student.id)}
+                                            className="ml-2 bg-blue-500 text-white px-4 py-1 rounded
+                                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                            +
+                                        </button>
+                                        <button
+                                            onClick={() => handleClickDecreaseUnpayedLessons(student.id)}
+                                            className="ml-5 mt-1 bg-red-500 text-white px-4 py-1 rounded
+                                             hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                                        >
+                                            -
+                                        </button>
+                                    </td>
                                     <td className="py-2 px-4">{student.address}</td>
-                                    <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добавен ментор'}</td>
-                                    <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавени близки'}</td>
+                                    <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добаве'}</td>
+                                    <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавен'}</td>
                                     <td className="py-2 px-4">
                                         <button
                                             className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"

@@ -18,6 +18,8 @@
 
         public string? Address { get; set; }
 
+        public int UnpaidLessons { get; set; }
+
         /// <summary>
         /// Father or mother    
         /// </summary>

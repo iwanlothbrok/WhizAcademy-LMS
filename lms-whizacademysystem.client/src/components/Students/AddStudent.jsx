@@ -56,8 +56,6 @@ export default function AddStudent() {
         formData.append('Address', address);
         formData.append('MentorId', mentorId);
 
-        console.log(formData);
-
         if (roadmap) {
             formData.append('Roadmap', roadmap);
         }
@@ -139,6 +137,7 @@ export default function AddStudent() {
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                         />
                     </div>
+
                     <div className="mb-4">
                         <label htmlFor="address" className="block text-gray-700">Адрес</label>
                         <input

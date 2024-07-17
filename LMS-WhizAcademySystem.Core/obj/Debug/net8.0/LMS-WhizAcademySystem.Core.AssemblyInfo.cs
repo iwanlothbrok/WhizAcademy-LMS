@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LMS-WhizAcademySystem.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d66f162840a9766d8b719b9d5cf80d54f139580b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45496b9f6d5f7d2f1e30918839df3c27ae8b5be3")]
 [assembly: System.Reflection.AssemblyProductAttribute("LMS-WhizAcademySystem.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LMS-WhizAcademySystem.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
