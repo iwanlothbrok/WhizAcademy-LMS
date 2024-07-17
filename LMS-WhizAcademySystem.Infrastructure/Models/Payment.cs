@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace LMS_WhizAcademySystem.Infrastructure.Models
+﻿namespace LMS_WhizAcademySystem.Infrastructure.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class Payment
     {
         [Key]
@@ -12,11 +11,9 @@ namespace LMS_WhizAcademySystem.Infrastructure.Models
 
         public int PayedLessons { get; set; }
 
-        public int PrePayedLessons { get; set; }
+        public int LessonsCompleted { get; set; }
 
-        public DateTime FirstLessonDate { get; set; }
-
-        public DateTime LastLessonDate { get; set; }
+        public DateTime? FirstLessonDate { get; set; }
 
         public DateTime PaymentDate { get; set; }
 
