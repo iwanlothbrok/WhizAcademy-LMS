@@ -20,7 +20,7 @@ namespace LMS_WhizAcademySystem.Core.Services
         {
             try
             {
-                if (payment.FirstLessonDate > payment.LastLessonDate)
+                if (payment.FirstLessonDate > payment.PaymentDate)
                 {
                     throw new InvalidDataException("Wrong dates for first and last lesson!");
                 }

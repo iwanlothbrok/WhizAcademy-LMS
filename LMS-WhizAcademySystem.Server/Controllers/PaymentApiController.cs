@@ -38,12 +38,8 @@ namespace LMS_WhizAcademySystem.Server.Controllers
                 return BadRequest(ex.Message);
             }
 
-<<<<<<< HEAD
-            return Ok("Payment added successfully");
-        }
-=======
             // TODO: REMOVE DATA
->>>>>>> bdb4f2915e6bc48832dee12b12df1a2abed8a9d3
+            paymentEntity.PaymentDate = DateTime.UtcNow;
 
         [HttpGet("all")] // api/payment/add
         public async Task<IEnumerable<PaymentInformationDTO>> All() //[
@@ -75,8 +71,6 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return Ok();
         }
 
-<<<<<<< HEAD
-=======
         [HttpGet("all")] // api/payment/add
         public List<PaymentInformationDTO> All() //[
         {
@@ -95,68 +89,6 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return paymentsDtos;
         }
 
-
-        [HttpPut("decrease-lessons/{id}")]
-        public IActionResult DescreaseLessonsCompleted(int id)
-        {
-            if (id < 0)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                var payment = this.data.Payments.FirstOrDefault(x => x.Id == id);
-
-                if (payment == null || payment.LessonsCompleted == 0)
-                {
-                    return BadRequest();
-                }
-
-                payment.LessonsCompleted--;
-
-
-                this.data.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return BadRequest("Error in deleting student in Student Service.");
-            }
-
-            return Ok();
-        }
-
-
-        [HttpPut("increase-lessons/{id}")]
-        public IActionResult IncreaseLessonsCompleted(int id)
-        {
-            if (id < 0)
-            {
-                return BadRequest();
-            }
-
-            try
-            {
-                var payment = this.data.Payments.FirstOrDefault(x => x.Id == id);
-
-                if (payment == null)
-                {
-                    return BadRequest();
-                }
-
-                payment.LessonsCompleted++;
-
-
-                this.data.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return BadRequest("Error in deleting student in Student Service.");
-            }
-
-            return Ok();
-        }
->>>>>>> bdb4f2915e6bc48832dee12b12df1a2abed8a9d3
     }
 }
 
