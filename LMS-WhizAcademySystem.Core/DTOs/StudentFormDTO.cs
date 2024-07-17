@@ -1,9 +1,7 @@
-﻿using LMS_WhizAcademySystem.Infrastructure.Models;
-using LMS_WhizAcademySystem.Server.Models;
-
-namespace LMS_WhizAcademySystem.Core.DTOs
+﻿namespace LMS_WhizAcademySystem.Core.DTOs
 {
-    using Microsoft.EntityFrameworkCore;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Server.Models;
     using System.ComponentModel.DataAnnotations;
     public class StudentFormDTO
     {
@@ -23,6 +21,8 @@ namespace LMS_WhizAcademySystem.Core.DTOs
         public int? RelativeId { get; set; }
 
         public int MentorId { get; set; }
+
+        public int UnpaidLessons { get; set; }
 
         public MentorFormDTO? Mentor { get; set; }
 

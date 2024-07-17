@@ -11,32 +11,33 @@ export default function ShowPayments() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchPayments = async () => {
-            setLoading(true);
+    const fetchPayments = async () => {
+        setLoading(true);
 
-            try {
-                const response = await fetch('https://localhost:44357/api/payment/all');
-                if (!response.ok) {
-                    showAlert('Failed to fetch payments', 'Be Warned', 'red');
-                    return;
-                }
-
-                const data = await response.json();
-                setPayments(data);
-                console.log(data);
-            } catch (error) {
-                console.error('Error:', error);
-                showAlert('An error occurred while fetching payments.', 'Be Warned', 'red');
-            } finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 500);
+        try {
+            const response = await fetch('https://localhost:44357/api/payment/all');
+            if (!response.ok) {
+                showAlert('Failed to fetch payments', 'Be Warned', 'red');
+                return;
             }
-        };
 
+            const data = await response.json();
+            setPayments(data);
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('An error occurred while fetching payments.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        }
+    };
+
+    useEffect(() => {
         fetchPayments();
     }, []);
+
 
     const handleDelete = async (id) => {
         setLoading(true);
@@ -61,6 +62,44 @@ export default function ShowPayments() {
                 setLoading(false);
             }, 1000);
         }
+    };
+
+    const handleClickIncreaseLessonsCount = async (id) => {
+        setLoading(true);
+
+        const response = await fetch(`https://localhost:44357/api/payment/increase-lessons/${id}`, {
+            method: 'PUT',
+        });
+
+        if (!response.ok) {
+            showAlert('Failed to delete payment', 'Be Warned', 'red');
+            return;
+        }
+
+        await fetchPayments(); // Refresh the payments after decreasing the lesson count
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
+    };
+
+    const handleClickDecreaseLessonsCount = async (id) => {
+        setLoading(true);
+
+        const response = await fetch(`https://localhost:44357/api/payment/decrease-lessons/${id}`, {
+            method: 'PUT',
+        });
+
+        if (!response.ok) {
+            showAlert('Failed to delete payment', 'Be Warned', 'red');
+            return;
+        }
+
+        await fetchPayments(); // Refresh the payments after decreasing the lesson count
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 300);
     };
 
     const filteredPayments = payments.filter(payment =>
@@ -111,81 +150,91 @@ export default function ShowPayments() {
                 </div>
             )}
 
-            {filteredPayments.length === 0 ? (
-                <h1 className='text-3xl text-red-400'>Няма добавени плащания.</h1>
-            ) : (
-                <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
-                    <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">Плащания</h1>
-                    <input
-                        type="text"
-                        placeholder="Потърси по имейл, имена или тел. номер"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border flex justify-center bg-white text-black border-gray-300 rounded"
-                    />
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                            <thead className="bg-yellow-600 text-white">
-                                <tr>
-                                    <th className="py-2 px-4 text-left">Студент</th>
-                                    <th className="py-2 px-4 text-left">Ментор</th>
-                                    <th className="py-2 px-4 text-left">Разплащател</th>
-                                    <th className="py-2 px-4 text-left">Сума</th>
-                                    <th className="py-2 px-4 text-left">Брой Уроци</th>
-                                    <th className="py-2 px-4 text-left">От</th>
-                                    <th className="py-2 px-4 text-left">До</th>
-                                    <th className="py-2 px-4 text-left">Дата на Плащане</th>
-                                    <th className="py-2 px-4 text-left">Функции</th>
+            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
+                <h1 className="text-3xl font-bold mb-6 text-center text-yellow-400">Плащания</h1>
+                <input
+                    type="text"
+                    placeholder="Потърси по имейл, имена или тел. номер"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full sm:w-3/4 md:w-2/4 p-2 mb-4 border flex justify-center bg-white text-black border-gray-300 rounded"
+                />
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                        <thead className="bg-yellow-600 text-white">
+                            <tr>
+                                <th className="py-2 px-4 text-left">Студент</th>
+                                <th className="py-2 px-4 text-left">Ментор</th>
+                                <th className="py-2 px-4 text-left">Разплащател</th>
+                                <th className="py-2 px-4 text-left">Сума</th>
+                                <th className="py-2 px-4 text-left">Платени Уроци</th>
+                                <th className="py-2 px-4 text-left">Завършени Уроци</th>
+
+                                <th className="py-2 px-4 text-left">Дата на Плащане</th>
+                                <th className="py-2 px-4 text-left">Функции</th>
+                            </tr>
+                        </thead>
+                        <tbody className="text-gray-700">
+                            {currentPayments.map((payment, index) => (
+                                <tr key={payment.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-yellow-400 transition duration-300 ease-in-out`}>
+                                    <td className="py-2 px-4">{payment.student.name}</td>
+                                    <td className="py-2 px-4">{payment.mentor.name}</td>
+                                    <td className="py-2 px-4">{payment.student.relative.name === undefined ? 'няма добавени близки' : payment.student.relative.name}</td>
+                                    <td className="py-2 px-4">{payment.amount}</td>
+                                    <td className="py-2 px-4">{payment.payedLessons}</td>
+                                    <td className="py-2 px-4">
+                                        {payment.lessonsCompleted}
+                                        <button
+                                            onClick={() => handleClickIncreaseLessonsCount(payment.id)}
+                                            className="ml-2 bg-blue-500 text-white px-3 py-1 rounded
+                                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                            +
+                                        </button>
+                                        <button
+                                            onClick={() => handleClickDecreaseLessonsCount(payment.id)}
+                                            className="ml-2 bg-red-500 text-white px-3 py-1 rounded
+                                             hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                                        >
+                                            -
+                                        </button>
+                                    </td>
+                                    <td className="py-2 px-4">{new Date(payment.paymentDate).toLocaleDateString()}</td>
+                                    <td className="py-2 px-4">
+                                        <button
+                                            className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            onClick={() => handleDelete(payment.id)}
+                                        >
+                                            Изтрий
+                                        </button>
+                                        <button
+                                            className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                        >
+                                            Промяна
+                                        </button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody className="text-gray-700">
-                                {currentPayments.map((payment, index) => (
-                                    <tr key={payment.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-yellow-400 transition duration-300 ease-in-out`}>
-                                        <td className="py-2 px-4">{payment.student.name}</td>
-                                        <td className="py-2 px-4">{payment.mentor.name}</td>
-                                        <td className="py-2 px-4">{payment.student.relative.name === undefined ? 'няма добавени близки' : payment.student.relative.name }</td>
-                                        <td className="py-2 px-4">{payment.amount}</td>
-                                        <td className="py-2 px-4">{payment.lessonsCount}</td>
-                                        <td className="py-2 px-4">{new Date(payment.firstLessonDate).toLocaleDateString()}</td>
-                                        <td className="py-2 px-4">{new Date(payment.lastLessonDate).toLocaleDateString()}</td>
-                                        <td className="py-2 px-4">{new Date(payment.paymentDate).toLocaleDateString()}</td>
-                                        <td className="py-2 px-4">
-                                            <button
-                                                className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-                                                onClick={() => handleDelete(payment.id)}
-                                            >
-                                                Изтрий
-                                            </button>
-                                            <button
-                                                className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
-                                            >
-                                                Промяна
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    <div className="flex justify-between mt-4">
-                        <button
-                            onClick={handlePrevPage}
-                            disabled={currentPage === 1}
-                            className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-                        >
-                            Предишна
-                        </button>
-                        <span className="text-white">Страница {currentPage} от {totalPages}</span>
-                        <button
-                            onClick={handleNextPage}
-                            disabled={currentPage === totalPages}
-                            className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
-                        >
-                            Следваща
-                        </button>
-                    </div>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-            )}
+                <div className="flex justify-between mt-4">
+                    <button
+                        onClick={handlePrevPage}
+                        disabled={currentPage === 1}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    >
+                        Предишна
+                    </button>
+                    <span className="text-white">Страница {currentPage} от {totalPages}</span>
+                    <button
+                        onClick={handleNextPage}
+                        disabled={currentPage === totalPages}
+                        className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    >
+                        Следваща
+                    </button>
+                </div>
+            </div>
         </div>
     );
 }

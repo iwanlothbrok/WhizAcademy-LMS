@@ -97,11 +97,11 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("FirstLessonDate")
+                    b.Property<DateTime?>("FirstLessonDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastLessonDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("LessonsCompleted")
+                        .HasColumnType("int");
 
                     b.Property<int?>("MentorId")
                         .HasColumnType("int");
@@ -111,9 +111,6 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("PrePayedLessons")
-                        .HasColumnType("int");
 
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
@@ -186,6 +183,9 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     b.Property<byte[]>("Roadmap")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("UnpaidLessons")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
