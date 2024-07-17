@@ -6,10 +6,10 @@ namespace LMS_WhizAcademySystem.Core.Services.Interfaces
 {
     public interface IStudentService
     {
-        public void Add(StudentFormDTO student, IFormFile roadmap);
+        public Task Add(StudentFormDTO student, IFormFile roadmap);
 
-        public void Update(int id);
-        public void Delete(int id);
+        public Task Update(int id);
+        public Task Delete(int id);
         public Task<StudentFormDTO> Details(int id);
 
         public Task<List<StudentFormDTO>> GetAll();

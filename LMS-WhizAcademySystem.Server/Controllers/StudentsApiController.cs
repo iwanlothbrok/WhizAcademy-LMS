@@ -17,7 +17,7 @@
 
         // TODO: change the dto | add the student service
         [HttpPost("add")] // api/students/add
-        public IActionResult AddStudent([FromForm] StudentFormDTO student, IFormFile roadmap)
+        public async Task<IActionResult> AddStudent([FromForm] StudentFormDTO student, IFormFile roadmap)
         {
             if (student == null)
             {
@@ -30,7 +30,7 @@
             }
             try
             {
-                this._studentService.Add(student, roadmap);
+                await this._studentService.Add(student, roadmap);
             }
             catch (Exception)
             {

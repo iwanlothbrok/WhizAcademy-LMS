@@ -18,9 +18,9 @@
 
 		// GET: api/mentors/all
 		[HttpGet("all")]
-		public IEnumerable<MentorInformationDTO> Get()
+		public async Task<IEnumerable<MentorInformationDTO>> Get()
 		{
-			IEnumerable<MentorInformationDTO> mentors = _mentorService.GetAll();
+			IEnumerable<MentorInformationDTO> mentors =  await _mentorService.GetAll();
 
 			return mentors;
 		}

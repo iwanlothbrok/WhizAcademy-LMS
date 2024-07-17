@@ -19,7 +19,7 @@ namespace LMS_WhizAcademySystem.Core.Services
             this._dbContext = dbContext;
             this.mapper = mapper;
         }
-        public async void Add(StudentFormDTO student, IFormFile roadmap)
+        public async Task Add(StudentFormDTO student, IFormFile roadmap)
         {
             if (roadmap != null && roadmap.Length > 0)
             {
@@ -40,8 +40,8 @@ namespace LMS_WhizAcademySystem.Core.Services
 
                 //TODO Error in save changes. Trying to access a disposed dbContext.
 
-                this._dbContext.Students.Add(stu);
-                this._dbContext.SaveChanges();
+                await this._dbContext.Students.AddAsync(stu);
+                await this._dbContext.SaveChangesAsync();
 
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace LMS_WhizAcademySystem.Core.Services
 
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             Student? student = this._dbContext.Students.FirstOrDefault(x => x.Id == id);
 
@@ -61,10 +61,10 @@ namespace LMS_WhizAcademySystem.Core.Services
             }
 
             this._dbContext.Students.Remove(student);
-            this._dbContext.SaveChanges();
+            await this._dbContext.SaveChangesAsync();
         }
 
-        public void Update(int id)
+        public Task Update(int id)
         {
             throw new NotImplementedException();
         }

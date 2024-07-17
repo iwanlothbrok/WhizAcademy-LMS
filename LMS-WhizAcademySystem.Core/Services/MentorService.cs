@@ -1,16 +1,17 @@
-﻿using AutoMapper;
-using LMS_WhizAcademySystem.Core.DTOs;
+﻿using LMS_WhizAcademySystem.Core.DTOs;
 using LMS_WhizAcademySystem.Core.Services.Interfaces;
 using LMS_WhizAcademySystem.Infrastructure.Data;
 using LMS_WhizAcademySystem.Infrastructure.Models;
 using LMS_WhizAcademySystem.Server.Models;
 using System.Security.Cryptography;
 using System.Text;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMS_WhizAcademySystem.Core.Services
 {
 
-	public class MentorService : IMentorService
+    public class MentorService : IMentorService
 	{
 		private readonly ApplicationDbContext _dbContext;
 		private readonly IMapper mapper;
@@ -21,9 +22,8 @@ namespace LMS_WhizAcademySystem.Core.Services
 			this.mapper = mapper;
 		}
 
-		public void Add(MentorFormDTO mentorForm)
+		public async Task Add(MentorFormDTO mentorForm)
 		{
-
 			if (string.IsNullOrWhiteSpace(mentorForm.Name) ||
 				string.IsNullOrWhiteSpace(mentorForm.Email) ||
 				string.IsNullOrWhiteSpace(mentorForm.Password) ||
@@ -33,23 +33,15 @@ namespace LMS_WhizAcademySystem.Core.Services
 				throw new Exception("Null value passed in form.");
 			}
 
-			//Mentor mentor = new()
-			//{
-			//	Name = mentorForm.Name,
-			//	Email = mentorForm.Email,
-			//	PasswordHash = HashPassword(mentorForm.Password),
-			//	Students = new List<Student>()
-			//};
-
 			var mentor = mapper.Map<Mentor>(mentorForm);
 
 			mentor.PasswordHash = HashPassword(mentorForm.Password);
 
-			_dbContext.Mentors.Add(mentor);
-			_dbContext.SaveChanges();
+			await _dbContext.Mentors.AddAsync(mentor);
+			await _dbContext.SaveChangesAsync();
 		}
 
-		public void Edit(MentorEditDTO editForm)
+		public async Task Edit(MentorEditDTO editForm)
 		{
 			Mentor? mentor = GetById(editForm.Id);
 
@@ -71,12 +63,12 @@ namespace LMS_WhizAcademySystem.Core.Services
 			mentor.Email = editForm.Email;
 			mentor.PasswordHash = HashPassword(editForm.Password);
 
-			_dbContext.SaveChanges();
+			await _dbContext.SaveChangesAsync();
 		}
-
-		public IEnumerable<MentorInformationDTO> GetAll()
+		
+		public async Task<IEnumerable<MentorInformationDTO>> GetAll()
 		{
-			var mentors = _dbContext.Mentors.Select(m => new MentorInformationDTO()
+			var mentors = await _dbContext.Mentors.Select(m => new MentorInformationDTO()
 			{
 				Id = m.Id,
 				Name = m.Name,
@@ -88,12 +80,12 @@ namespace LMS_WhizAcademySystem.Core.Services
 				// STUDENTS WILL BE EVERYTIME EMPTY LIST
 				// - GET THE STUDENTS WITH FK - MENTOR ID	 
 				Students = new List<Student>()
-			});
+			}).ToListAsync();
 
 			return mentors;
 		}
 
-		public void Delete(int id)
+		public async Task Delete(int id)
 		{
 			var selectedMentor = GetById(id);
 
@@ -103,23 +95,11 @@ namespace LMS_WhizAcademySystem.Core.Services
 			}
 
 			_dbContext.Mentors.Remove(selectedMentor);
-			_dbContext.SaveChanges();
+			await _dbContext.SaveChangesAsync();
 		}
 
 		public Mentor? GetById(int id) => _dbContext.Mentors.FirstOrDefault(m => m.Id == id);
-
-		public MentorEditDTO? GetEditDTOById(int id)
-			=> _dbContext.Mentors
-			.Where(m => m.Id == id)
-			.Select(m =>
-			new MentorEditDTO()
-			{
-				Id = m.Id,
-				Name = m.Name,
-				Email = m.Email,
-				Password = m.PasswordHash
-			}).FirstOrDefault();
-
+		
 		private static string HashPassword(string password)
 		{
 			using var sha256 = SHA256.Create();
