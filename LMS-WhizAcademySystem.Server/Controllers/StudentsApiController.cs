@@ -125,5 +125,44 @@
 
             return Ok();
         }
+        [HttpPut("decrease-lessons/{id}")]
+        public IActionResult DescreaseLessonsCompleted(int id)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error in deleting student in Student Service.");
+            }
+
+            return Ok();
+        }
+
+
+        [HttpPut("increase-lessons/{id}")]
+        public IActionResult IncreaseLessonsCompleted(int id)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error in deleting student in Student Service.");
+            }
+
+            return Ok();
+        }
     }
 }
