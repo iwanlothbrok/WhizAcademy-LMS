@@ -1,21 +1,23 @@
-﻿using AutoMapper;
-using LMS_WhizAcademySystem.Core.DTOs;
-using LMS_WhizAcademySystem.Core.Services.Interfaces;
-using LMS_WhizAcademySystem.Infrastructure.Data;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace LMS_WhizAcademySystem.Core.Services
+﻿namespace LMS_WhizAcademySystem.Core.Services
 {
+    using global::AutoMapper;
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
+    using LMS_WhizAcademySystem.Infrastructure.Data;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using Microsoft.EntityFrameworkCore;
+
     public class PaymentService : IPaymentService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
+
         public PaymentService(ApplicationDbContext dbContext, IMapper mapper)
         {
             this._dbContext = dbContext;
             this._mapper = mapper;
         }
+
         public async Task Add(PaymentFormDTO payment)
         {
             try
@@ -44,7 +46,7 @@ namespace LMS_WhizAcademySystem.Core.Services
 
         public async Task<IEnumerable<PaymentInformationDTO>> GetAll()
         {
-            var payments =  await this._dbContext.Payments
+            var payments = await this._dbContext.Payments
                 .Include(m => m.Mentor)
                 .Include(s => s.Student)
                 .Include(r => r.Student.Relative)
@@ -57,8 +59,41 @@ namespace LMS_WhizAcademySystem.Core.Services
                 p.Student.Roadmap = null;
             }
 
-            // var paymentEntity = mapper.Map<Payment>(payment);
             return paymentsDtos;
+        }
+
+        public async Task Delete(int id)
+        {
+            var payment = await this.GetPayment(id) ?? throw new Exception();
+            this._dbContext.Payments.Remove(payment);
+            await this._dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Payment?> GetPayment(int id) => await this._dbContext.Payments.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task DescreaseLessonsCompleted(int id)
+        {
+            var payment = await this.GetPayment(id);
+
+            if (payment == null || payment.LessonsCompleted == 0)
+            {
+                throw new Exception();
+            }
+
+            payment.LessonsCompleted--;
+
+
+            await this._dbContext.SaveChangesAsync();
+        }
+
+        public async Task IncreaseLessonsCompleted(int id)
+        {
+            var payment = await this.GetPayment(id) ?? throw new Exception();
+
+            payment.LessonsCompleted++;
+
+
+            await this._dbContext.SaveChangesAsync();
         }
     }
 }
