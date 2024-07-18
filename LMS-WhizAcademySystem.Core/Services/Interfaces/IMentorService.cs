@@ -1,19 +1,19 @@
-﻿using LMS_WhizAcademySystem.Core.DTOs;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using LMS_WhizAcademySystem.Server.Models;
-
-namespace LMS_WhizAcademySystem.Core.Services.Interfaces
+﻿namespace LMS_WhizAcademySystem.Core.Services.Interfaces
 {
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Server.Models;
+
     public interface IMentorService
     {
-        public Task Add(MentorFormDTO mentorForm);
+       Task Add(MentorFormDTO mentorForm);
 
-        public Task Edit(MentorEditDTO editForm);
+       Task Edit(MentorEditDTO editForm);
 
-        public Task Delete(int id);
+       Task Delete(int id);
 
-        public Mentor? GetById(int id);
+       Mentor? GetById(int id);
 
-        public Task<IEnumerable<MentorInformationDTO>> GetAll();
+       Task<IEnumerable<MentorInformationDTO>> GetAll();
     }
 }

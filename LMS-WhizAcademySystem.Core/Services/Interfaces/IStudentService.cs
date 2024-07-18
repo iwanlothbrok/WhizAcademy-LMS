@@ -1,22 +1,26 @@
-﻿using LMS_WhizAcademySystem.Core.DTOs;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using Microsoft.AspNetCore.Http;
-
-namespace LMS_WhizAcademySystem.Core.Services.Interfaces
+﻿namespace LMS_WhizAcademySystem.Core.Services.Interfaces
 {
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using Microsoft.AspNetCore.Http;
+
     public interface IStudentService
     {
-        public Task Add(StudentFormDTO student, IFormFile roadmap);
+        Task Add(StudentFormDTO student, IFormFile roadmap);
 
-        public Task Update(int id);
-        public Task Delete(int id);
-        public Task<StudentFormDTO> Details(int id);
+        Task Update(int id);
+        Task Delete(int id);
+        Task<StudentFormDTO> Details(int id);
 
-        public Task<List<StudentFormDTO>> GetAll();
-        public Task<List<StudentFormDTO>> GetAllForMentors(int mentorId);
+        Task<List<StudentFormDTO>> GetAll();
+        Task<List<StudentFormDTO>> GetAllForMentors(int mentorId);
 
-        public void EditRoadMap(int id, List<Dictionary<string, string>> updatedData);
+        void EditRoadMap(int id, List<Dictionary<string, string>> updatedData);
 
-        public List<Dictionary<string, object>> GetRoadMap(int id);
+        List<Dictionary<string, object>> GetRoadMap(int id);
+
+        Task<Student?> GetStudent(int id);
+        Task DescreaseUnpaidLessosn(int id);
+        Task IncreaseUnpaidLessons(int id);
     }
 }
