@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using LMS_WhizAcademySystem.Core.DTOs;
-using LMS_WhizAcademySystem.Core.Services.Interfaces;
-using LMS_WhizAcademySystem.Infrastructure.Data;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using OfficeOpenXml;
-
-namespace LMS_WhizAcademySystem.Core.Services
+﻿namespace LMS_WhizAcademySystem.Core.Services
 {
+    using global::AutoMapper;
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
+    using LMS_WhizAcademySystem.Infrastructure.Data;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.EntityFrameworkCore;
+    using OfficeOpenXml;
+
     public class StudentService : IStudentService
     {
         private readonly ApplicationDbContext _dbContext;
@@ -53,7 +53,7 @@ namespace LMS_WhizAcademySystem.Core.Services
 
         public async Task Delete(int id)
         {
-            Student? student = this._dbContext.Students.FirstOrDefault(x => x.Id == id);
+            Student? student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
 
             if (student == null)
             {
@@ -189,12 +189,36 @@ namespace LMS_WhizAcademySystem.Core.Services
                     }
                 }
 
-            
+
             }
             catch (System.Exception ex)
             {
                 throw new Exception("Student not found or roadmap is empty.");
             }
+        }
+
+        public async Task<Student?> GetStudent(int id) => await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task DescreaseUnpaidLessosn(int id)
+        {
+            var student = await this.GetStudent(id);
+
+            if (student == null || student.UnpaidLessons == 0)
+            {
+                throw new Exception();
+            }
+
+            student.UnpaidLessons--;
+
+            await this._dbContext.SaveChangesAsync();
+        }
+
+        public async Task IncreaseUnpaidLessons(int id)
+        {
+            var student = await this.GetStudent(id) ?? throw new Exception();
+
+            student.UnpaidLessons++;
+
+            await this._dbContext.SaveChangesAsync();
         }
     }
 }
