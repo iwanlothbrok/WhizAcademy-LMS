@@ -22,8 +22,9 @@ export default function ShowPayments() {
             }
 
             const data = await response.json();
-            setPayments(data);
-            console.log(data);
+            // Sort payments by paymentDate
+            const sortedData = data.sort((a, b) => new Date(b.paymentDate) - new Date(a.paymentDate));
+            setPayments(sortedData);
         } catch (error) {
             console.error('Error:', error);
             showAlert('An error occurred while fetching payments.', 'Be Warned', 'red');
@@ -96,7 +97,7 @@ export default function ShowPayments() {
                 showAlert('Failed to delete payment', 'Be Warned', 'red');
                 return;
             }
-console.log(response);
+            console.log(response);
             await fetchPayments(); // Refresh the payments after decreasing the lesson count
 
         } catch (error) {
@@ -112,10 +113,7 @@ console.log(response);
     const filteredPayments = payments.filter(payment =>
         payment.student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         payment.mentor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        payment.paymentDate.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        payment.firstLessonDate.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        payment.lastLessonDate.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+        payment.paymentDate.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const indexOfLastPayment = currentPage * itemsPerPage;
     const indexOfFirstPayment = indexOfLastPayment - itemsPerPage;
