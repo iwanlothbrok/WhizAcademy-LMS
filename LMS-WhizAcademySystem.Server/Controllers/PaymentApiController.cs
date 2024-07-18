@@ -1,14 +1,8 @@
-﻿using AutoMapper;
-using LMS_WhizAcademySystem.Core.Services.Interfaces;
-
-namespace LMS_WhizAcademySystem.Server.Controllers
+﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
     using LMS_WhizAcademySystem.Core.DTOs;
-    using LMS_WhizAcademySystem.Core.Services;
-    using LMS_WhizAcademySystem.Infrastructure.Data;
-    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
 
     [Route("api/payment")]
     [ApiController]
@@ -38,8 +32,8 @@ namespace LMS_WhizAcademySystem.Server.Controllers
                 return BadRequest(ex.Message);
             }
 
-            // TODO: REMOVE DATA
-            paymentEntity.PaymentDate = DateTime.UtcNow;
+            return Ok("Payment added successfully");
+        }
 
         [HttpGet("all")] // api/payment/add
         public async Task<IEnumerable<PaymentInformationDTO>> All() //[
@@ -50,7 +44,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             if (id < 0)
             {
@@ -59,9 +53,7 @@ namespace LMS_WhizAcademySystem.Server.Controllers
 
             try
             {
-                var payment = this.data.Payments.FirstOrDefault(x => x.Id == id);
-                this.data.Payments.Remove(payment);
-                this.data.SaveChanges();
+                await this._paymentService.Delete(id);
             }
             catch (Exception)
             {
@@ -71,24 +63,46 @@ namespace LMS_WhizAcademySystem.Server.Controllers
             return Ok();
         }
 
-        [HttpGet("all")] // api/payment/add
-        public List<PaymentInformationDTO> All() //[
+        [HttpPut("decrease-lessons/{id}")]
+        public async Task<IActionResult> DescreaseLessonsCompleted(int id)
         {
-            var payments = this.data.Payments.Include(m => m.Mentor).Include(s => s.Student).Include(r => r.Student.Relative).ToList();
-
-            var paymentsDtos = mapper.Map<List<PaymentInformationDTO>>(payments);
-
-            foreach (var p in paymentsDtos)
+            if (id < 0)
             {
-                p.Student.Roadmap = null;
+                return BadRequest();
             }
-            // var paymentEntity = mapper.Map<Payment>(payment);
 
-            // TODO: REMOVE DATA
+            try
+            {
+                await this._paymentService.DescreaseLessonsCompleted(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error in deleting student in Student Service.");
+            }
 
-            return paymentsDtos;
+            return Ok();
         }
 
+
+        [HttpPut("increase-lessons/{id}")]
+        public async Task<IActionResult> IncreaseLessonsCompleted(int id)
+        {
+            if (id < 0)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                await this._paymentService.IncreaseLessonsCompleted(id);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Error in deleting student in Student Service.");
+            }
+
+            return Ok();
+        }
     }
 }
 
