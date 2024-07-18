@@ -81,25 +81,32 @@ export default function ShowPayments() {
         setTimeout(() => {
             setLoading(false);
         }, 300);
+
     };
 
     const handleClickDecreaseLessonsCount = async (id) => {
         setLoading(true);
+        try {
 
-        const response = await fetch(`https://localhost:44357/api/payment/decrease-lessons/${id}`, {
-            method: 'PUT',
-        });
+            const response = await fetch(`https://localhost:44357/api/payment/decrease-lessons/${id}`, {
+                method: 'PUT',
+            });
 
-        if (!response.ok) {
-            showAlert('Failed to delete payment', 'Be Warned', 'red');
-            return;
+            if (!response.ok) {
+                showAlert('Failed to delete payment', 'Be Warned', 'red');
+                return;
+            }
+console.log(response);
+            await fetchPayments(); // Refresh the payments after decreasing the lesson count
+
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('An error occurred while deleting the payment.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 300);
         }
-
-        await fetchPayments(); // Refresh the payments after decreasing the lesson count
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 300);
     };
 
     const filteredPayments = payments.filter(payment =>
