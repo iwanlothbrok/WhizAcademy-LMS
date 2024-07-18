@@ -98,7 +98,7 @@
 
 		// DELETE api/mentor/5
 		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
+		public async Task<IActionResult> DeleteAsync(int id)
 		{
 			if (id < 0)
 			{
@@ -107,7 +107,7 @@
 
 			try
 			{
-				_mentorService.Delete(id);
+				await _mentorService.Delete(id);
 			}
 			catch (Exception)
 			{
