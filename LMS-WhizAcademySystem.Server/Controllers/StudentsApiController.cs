@@ -1,7 +1,7 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
-    using LMS_WhizAcademySystem.Core.Services.Interfaces;
     using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/students")]
@@ -61,7 +61,7 @@
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> DeleteAsync(int id)
         {
             if (id < 0)
             {
@@ -70,7 +70,7 @@
 
             try
             {
-                this._studentService.Delete(id);
+                await this._studentService.Delete(id);
             }
             catch (Exception)
             {
@@ -126,7 +126,7 @@
             return Ok();
         }
         [HttpPut("decrease-lessons/{id}")]
-        public IActionResult DescreaseLessonsCompleted(int id)
+        public async Task<IActionResult> DescreaseLessonsCompleted(int id)
         {
             if (id < 0)
             {
@@ -135,6 +135,7 @@
 
             try
             {
+                await this._studentService.DescreaseUnpaidLessosn(id);
             }
             catch (Exception)
             {
@@ -146,7 +147,7 @@
 
 
         [HttpPut("increase-lessons/{id}")]
-        public IActionResult IncreaseLessonsCompleted(int id)
+        public async Task<IActionResult> IncreaseLessonsCompleted(int id)
         {
             if (id < 0)
             {
@@ -155,7 +156,7 @@
 
             try
             {
-
+              await  this._studentService.IncreaseUnpaidLessons(id);
             }
             catch (Exception)
             {
