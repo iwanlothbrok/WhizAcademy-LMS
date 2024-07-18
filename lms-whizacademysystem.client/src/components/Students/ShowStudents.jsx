@@ -11,30 +11,30 @@ export default function ShowStudents() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchStudents = async () => {
-            setLoading(true);
+    const fetchStudents = async () => {
+        setLoading(true);
 
-            try {
-                const response = await fetch('https://localhost:44357/api/students/all');
-                if (!response.ok) {
-                    showAlert('Failed to fetch students', 'Be Warned', 'red');
-                    return;
-                }
-
-                const data = await response.json();
-                setStudents(data);
-                console.log(data);
-            } catch (error) {
-                console.error('Error:', error);
-                showAlert('An error occurred while fetching students.', 'Be Warned', 'red');
-            } finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 500);
+        try {
+            const response = await fetch('https://localhost:44357/api/students/all');
+            if (!response.ok) {
+                showAlert('Failed to fetch students', 'Be Warned', 'red');
+                return;
             }
-        };
 
+            const data = await response.json();
+            setStudents(data);
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+            showAlert('An error occurred while fetching students.', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 500);
+        }
+    };
+
+    useEffect(() => {
         fetchStudents();
     }, []);
 
@@ -65,41 +65,48 @@ export default function ShowStudents() {
 
     const handleClickIncreaseUnpayedLessons = async (id) => {
         setLoading(true);
+        try {
+            const response = await fetch(`https://localhost:44357/api/students/increase-lessons/${id}`, {
+                method: 'PUT',
+            });
 
-        const response = await fetch(`https://localhost:44357/api/students/increase-lessons/${id}`, {
-            method: 'PUT',
-        });
+            if (!response.ok) {
+                showAlert('Failed to increase lessons', 'Be Warned', 'red');
+                return;
+            }
 
-        if (!response.ok) {
-            showAlert('Failed to delete payment', 'Be Warned', 'red');
-            return;
+            await fetchStudents(); // Refresh the payments after increasing the lesson count
+        } catch (error) {
+            showAlert('An error occurred', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 300);
         }
-
-        await fetchPayments(); // Refresh the payments after decreasing the lesson count
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 300);
     };
 
     const handleClickDecreaseUnpayedLessons = async (id) => {
         setLoading(true);
+        try {
+            const response = await fetch(`https://localhost:44357/api/students/decrease-lessons/${id}`, {
+                method: 'PUT',
+            });
 
-        const response = await fetch(`https://localhost:44357/api/students/decrease-lessons/${id}`, {
-            method: 'PUT',
-        });
+            if (!response.ok) {
+                showAlert('Failed to decrease lessons', 'Be Warned', 'red');
+                return;
+            }
 
-        if (!response.ok) {
-            showAlert('Failed to delete payment', 'Be Warned', 'red');
-            return;
+            await fetchStudents(); // Refresh the payments after decreasing the lesson count
+        } catch (error) {
+            showAlert('An error occurred', 'Be Warned', 'red');
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 300);
         }
-
-        await fetchPayments(); // Refresh the payments after decreasing the lesson count
-
-        setTimeout(() => {
-            setLoading(false);
-        }, 300);
     };
+
 
 
     const getRowBgColorClass = (index) => {
