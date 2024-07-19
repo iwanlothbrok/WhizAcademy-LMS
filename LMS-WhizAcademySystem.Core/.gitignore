@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/LMS-WhizAcademySystem/FileContentIndex
+/.vs/LMS-WhizAcademySystem/FileContentIndex
+
+# Ignore compiled binaries and executable files
+/bin
+
+# Ignore debug logs and temporary files
+/debug
+/bin
+/obj
+obj/
+bin/
+LMS-WhizAcademySystem.Core/debug/
+LMS-WhizAcademySystem.Infrastructure/bin/
+LMS-WhizAcademySystem.Infrastructure/obj/
+LMS-WhizAcademySystem.Server/bin/
+LMS-WhizAcademySystem.Server/obj/
+/LMS-WhizAcademySystem.Server/bin
