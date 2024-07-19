@@ -1,9 +1,16 @@
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 import './tailwind.css'; // Tailwind styles
+
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { createClient } from '@supabase/supabase-js'
+const supabaseUrl = 'https://amjfimqhdyvnpspxlbtx.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 import OperationsCard from './components/OperationsCard.jsx';
 import { mentorsCards, title } from './components/database/mentorsCards.js';
@@ -20,33 +27,35 @@ import ImageGrid from './components/ImageGrid.jsx';
 import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
 import ShowPayments from './components/Payments/ShowPayments.jsx';
+import Calendar from './components/Events/Calendar.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <Navigation />
-      <Routes>
-        <Route path="/" element={<ImageGrid />} />
-
-        {/* mentors */}
-        <Route path="/mentors" element={<OperationsCard cards={mentorsCards} title={title} />} />
-        <Route path='/mentors/add' element={<AddMentor />} />
-        <Route path='/mentors/all' element={<ShowMentors />} />
-        <Route path='/edit-mentor/:id' element={<EditMentor />} />
-
-        {/* students */}
-        <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
-        <Route path='/students/add' element={<AddStudent />} />
-        <Route path='/students/all' element={<ShowStudents />} />
-        <Route path='/roadmap/:id' element={<ExcelPage />} />
-        <Route path='/details/:id' element={<DetailsStudent />} />
-        <Route path='/payment/add' element={<AddPayment />} />
-
-        {/* payments */}
-        <Route path="/payment" element={<OperationsCard cards={paymentCards} title={paymentTitle} />} />
-        <Route path="/payment/all" element={<ShowPayments />} />
-        <Route path="/payment/add" element={<AddPayment />} />
-      </Routes>
-    </Router>
+    <SessionContextProvider supabaseClient={supabase}>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<ImageGrid />} />
+          {/* mentors */}
+          <Route path="/mentors" element={<OperationsCard cards={mentorsCards} title={title} />} />
+          <Route path='/mentors/add' element={<AddMentor />} />
+          <Route path='/mentors/all' element={<ShowMentors />} />
+          <Route path='/edit-mentor/:id' element={<EditMentor />} />
+          {/* students */}
+          <Route path="/students" element={<OperationsCard cards={studentCards} title={studentTitle} />} />
+          <Route path='/students/add' element={<AddStudent />} />
+          <Route path='/students/all' element={<ShowStudents />} />
+          <Route path='/roadmap/:id' element={<ExcelPage />} />
+          <Route path='/details/:id' element={<DetailsStudent />} />
+          <Route path='/payment/add' element={<AddPayment />} />
+          {/* payments */}
+          <Route path="/payment" element={<OperationsCard cards={paymentCards} title={paymentTitle} />} />
+          <Route path="/payment/all" element={<ShowPayments />} />
+          <Route path="/payment/add" element={<AddPayment />} />
+          {/* calendar */}
+          <Route path="/calendar" element={<Calendar />} />
+        </Routes>
+      </Router>
+    </SessionContextProvider>
   </React.StrictMode>
 );
