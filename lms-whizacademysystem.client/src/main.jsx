@@ -9,8 +9,10 @@ import './tailwind.css'; // Tailwind styles
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
 import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = 'https://amjfimqhdyvnpspxlbtx.supabase.co';
-const supabaseKey = process.env.SUPABASE_KEY;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+console.log(supabaseKey);
 
 import OperationsCard from './components/OperationsCard.jsx';
 import { mentorsCards, title } from './components/database/mentorsCards.js';
@@ -28,6 +30,7 @@ import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
 import ShowPayments from './components/Payments/ShowPayments.jsx';
 import Calendar from './components/Events/Calendar.jsx';
+import EventList from './components/Events/EventList.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -54,6 +57,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/payment/add" element={<AddPayment />} />
           {/* calendar */}
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/calendar/events" element={<EventList />} />
         </Routes>
       </Router>
     </SessionContextProvider>
