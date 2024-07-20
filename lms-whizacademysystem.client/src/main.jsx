@@ -30,7 +30,7 @@ import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
 import ShowPayments from './components/Payments/ShowPayments.jsx';
 import Calendar from './components/Events/Calendar.jsx';
-import EventList from './components/Events/EventList.jsx';
+// import EventList from './components/Events/EventList.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -57,7 +57,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/payment/add" element={<AddPayment />} />
           {/* calendar */}
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/calendar/events" element={<EventList />} />
         </Routes>
       </Router>
     </SessionContextProvider>

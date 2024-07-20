@@ -22,6 +22,39 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Event", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("EndingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("MentorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MentorId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Events");
+                });
+
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Lesson", b =>
                 {
                     b.Property<int>("Id")
@@ -218,6 +251,25 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                     b.ToTable("WeekProgresses");
                 });
 
+            modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Event", b =>
+                {
+                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Mentor", "Mentor")
+                        .WithMany()
+                        .HasForeignKey("MentorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Student", "Student")
+                        .WithMany("Events")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Mentor");
+
+                    b.Navigation("Student");
+                });
+
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Lesson", b =>
                 {
                     b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Mentor", "Mentor")
@@ -289,6 +341,8 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Student", b =>
                 {
+                    b.Navigation("Events");
+
                     b.Navigation("Lessons");
 
                     b.Navigation("Payments");

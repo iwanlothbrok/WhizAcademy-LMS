@@ -61,7 +61,7 @@
 
             return paymentsDtos;
         }
-
+         
         public async Task Delete(int id)
         {
             var payment = await this.GetPayment(id) ?? throw new Exception();
