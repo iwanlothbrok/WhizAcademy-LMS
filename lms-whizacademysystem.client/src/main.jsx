@@ -23,6 +23,7 @@ import ShowMentors from './components/Mentors/ShowMentors.jsx';
 import Navigation from './components/Navigation.jsx';
 import EditMentor from './components/Mentors/EditMentor.jsx';
 import AddStudent from './components/Students/AddStudent.jsx';
+import EditStudent from './components/Students/EditStudent.jsx';
 import ShowStudents from './components/Students/ShowStudents.jsx';
 import ExcelPage from './components/Students/ExcelViewer.jsx';
 import ImageGrid from './components/ImageGrid.jsx';
@@ -51,6 +52,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/roadmap/:id' element={<ExcelPage />} />
           <Route path='/details/:id' element={<DetailsStudent />} />
           <Route path='/payment/add' element={<AddPayment />} />
+          <Route path='/edit-student/:id' element={<EditStudent />} />
           {/* payments */}
           <Route path="/payment" element={<OperationsCard cards={paymentCards} title={paymentTitle} />} />
           <Route path="/payment/all" element={<ShowPayments />} />
