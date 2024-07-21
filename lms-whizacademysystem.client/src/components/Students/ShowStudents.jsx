@@ -36,7 +36,11 @@ export default function ShowStudents() {
 
     useEffect(() => {
         fetchStudents();
-    }, []);
+    }, []);    
+
+    const handleEdit = (id) => {
+        navigate(`/edit-student/${id}`);
+    };
 
     const handleDelete = async (id) => {
         setLoading(true);
@@ -218,7 +222,8 @@ export default function ShowStudents() {
                                             Изтрий
                                         </button>
                                         <button
-                                            className="bg-blue-500 text-white px-2 py-2 rounded shadow hover:bg-blue-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
+                                            onClick={() => handleEdit(student.id)}
                                         >
                                             Промяна
                                         </button>
