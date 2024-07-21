@@ -2,10 +2,9 @@
 {
 	public class EventFormDTO
 	{
-		public int Id { get; set; }
 		public string Name { get; set; }
-		public int StudentId { get; set; }
-		public int MentorId { get; set; }
+		public string? StudentEmail { get; set; }
+		public string? MentorEmail { get; set; }
 		public DateTime StartingDate { get; set; }
 		public DateTime EndingDate { get; set; }
 	}
