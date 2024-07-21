@@ -99,7 +99,7 @@
         }
 
         [HttpPut("edit")] // api/students/edit
-        public IActionResult Edit([FromBody] StudentFormDTO editForm)
+        public async Task<IActionResult> Edit([FromBody] StudentFormDTO editForm)
         {
             if (editForm == null)
             {
@@ -113,7 +113,7 @@
 
             try
             {
-                _studentService.Edit(editForm);
+                await _studentService.Edit(editForm);
             }
             catch (Exception e)
             {
