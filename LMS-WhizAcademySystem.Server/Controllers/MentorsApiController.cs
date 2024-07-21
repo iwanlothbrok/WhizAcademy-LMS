@@ -66,7 +66,7 @@
 		}
 
 		[HttpPut("edit")] // api/mentors/edit
-		public IActionResult Edit([FromBody] MentorEditDTO editForm)
+		public async Task<IActionResult> Edit([FromBody] MentorEditDTO editForm)
 		{
 			if (editForm == null)
 			{
@@ -80,7 +80,7 @@
 
 			try
 			{
-				_mentorService.Edit(editForm);
+				await _mentorService.Edit(editForm);
 			}
 			catch (Exception e)
 			{
