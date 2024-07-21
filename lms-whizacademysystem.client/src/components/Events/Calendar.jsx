@@ -24,36 +24,40 @@ export default function Calendar() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await createCalendarEvent();
+        try {
+            await Promise.all([handleFormSubmission(), createCalendarEvent()]);
+            alert('Event added and created successfully');
+        } catch (error) {
+            alert('Failed to add or create event');
+        }
     }
 
     const handleFormSubmission = async () => {
-        const formData = new FormData();
-        formData.append('Name', eventName);
-        formData.append('StudentId', studentId.toString());
-        formData.append('MentorId', mentorId.toString());
-        formData.append('StartingDate', start.toISOString());
-        formData.append('EndingDate', end.toISOString());
-
-        console.log(formData);
-
+        const eventForm = {
+            Name: eventName,
+            StudentEmail: session.user.email,
+            MentorEmail: invitees[0],
+            StartingDate: start.toISOString(),
+            EndingDate: end.toISOString()
+        };
+        console.log('form');
+        console.log(eventForm);
         try {
-            const response = await fetch('https://localhost:44357/api/event/add/', {
+            const response = await fetch('https://localhost:44357/api/event/add', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(eventForm)
             });
 
             if (!response.ok) {
                 const errorText = await response.text();
-                console.log(errorText);
-                alert('Failed to add event');
-                return;
+                throw new Error(errorText);
             }
-
-            alert('Event added successfully');
         } catch (error) {
             console.error('Error:', error);
-            alert('Failed to add event');
+            throw error;
         }
     }
 
@@ -112,45 +116,51 @@ export default function Calendar() {
             }
         };
 
-        try {
-            const response = await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
-                method: "POST",
-                headers: {
-                    'Authorization': `Bearer ${session.provider_token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(event)
-            });
+        const response = await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events", {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${session.provider_token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(event)
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if (response.ok) {
-                alert("Event created, check your Google Calendar!");
-                await saveEventToSupabase(event);
-            } else {
-                console.error('Error creating event:', data);
-                alert('Failed to create event');
-            }
-        } catch (error) {
-            console.error('Error creating event:', error);
-            alert('Failed to create event');
+        if (response.ok) {
+            console.log('in');
+            console.log(event);
+            await saveEventToSupabase(event);
+        } else {
+            throw new Error('Failed to create event');
         }
     }
 
     const saveEventToSupabase = async (event) => {
-        const { data, error } = await supabase
-            .from('events')
-            .insert([{ name: event.summary, date: event.start.dateTime || event.start.date }]);
+        try {
+            const { data, error } = await supabase
+                .from('events')
+                .insert([{
+                    name: event.summary,
+                    description: event.description,  // Ensure to include the description if your schema expects it
+                    start_time: event.start.dateTime,  // Adjust field names based on your schema
+                    end_time: event.end.dateTime      // Adjust field names based on your schema
+                }]);
 
-        if (error) {
-            console.error('Error saving data:', error);
-        } else {
-            console.log('Event saved:', data);
+            if (error) {
+                console.error('Error saving data:', error);
+                throw error;  // Throw error to handle it in the calling function if needed
+            } else {
+                console.log('Event saved:', data);
+            }
+        } catch (error) {
+            console.error('Exception occurred while saving event to Supabase:', error);
         }
-    };
+    }
+
 
     return (
-        <div className=" w-screen h-screen flex justify-center items-center  min-h-screen">
+        <div className="w-screen h-screen flex justify-center items-center min-h-screen">
             <div className="bg-white text-black p-8 rounded-lg shadow-lg w-full max-w-lg">
                 {session ? (
                     <>
@@ -177,7 +187,7 @@ export default function Calendar() {
                                 <input
                                     type="text"
                                     onChange={(e) => setEventName(e.target.value)}
-                                    className="w-full  text-white p-2 border border-gray-300 rounded"
+                                    className="w-full text-white p-2 border border-gray-300 rounded"
                                     placeholder="Enter event name"
                                 />
                             </div>
@@ -186,7 +196,7 @@ export default function Calendar() {
                                 <input
                                     type="text"
                                     onChange={(e) => setEventDescription(e.target.value)}
-                                    className="w-full  text-white p-2 border border-gray-300 rounded"
+                                    className="w-full text-white p-2 border border-gray-300 rounded"
                                     placeholder="Enter event description"
                                 />
                             </div>
