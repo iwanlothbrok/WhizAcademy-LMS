@@ -10,20 +10,21 @@
 	[ApiController]
 	public class EventApiController : ControllerBase
 	{
-		public ApplicationDbContext data;
-		public IMapper mapper;
+		private readonly ApplicationDbContext _data;
+		private readonly IMapper _mapper;
 
-		public EventApiController(ApplicationDbContext data)
+		public EventApiController(ApplicationDbContext data, IMapper mapper)
 		{
-			this.data = data;
+			_data = data;
+			_mapper = mapper;
 		}
 
-		[HttpPost("add")] // api/mentors/add FROM QUERY
-		public IActionResult Post([FromBody] EventFormDTO eventForm) //[
+		[HttpPost("add")] // api/event/add
+		public IActionResult Post([FromBody] EventFormDTO eventForm)
 		{
 			if (eventForm == null)
 			{
-				return BadRequest("Mentor is null.");
+				return BadRequest("Event form is null.");
 			}
 
 			if (!ModelState.IsValid)
@@ -33,16 +34,18 @@
 
 			try
 			{
-				var eventModel = mapper.Map<Event>(eventForm);		
-
-				data.Events.Add(eventModel);
+				var eventModel = _mapper.Map<Event>(eventForm);
+				eventModel.StudentId = 1;
+				eventModel.MentorId = 1;
+				_data.Events.Add(eventModel);
+				_data.SaveChanges(); // Ensure changes are saved to the database
 			}
 			catch (Exception)
 			{
-				return BadRequest();
+				return BadRequest();	
 			}
 
-			return Ok("Mentor added successfully");
+			return Ok("Event added successfully");
 		}
 	}
 }
