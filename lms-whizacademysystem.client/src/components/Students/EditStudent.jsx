@@ -49,7 +49,7 @@ export default function EditStudent() {
 
         const student = { id, name, email, phoneNumber, address, priceForHour, unpaidLessons };
         try {
-            const response = await fetch(`https://localhost:44357/api/students/update/${id}`, {
+            const response = await fetch(`https://localhost:44357/api/students/edit/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

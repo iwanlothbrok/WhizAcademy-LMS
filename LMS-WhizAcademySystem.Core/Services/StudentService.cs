@@ -64,9 +64,29 @@
             await this._dbContext.SaveChangesAsync();
         }
 
-        public Task Update(int id)
+        public async Task Edit(StudentFormDTO editForm)
         {
-            throw new NotImplementedException();
+            Student? student = await _dbContext.Students.FirstOrDefaultAsync(s => s.Id == editForm.Id);
+
+            if (student == null)
+            {
+                throw new Exception("Mentor is null, invalid id.");
+            }
+
+            if (string.IsNullOrWhiteSpace(editForm.Name) ||
+                string.IsNullOrWhiteSpace(editForm.Email))
+            {
+                throw new Exception("Null value passed in form.");
+            }
+
+            //TODO discuss with ivan what do we want to edit - roadmap/events//lessons/mentors/relatives
+            student.Name = editForm.Name;
+            student.Email = editForm.Email;
+            student.Address = editForm.Address;
+            student.PhoneNumber = editForm.PhoneNumber;
+            student.PriceForHour = editForm.PriceForHour;
+
+            await _dbContext.SaveChangesAsync();
         }
 
 

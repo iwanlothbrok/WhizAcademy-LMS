@@ -1,6 +1,7 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
     using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services;
     using LMS_WhizAcademySystem.Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
@@ -95,6 +96,31 @@
             }
 
             return Ok(student);
+        }
+
+        [HttpPut("edit")] // api/students/edit
+        public IActionResult Edit([FromBody] StudentFormDTO editForm)
+        {
+            if (editForm == null)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _studentService.Edit(editForm);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Error in student update");
+            }
+
+            return Ok("Student updated successfully");
         }
 
         [HttpGet("get/roadmap/{id}")]

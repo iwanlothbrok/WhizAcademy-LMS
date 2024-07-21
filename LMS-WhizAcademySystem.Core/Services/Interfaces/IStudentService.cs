@@ -8,7 +8,7 @@
     {
         Task Add(StudentFormDTO student, IFormFile roadmap);
 
-        Task Update(int id);
+        Task Edit(StudentFormDTO editForm);
         Task Delete(int id);
         Task<StudentFormDTO> Details(int id);
 
