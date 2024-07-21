@@ -66,33 +66,40 @@
 
         public async Task Edit(StudentFormDTO editForm)
         {
-            Student? student = await _dbContext.Students.FirstOrDefaultAsync(s => s.Id == editForm.Id);
+            try
+            { 
+                Student? student = await GetStudent(editForm.Id);
 
-            if (student == null)
-            {
-                throw new Exception("Mentor is null, invalid id.");
+                if (student == null)
+                {
+                    throw new Exception("Student is null, invalid id.");
+                }
+
+                if (string.IsNullOrWhiteSpace(editForm.Name) ||
+                    string.IsNullOrWhiteSpace(editForm.Email))
+                {
+                    throw new Exception("Null value passed in form.");
+                }
+
+                //TODO discuss with ivan what do we want to edit - roadmap/events//lessons/mentors/relatives
+                student.Name = editForm.Name;
+                student.Email = editForm.Email;
+                student.Address = editForm.Address;
+                student.PhoneNumber = editForm.PhoneNumber;
+                student.PriceForHour = editForm.PriceForHour;
+
+                await _dbContext.SaveChangesAsync();
             }
-
-            if (string.IsNullOrWhiteSpace(editForm.Name) ||
-                string.IsNullOrWhiteSpace(editForm.Email))
+            catch (Exception ex)
             {
-                throw new Exception("Null value passed in form.");
+                throw;
             }
-
-            //TODO discuss with ivan what do we want to edit - roadmap/events//lessons/mentors/relatives
-            student.Name = editForm.Name;
-            student.Email = editForm.Email;
-            student.Address = editForm.Address;
-            student.PhoneNumber = editForm.PhoneNumber;
-            student.PriceForHour = editForm.PriceForHour;
-
-            await _dbContext.SaveChangesAsync();
         }
 
 
         public async Task<StudentFormDTO> Details(int id)
         {
-            var student = await this._dbContext.Students.FirstOrDefaultAsync(x => x.Id == id);
+            var student = await GetStudent(id);
 
             StudentFormDTO studentForm = null;
 
