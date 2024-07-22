@@ -5,6 +5,7 @@
 		public string Name { get; set; }
 		public string? StudentEmail { get; set; }
 		public string? MentorEmail { get; set; }
+		public string? Description { get; set; }
 		public DateTime StartingDate { get; set; }
 		public DateTime EndingDate { get; set; }
 	}

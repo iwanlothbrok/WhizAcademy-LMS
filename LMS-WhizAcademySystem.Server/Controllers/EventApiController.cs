@@ -35,6 +35,15 @@
 			try
 			{
 				var eventModel = _mapper.Map<Event>(eventForm);
+
+				var mentor = _data.Mentors.FirstOrDefault(x => x.Email == eventForm.MentorEmail);
+				var student = _data.Students.FirstOrDefault(x => x.Email == eventForm.StudentEmail);
+
+				if (mentor == null || student == null)
+				{
+					return BadRequest();
+				}
+
 				eventModel.StudentId = 1;
 				eventModel.MentorId = 1;
 				_data.Events.Add(eventModel);
@@ -42,7 +51,7 @@
 			}
 			catch (Exception)
 			{
-				return BadRequest();	
+				return BadRequest();
 			}
 
 			return Ok("Event added successfully");
