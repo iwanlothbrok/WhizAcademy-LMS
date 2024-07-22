@@ -4,6 +4,7 @@ import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
+import { Descriptions } from 'antd';
 
 export default function Calendar() {
     const [start, setStart] = useState(new Date());
@@ -11,8 +12,6 @@ export default function Calendar() {
     const [eventName, setEventName] = useState("");
     const [eventDescription, setEventDescription] = useState("");
     const [invitees, setInvitees] = useState([""]);
-    const [studentId, setStudentId] = useState(0);
-    const [mentorId, setMentorId] = useState(0);
 
     const session = useSession();
     const supabase = useSupabaseClient();
@@ -27,37 +26,9 @@ export default function Calendar() {
         try {
             await Promise.all([handleFormSubmission(), createCalendarEvent()]);
             alert('Event added and created successfully');
+            resetForm();
         } catch (error) {
             alert('Failed to add or create event');
-        }
-    }
-
-    const handleFormSubmission = async () => {
-        const eventForm = {
-            Name: eventName,
-            StudentEmail: session.user.email,
-            MentorEmail: invitees[0],
-            StartingDate: start.toISOString(),
-            EndingDate: end.toISOString()
-        };
-        console.log('form');
-        console.log(eventForm);
-        try {
-            const response = await fetch('https://localhost:44357/api/event/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(eventForm)
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                throw new Error(errorText);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            throw error;
         }
     }
 
@@ -88,6 +59,35 @@ export default function Calendar() {
         setInvitees([...invitees, ""]);
     };
 
+    const handleFormSubmission = async () => {
+        const eventForm = {
+            Name: eventName,
+            StudentEmail: session.user.email,
+            MentorEmail: invitees[0],
+            StartingDate: start.toISOString(),
+            EndingDate: end.toISOString(),
+            Description: eventDescription,
+        };
+
+        try {
+            const response = await fetch('https://localhost:44357/api/event/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(eventForm)
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(errorText);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
     async function createCalendarEvent() {
         if (!session) {
             alert("You need to be signed in to create an event");
@@ -109,9 +109,9 @@ export default function Calendar() {
             reminders: {
                 useDefault: false,
                 overrides: [
-                    { method: 'email', minutes: 60 },    // Email reminder 1 hour before
-                    { method: 'email', minutes: 30 },    // Email reminder 30 minutes before
-                    { method: 'popup', minutes: 10 }     // Popup reminder 10 minutes before
+                    { method: 'email', minutes: 60 },
+                    { method: 'email', minutes: 30 },
+                    { method: 'popup', minutes: 10 }
                 ]
             }
         };
@@ -128,34 +128,19 @@ export default function Calendar() {
         const data = await response.json();
 
         if (response.ok) {
-            console.log('in');
-            console.log(event);
-            await saveEventToSupabase(event);
+            alert("Event created, check your Google Calendar!");
         } else {
-            throw new Error('Failed to create event');
+            console.error('Error creating event:', data);
+            alert('Failed to create event');
         }
     }
 
-    const saveEventToSupabase = async (event) => {
-        try {
-            const { data, error } = await supabase
-                .from('events')
-                .insert([{
-                    name: event.summary,
-                    description: event.description,  // Ensure to include the description if your schema expects it
-                    start_time: event.start.dateTime,  // Adjust field names based on your schema
-                    end_time: event.end.dateTime      // Adjust field names based on your schema
-                }]);
-
-            if (error) {
-                console.error('Error saving data:', error);
-                throw error;  // Throw error to handle it in the calling function if needed
-            } else {
-                console.log('Event saved:', data);
-            }
-        } catch (error) {
-            console.error('Exception occurred while saving event to Supabase:', error);
-        }
+    const resetForm = () => {
+        setStart(new Date());
+        setEnd(new Date());
+        setEventName("");
+        setEventDescription("");
+        setInvitees([""]);
     }
 
 

@@ -30,6 +30,11 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
 
@@ -38,7 +43,8 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
