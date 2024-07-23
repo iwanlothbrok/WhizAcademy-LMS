@@ -1,10 +1,8 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
-	using AutoMapper;
 	using LMS_WhizAcademySystem.Core.DTOs;
 	using LMS_WhizAcademySystem.Core.Services.Interfaces;
-	using LMS_WhizAcademySystem.Infrastructure.Data;
-	using LMS_WhizAcademySystem.Infrastructure.Models;
+	using LMS_WhizAcademySystem.Server.Models;
 	using Microsoft.AspNetCore.Mvc;
 
 	[Route("api/lesson")]
@@ -41,6 +39,12 @@
 			}
 
 			return Ok("Event added successfully");
+		}
+
+		[HttpGet("all")]
+		public async Task<IEnumerable<LessonFormDTO>> GetAll()
+		{
+			return await _lessonService.GetAll();
 		}
 	}
 }
