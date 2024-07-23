@@ -6,21 +6,21 @@
 	using LMS_WhizAcademySystem.Infrastructure.Models;
 	using Microsoft.AspNetCore.Mvc;
 
-	[Route("api/event")]
+	[Route("api/lesson")]
 	[ApiController]
-	public class EventApiController : ControllerBase
+	public class LessonsApiController : ControllerBase
 	{
 		private readonly ApplicationDbContext _data;
 		private readonly IMapper _mapper;
 
-		public EventApiController(ApplicationDbContext data, IMapper mapper)
+		public LessonsApiController(ApplicationDbContext data, IMapper mapper)
 		{
 			_data = data;
 			_mapper = mapper;
 		}
 
 		[HttpPost("add")] // api/event/add
-		public IActionResult Post([FromBody] EventFormDTO eventForm)
+		public IActionResult Post([FromBody] LessonFormDTO eventForm)
 		{
 			if (eventForm == null)
 			{
@@ -34,7 +34,7 @@
 
 			try
 			{
-				var eventModel = _mapper.Map<Event>(eventForm);
+				var eventModel = _mapper.Map<Lesson>(eventForm);
 
 				var mentor = _data.Mentors.FirstOrDefault(x => x.Email == eventForm.MentorEmail);
 				var student = _data.Students.FirstOrDefault(x => x.Email == eventForm.StudentEmail);
@@ -46,8 +46,8 @@
 
 				eventModel.StudentId = 1;
 				eventModel.MentorId = 1;
-				_data.Events.Add(eventModel);
-				_data.SaveChanges(); // Ensure changes are saved to the database
+				//_data.Events.Add(eventModel);
+				//_data.SaveChanges(); // Ensure changes are saved to the database
 			}
 			catch (Exception)
 			{

@@ -1,8 +1,8 @@
 ﻿namespace LMS_WhizAcademySystem.Core.DTOs
 {
-	public class EventFormDTO
+	public class LessonFormDTO
 	{
-		public string Name { get; set; }
+		public string? Title { get; set; }
 		public string? StudentEmail { get; set; }
 		public string? MentorEmail { get; set; }
 		public string? Description { get; set; }
