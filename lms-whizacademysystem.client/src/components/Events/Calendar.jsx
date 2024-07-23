@@ -12,6 +12,7 @@ export default function Calendar() {
     const [eventName, setEventName] = useState("");
     const [eventDescription, setEventDescription] = useState("");
     const [invitees, setInvitees] = useState([""]);
+    const [alert, setAlert] = useState(null); // State to manage alerts
 
     const session = useSession();
     const supabase = useSupabaseClient();
@@ -21,14 +22,22 @@ export default function Calendar() {
         return <></>;
     }
 
+
+    const showAlert = (message, title, color) => {
+        setAlert({ message, title, color });
+        setTimeout(() => {
+            setAlert(null);
+        }, 4000); // Hide alert after 4 seconds
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await Promise.all([handleFormSubmission(), createCalendarEvent()]);
-            alert('Event added and created successfully');
+            showAlert('Event added and created successfully', 'Succsess', 'green');
             resetForm();
         } catch (error) {
-            alert('Failed to add or create event');
+            showAlert('Failed to add or create event', 'Warning', 'red');
         }
     }
 
@@ -39,9 +48,9 @@ export default function Calendar() {
                 scopes: 'https://www.googleapis.com/auth/calendar'
             }
         });
+
         if (error) {
-            console.error('Error logging in to Google provider with Supabase:', error);
-            alert("Error logging in to Google provider with Supabase");
+            showAlert('Error logging in to Google provider with Supabase', 'Warning', 'red');
         }
     }
 
@@ -82,15 +91,18 @@ export default function Calendar() {
                 const errorText = await response.text();
                 throw new Error(errorText);
             }
+
+            showAlert('Lesson added in database', 'Succsess', 'green');
+
         } catch (error) {
-            console.error('Error:', error);
+            showAlert(error, 'Warning', 'red');
             throw error;
         }
     }
 
     async function createCalendarEvent() {
         if (!session) {
-            alert("You need to be signed in to create an event");
+            showAlert('You need to be signed in to create an event', 'Danger', 'red');
             return;
         }
 
@@ -128,10 +140,9 @@ export default function Calendar() {
         const data = await response.json();
 
         if (response.ok) {
-            alert("Event created, check your Google Calendar!");
+            showAlert('Event created, check your Google Calendar!', 'Succsess', 'green');
         } else {
-            console.error('Error creating event:', data);
-            alert('Failed to create event');
+            showAlert('Failed to add or create event', 'Warning', 'red');
         }
     }
 
@@ -147,6 +158,12 @@ export default function Calendar() {
     return (
         <div className="w-screen h-screen flex justify-center items-center min-h-screen">
             <div className="bg-white text-black p-8 rounded-lg shadow-lg w-full max-w-lg">
+                {alert && (
+                    <div className={`absolute bg-${alert.color}-100 top-0 left-1/2 transform -translate-x-1/2 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
+                        <p className="font-bold">{alert.title}</p>
+                        <p>{alert.message}</p>
+                    </div>
+                )}
                 {session ? (
                     <>
                         <h2 className="text-3xl font-bold mb-6 text-center">Hey there, {session.user.email}</h2>
