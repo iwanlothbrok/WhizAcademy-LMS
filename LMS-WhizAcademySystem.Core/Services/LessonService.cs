@@ -5,6 +5,9 @@
 	using LMS_WhizAcademySystem.Core.Services.Interfaces;
 	using LMS_WhizAcademySystem.Infrastructure.Data;
 	using LMS_WhizAcademySystem.Infrastructure.Models;
+	using LMS_WhizAcademySystem.Server.Models;
+	using Microsoft.EntityFrameworkCore;
+	using System.Collections.Generic;
 
 	public class LessonService : ILessonService
 	{
@@ -39,6 +42,14 @@
 
 			await _data.Lessons.AddAsync(lessons);
 			await _data.SaveChangesAsync(); // Ensure changes are saved to the database
+		}
+
+		public async Task<IEnumerable<LessonFormDTO>> GetAll()
+		{
+			var lessons = await this._data.Lessons.Include(m => m.Mentor).ThenInclude(s => s.Students).ToListAsync();
+
+			return this._mapper.Map<List<LessonFormDTO>>(lessons);
+
 		}
 	}
 }

@@ -5,5 +5,6 @@
 	public interface ILessonService
 	{
 		Task Add(LessonFormDTO model);
+		Task<IEnumerable<LessonFormDTO>> GetAll();
 	}
 }
