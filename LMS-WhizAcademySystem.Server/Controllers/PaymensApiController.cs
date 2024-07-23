@@ -6,11 +6,11 @@
 
     [Route("api/payment")]
     [ApiController]
-    public class PaymentApiController : ControllerBase
+    public class PaymentsApiController : ControllerBase
     {
         private readonly IPaymentService _paymentService;
 
-        public PaymentApiController(IPaymentService paymentService)
+        public PaymentsApiController(IPaymentService paymentService)
         {
             this._paymentService = paymentService;
         }
