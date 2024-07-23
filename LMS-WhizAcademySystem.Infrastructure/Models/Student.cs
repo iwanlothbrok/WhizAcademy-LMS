@@ -33,7 +33,7 @@
 		public List<Lesson> Lessons = new List<Lesson>();
 		public List<Payment> Payments = new List<Payment>();
 		public List<WeekProgress> Progresses = new List<WeekProgress>();
-		public List<Event> Events = new List<Event>();
+
 		/// <summary>
 		/// TODO: check what type should be the excel file
 		/// </summary>

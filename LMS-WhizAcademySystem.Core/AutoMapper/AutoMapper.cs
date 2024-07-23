@@ -23,8 +23,8 @@ namespace LMS_WhizAcademySystem.Core.AutoMapper
 			CreateMap<Payment, PaymentInformationDTO>();
 			CreateMap<PaymentFormDTO, Payment>();
 
-			CreateMap<Event, EventFormDTO>();
-			CreateMap<EventFormDTO, Event>();
+			CreateMap<Lesson, LessonFormDTO>();
+			CreateMap<LessonFormDTO, Lesson>();
 
 		}
 	}

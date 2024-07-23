@@ -42,12 +42,6 @@ namespace LMS_WhizAcademySystem.Infrastructure.Data
 		  .WithMany(s => s.Progresses)
 		  .HasForeignKey(l => l.StudentId)
 		  .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
-
-			builder.Entity<Event>()
-		  .HasOne(l => l.Student)
-		  .WithMany(s => s.Events)
-		  .HasForeignKey(l => l.StudentId)
-		  .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
 		}
 
 		public DbSet<Mentor> Mentors { get; set; }
@@ -56,6 +50,5 @@ namespace LMS_WhizAcademySystem.Infrastructure.Data
 		public DbSet<Student> Students { get; set; }
 		public DbSet<Payment> Payments { get; set; }
 		public DbSet<WeekProgress> WeekProgresses { get; set; }
-		public DbSet<Event> Events { get; set; }
 	}
 }
