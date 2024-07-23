@@ -17,6 +17,8 @@ console.log(supabaseKey);
 import OperationsCard from './components/OperationsCard.jsx';
 import { mentorsCards, title } from './components/database/mentorsCards.js';
 import { studentCards, studentTitle } from './components/database/studentCards.js';
+import { lessonsCards, lessonsTitle } from './components/database/lessonsCards.js';
+
 import { paymentCards, PaymentTitle as paymentTitle } from './components/database/paymentCards.js';
 import AddMentor from './components/Mentors/AddMentor.jsx';
 import ShowMentors from './components/Mentors/ShowMentors.jsx';
@@ -30,7 +32,7 @@ import ImageGrid from './components/ImageGrid.jsx';
 import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
 import ShowPayments from './components/Payments/ShowPayments.jsx';
-import Calendar from './components/Events/Calendar.jsx';
+import Calendar from './components/Lessons/Calendar.jsx';
 // import EventList from './components/Events/EventList.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -57,8 +59,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/payment" element={<OperationsCard cards={paymentCards} title={paymentTitle} />} />
           <Route path="/payment/all" element={<ShowPayments />} />
           <Route path="/payment/add" element={<AddPayment />} />
-          {/* calendar */}
+
+          {/* lessons */}
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/lessons" element={<OperationsCard cards={lessonsCards} title={lessonsTitle} />} />
+
         </Routes>
       </Router>
     </SessionContextProvider>
