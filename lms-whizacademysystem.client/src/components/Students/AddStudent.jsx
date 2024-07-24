@@ -55,10 +55,8 @@ export default function AddStudent() {
         formData.append('PriceForHour', priceForHour);
         formData.append('Address', address);
         formData.append('MentorId', mentorId);
+        formData.append('Roadmap', roadmap);
 
-        if (roadmap) {
-            formData.append('Roadmap', roadmap);
-        }
         console.log(formData);
         try {
             const response = await fetch('https://localhost:44357/api/students/add/', {

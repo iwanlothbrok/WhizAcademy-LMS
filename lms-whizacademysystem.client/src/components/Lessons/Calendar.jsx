@@ -12,7 +12,7 @@ export default function Calendar() {
     const [eventName, setEventName] = useState("");
     const [eventDescription, setEventDescription] = useState("");
     const [invitees, setInvitees] = useState([""]);
-    const [alert, setAlert] = useState(null); // State to manage alerts
+    const [alert, setAlert] = useState(null);
 
     const session = useSession();
     const supabase = useSupabaseClient();
@@ -22,19 +22,18 @@ export default function Calendar() {
         return <></>;
     }
 
-
     const showAlert = (message, title, color) => {
         setAlert({ message, title, color });
         setTimeout(() => {
             setAlert(null);
-        }, 4000); // Hide alert after 4 seconds
+        }, 4000);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             await Promise.all([handleFormSubmission(), createCalendarEvent()]);
-            showAlert('Event added and created successfully', 'Succsess', 'green');
+            showAlert('Event added and created successfully', 'Success', 'green');
             resetForm();
         } catch (error) {
             showAlert('Failed to add or create event', 'Warning', 'red');
@@ -68,18 +67,23 @@ export default function Calendar() {
         setInvitees([...invitees, ""]);
     };
 
+
+
     const handleFormSubmission = async () => {
         const lessonForm = {
             Title: eventName,
             MentorEmail: session.user.email,
             StudentEmail: invitees[0],
-            StartingDate: start.toISOString(),
-            EndingDate: end.toISOString(),
+            StartingDateString: start.toString(),
+            EndingDateString: end.toString(),
             Description: eventDescription,
         };
 
+        console.log('in');
+        console.log(lessonForm);  // Log the data to ensure it is formatted correctly
+
         try {
-            const response = await fetch('https://localhost:44357/api/lesson/add', {
+            const response = await fetch('https://localhost:44357/api/lessons/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -92,7 +96,7 @@ export default function Calendar() {
                 throw new Error(errorText);
             }
 
-            showAlert('Lesson added in database', 'Succsess', 'green');
+            showAlert('Lesson added in database', 'Success', 'green');
 
         } catch (error) {
             showAlert(error, 'Warning', 'red');
@@ -111,11 +115,11 @@ export default function Calendar() {
             description: eventDescription,
             start: {
                 dateTime: start.toISOString(),
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timeZone: 'Europe/Sofia', // Specific time zone for Bulgaria
             },
             end: {
                 dateTime: end.toISOString(),
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                timeZone: 'Europe/Sofia', // Specific time zone for Bulgaria
             },
             attendees: invitees.filter(email => email).map(email => ({ email })),
             reminders: {
@@ -140,7 +144,7 @@ export default function Calendar() {
         const data = await response.json();
 
         if (response.ok) {
-            showAlert('Event created, check your Google Calendar!', 'Succsess', 'green');
+            showAlert('Event created, check your Google Calendar!', 'Success', 'green');
         } else {
             showAlert('Failed to add or create event', 'Warning', 'red');
         }
@@ -153,7 +157,6 @@ export default function Calendar() {
         setEventDescription("");
         setInvitees([""]);
     }
-
 
     return (
         <div className="w-screen h-screen flex justify-center items-center min-h-screen">
