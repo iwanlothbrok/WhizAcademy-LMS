@@ -19,7 +19,7 @@
 			this._dbContext = dbContext;
 			this.mapper = mapper;
 		}
-		public async Task Add(StudentFormDTO student, IFormFile roadmap)
+		public async Task Add(StudentFormDTO student, IFormFile? roadmap)
 		{
 			if (roadmap != null && roadmap.Length > 0)
 			{
@@ -29,10 +29,7 @@
 					student.Roadmap = memoryStream.ToArray();
 				}
 			}
-			else
-			{
-				throw new Exception("Error in roadmap!");
-			}
+			
 
 			try
 			{
