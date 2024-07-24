@@ -33,6 +33,7 @@ import DetailsStudent from './components/Students/DetailsStudent.jsx';
 import AddPayment from './components/Payments/AddPayment.jsx';
 import ShowPayments from './components/Payments/ShowPayments.jsx';
 import Calendar from './components/Lessons/Calendar.jsx';
+import ShowLessons from './components/Lessons/ShowLessons.jsx';
 // import EventList from './components/Events/EventList.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -63,6 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           {/* lessons */}
           <Route path="/calendar" element={<Calendar />} />
           <Route path="/lessons" element={<OperationsCard cards={lessonsCards} title={lessonsTitle} />} />
+          <Route path="/lessons/all" element={<ShowLessons />} />
 
         </Routes>
       </Router>
