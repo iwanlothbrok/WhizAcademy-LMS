@@ -114,7 +114,7 @@ export default function ShowStudents() {
 
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-red-200', 'bg-red-300', 'bg-red-400'];
+        const colors = ['bg-red-500', 'bg-red-600','bg-red-700'];
         return colors[index % colors.length];
     };
 
@@ -165,7 +165,7 @@ export default function ShowStudents() {
 
 
             <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
-                <h1 className="text-3xl font-bold mb-6 text-center text-red-500">Студенти</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center text-red-700">Студенти</h1>
                 <input
                     type="text"
                     placeholder="Потърси по имейл, имена или тел. номер"
@@ -188,9 +188,9 @@ export default function ShowStudents() {
                                 <th className="py-2 px-4 text-left">Функции</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-700">
+                        <tbody className="text-white">
                             {currentStudents.map((student, index) => (
-                                <tr key={student.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-red-300 transition duration-300 ease-in-out`}>
+                                <tr key={student.id} className={`border-t ${getRowBgColorClass(index)}  hover:bg-red-400 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{student.name}</td>
                                     <td className="py-2 px-4">{student.email}</td>
                                     <td className="py-2 px-4">{student.phoneNumber}</td>
