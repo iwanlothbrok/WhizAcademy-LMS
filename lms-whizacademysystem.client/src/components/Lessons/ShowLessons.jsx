@@ -39,7 +39,7 @@ export default function ShowLessons() {
     }, []);
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-blue-200', 'bg-blue-300', 'bg-blue-400'];
+        const colors = ['bg-blue-600', 'bg-blue-700', 'bg-blue-800'];
         return colors[index % colors.length];
     };
 
@@ -128,38 +128,38 @@ export default function ShowLessons() {
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                         <thead className="bg-blue-600 text-white">
                             <tr>
-                                <th className="py-2 px-4 text-left">Имена</th>
-                                <th className="py-2 px-4 text-left">Имейл</th>
-                                <th className="py-2 px-4 text-left">Брой Уроци</th>
-                                <th className="py-2 px-4 text-left">Изкарани Пари</th>
-                                <th className="py-2 px-4 text-left">Последен Урок</th>
-                                <th className="py-2 px-4 text-left">Брой Студенти</th>
+                                <th className="py-2 px-4 text-left">Заглавие</th>
+                                <th className="py-2 px-4 text-left">Описание</th>
+                                <th className="py-2 px-4 text-left">Начало</th>
+                                <th className="py-2 px-4 text-left">Край</th>
+                                <th className="py-2 px-4 text-left">Ментор</th>
+                                <th className="py-2 px-4 text-left">Студент</th>
                                 <th className="py-2 px-4 text-left">Операции</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-700">
-                            {currentMentors.map((mentor, index) => (
-                                <tr key={mentor.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-500 transition duration-300 ease-in-out`}>
-                                    {/* <td className="py-2 px-4">{mentor.name}</td>
-                                    <td className="py-2 px-4">{mentor.email}</td>
-                                    <td className="py-2 px-4">{mentor.lessonsCount}</td>
-                                    <td className="py-2 px-4">${mentor.earnedMoney.toLocaleString()}</td>
-                                    <td className="py-2 px-4">{new Date(mentor.lastLessonDate).toLocaleString()}</td>
-                                    <td className="py-2 px-4">{mentor.studentsCount}</td>
+                        <tbody className="text-white-700">
+                            {currentMentors.map((lesson, index) => (
+                                <tr key={lesson.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-blue-900 transition duration-300 ease-in-out`}>
+                                    <td className="py-2 px-4">{lesson.title}</td>
+                                    <td className="py-2 px-4">{lesson.description}</td>
+                                    <td className="py-2 px-4">{lesson.startingDate.toLocaleString()}</td>
+                                    <td className="py-2 px-4">${lesson.endingDate.toLocaleString()}</td>
+                                    <td className="py-2 px-4">{lesson.mentor.name}</td>
+                                    <td className="py-2 px-4">{lesson.student.name}</td>
                                     <td className="py-2 px-4">
                                         <button
                                             className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700 mr-2"
-                                            onClick={() => handleDelete(mentor.id)}
+                                            onClick={() => handleDelete(lesson.id)}
                                         >
                                             Изтрий
                                         </button>
                                         <button
                                             className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
-                                            onClick={() => handleEdit(mentor.id)}
+                                            onClick={() => handleEdit(lesson.id)}
                                         >
                                             Промяна
                                         </button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
