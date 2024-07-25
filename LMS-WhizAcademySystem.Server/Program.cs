@@ -11,9 +11,8 @@ Environment.SetEnvironmentVariable("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT", "fal
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection")
 	?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
-// Add DbContext with PostgreSQL provider
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-	options.UseNpgsql(connectionString));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddApplicationServices();
 
