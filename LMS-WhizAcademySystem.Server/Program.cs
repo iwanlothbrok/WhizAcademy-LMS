@@ -12,7 +12,7 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 	?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddApplicationServices();
 
