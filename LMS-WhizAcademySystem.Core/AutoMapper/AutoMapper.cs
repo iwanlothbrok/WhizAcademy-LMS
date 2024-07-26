@@ -1,31 +1,33 @@
-﻿using AutoMapper;
-using LMS_WhizAcademySystem.Core.DTOs;
-using LMS_WhizAcademySystem.Infrastructure.Models;
-using LMS_WhizAcademySystem.Server.Models;
-
-namespace LMS_WhizAcademySystem.Core.AutoMapper
+﻿namespace LMS_WhizAcademySystem.Core.AutoMapper
 {
-	public class AutoMapper : Profile
-	{
-		public AutoMapper()
-		{
-			CreateMap<Student, StudentFormDTO>()
-				.ForMember(dest => dest.Mentor, opt => opt.MapFrom(src => src.Mentor));
-			CreateMap<StudentFormDTO, Student>();
+    using global::AutoMapper;
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Infrastructure.Models;
+    using LMS_WhizAcademySystem.Server.Models;
 
-			CreateMap<Mentor, MentorFormDTO>();
-			CreateMap<MentorFormDTO, Mentor>()
-			.ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
+    public class AutoMapper : Profile
+    {
+        public AutoMapper()
+        {
+            CreateMap<Student, StudentFormDTO>()
+                .ForMember(dest => dest.Mentor, opt => opt.MapFrom(src => src.Mentor));
+            CreateMap<StudentFormDTO, Student>();
+
+            CreateMap<Mentor, MentorFormDTO>();
+            CreateMap<MentorFormDTO, Mentor>()
+            .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => src.Password));
 
 
-			CreateMap<PaymentFormDTO, Payment>();
-			CreateMap<Payment, PaymentFormDTO>();
-			CreateMap<Payment, PaymentInformationDTO>();
-			CreateMap<PaymentFormDTO, Payment>();
+            CreateMap<PaymentFormDTO, Payment>();
+            CreateMap<Payment, PaymentFormDTO>();
+            CreateMap<Payment, PaymentInformationDTO>();
+            CreateMap<PaymentFormDTO, Payment>();
 
-			CreateMap<Lesson, LessonFormDTO>();
-			CreateMap<LessonFormDTO, Lesson>();
+            CreateMap<Lesson, LessonFormDTO>();
+            CreateMap<LessonFormDTO, Lesson>();
 
-		}
-	}
+            CreateMap<Relative, RelativeFormDto>();
+            CreateMap<RelativeFormDto, Relative>();
+        }
+    }
 }
