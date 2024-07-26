@@ -205,8 +205,8 @@ export default function ShowStudents() {
                                         </button>
                                         <button
                                             onClick={() => handleClickDecreaseUnpayedLessons(student.id)}
-                                            className="ml-5 mt-1 bg-red-500 text-white px-4 py-1 rounded
-                                             hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                                            className="ml-5 mt-1 bg-yellow-500 text-white px-4 py-1 rounded
+                                             hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
                                         >
                                             -
                                         </button>
@@ -216,13 +216,13 @@ export default function ShowStudents() {
                                     <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавен'}</td>
                                     <td className="py-2 px-4">
                                         <button
-                                            className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            className="bg-yellow-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-yellow-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleDelete(student.id)}
                                         >
                                             Изтрий
                                         </button>
                                         <button
-                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700"
+                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleEdit(student.id)}
                                         >
                                             Промяна
