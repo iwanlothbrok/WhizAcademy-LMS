@@ -42,7 +42,13 @@ namespace LMS_WhizAcademySystem.Infrastructure.Data
 		  .WithMany(s => s.Progresses)
 		  .HasForeignKey(l => l.StudentId)
 		  .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
-		}
+
+            builder.Entity<Mentor>()
+                .HasMany(m => m.Students)
+                .WithOne(s => s.Mentor)
+                .HasForeignKey(m => m.MentorId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
 
 		public DbSet<Mentor> Mentors { get; set; }
 		public DbSet<Relative> Relatives { get; set; }

@@ -67,7 +67,9 @@
 
 		public async Task<IEnumerable<MentorInformationDTO>> GetAll()
 		{
-			var mentors = await _dbContext.Mentors.Select(m => new MentorInformationDTO()
+			var mentors = await _dbContext.Mentors
+                .Include(m => m.Students)
+                .Select(m => new MentorInformationDTO()
 			{
 				Id = m.Id,
 				Name = m.Name,
@@ -75,10 +77,19 @@
 				LessonsCount = 69,
 				EarnedMoney = 123.4m,
 				LastLessonDate = DateTime.Today,
-
-				// STUDENTS WILL BE EVERYTIME EMPTY LIST
-				// - GET THE STUDENTS WITH FK - MENTOR ID	 
-				Students = new List<Student>()
+				//last lesson date to be revised.
+				Students = m.Students.Select(s => new Student()
+                {
+					Id = s.Id,
+					Name = s.Name,
+					Address = s.Address,
+					Email = s.Email,
+					MentorId = s.MentorId,
+					Mentor = s.Mentor,
+					Payments = s.Payments,
+					PhoneNumber = s.PhoneNumber,
+					PriceForHour = s.PriceForHour,
+                }).ToList()
 			}).ToListAsync();
 
 			return mentors;
