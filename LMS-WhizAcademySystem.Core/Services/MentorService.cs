@@ -78,18 +78,7 @@
 				EarnedMoney = 123.4m,
 				LastLessonDate = DateTime.Today,
 				//last lesson date to be revised.
-				Students = m.Students.Select(s => new Student()
-                {
-					Id = s.Id,
-					Name = s.Name,
-					Address = s.Address,
-					Email = s.Email,
-					MentorId = s.MentorId,
-					Mentor = s.Mentor,
-					Payments = s.Payments,
-					PhoneNumber = s.PhoneNumber,
-					PriceForHour = s.PriceForHour,
-                }).ToList()
+				Students = m.Students
 			}).ToListAsync();
 
 			return mentors;
