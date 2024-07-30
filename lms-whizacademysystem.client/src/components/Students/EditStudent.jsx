@@ -8,10 +8,12 @@ export default function EditStudent() {
     const [address, setAddress] = useState('');
     const [priceForHour, setPriceForHour] = useState('');
     const [unpaidLessons, setUnpaidLessons] = useState(0);
-    const [loading, setLoading] = useState(false); // Loading state
-    const [alert, setAlert] = useState(null); // State to manage alerts
+    const [mentorId, setMentorId] = useState('');
+    const [mentors, setMentors] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState(null);
     const navigate = useNavigate();
-    const { id } = useParams(); // Get the student ID from the URL
+    const { id } = useParams(); 
 
     useEffect(() => {
         const fetchStudent = async () => {
@@ -30,6 +32,7 @@ export default function EditStudent() {
                 setAddress(student.address);
                 setPriceForHour(student.priceForHour);
                 setUnpaidLessons(student.unpaidLessons);
+                setMentorId(student.mentorId);
             } catch (error) {
                 console.error('Error:', error);
                 showAlert('An error occurred while fetching student details.', 'Be Warned', 'orange');
@@ -38,7 +41,24 @@ export default function EditStudent() {
             }
         };
 
+        const fetchMentors = async () => {
+            try {
+                const response = await fetch('https://localhost:44357/api/mentors/all');
+                if (!response.ok) {
+                    showAlert('Failed to fetch mentors', 'Be Warned', 'red');
+                    return;
+                }
+
+                const mentorsData = await response.json();
+                setMentors(mentorsData);
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('An error occurred while fetching mentors.', 'Be Warned', 'red');
+            }
+        };
+
         fetchStudent();
+        fetchMentors();
     }, [id]);
 
     const handleSubmit = async (e) => {
@@ -47,7 +67,7 @@ export default function EditStudent() {
 
         setLoading(true);
 
-        const student = { id, name, email, phoneNumber, address, priceForHour, unpaidLessons };
+        const student = { id, name, email, phoneNumber, address, priceForHour, unpaidLessons, mentorId };
         try {
             const response = await fetch(`https://localhost:44357/api/students/edit`, {
                 method: 'PUT',
@@ -93,7 +113,7 @@ export default function EditStudent() {
         setAlert({ message, title, color });
         setTimeout(() => {
             setAlert(null);
-        }, 4000); // Hide alert after 4 seconds
+        }, 4000); 
     };
 
     return (
@@ -126,6 +146,23 @@ export default function EditStudent() {
                         />
                     </div>
                     <div className="mb-4">
+                        <label htmlFor="mentorId" className="block text-gray-700">Ментор</label>
+                        <select
+                            id="mentorId"
+                            value={mentorId}
+                            onChange={(e) => setMentorId(e.target.value)}
+                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
+                            required
+                        >
+                            <option value="">Избери ментор</option>
+                            {mentors.map((mentor) => (
+                                <option key={mentor.id} value={mentor.id}>
+                                    {mentor.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-700">Имейл</label>
                         <input
                             id="email"
@@ -135,7 +172,7 @@ export default function EditStudent() {
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                             required
                         />
-                    </div>
+                    </div>                    
                     <div className="mb-4">
                         <label htmlFor="phoneNumber" className="block text-gray-700">Телефонен номер</label>
                         <input
@@ -178,7 +215,7 @@ export default function EditStudent() {
                             className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
                             required
                         />
-                    </div>
+                    </div>                    
                     <button
                         type="submit"
                         className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-800 hover:scale-105'}`}

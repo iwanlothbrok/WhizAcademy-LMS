@@ -71,6 +71,7 @@
                 student.Address = editForm.Address;
                 student.PhoneNumber = editForm.PhoneNumber;
                 student.PriceForHour = editForm.PriceForHour;
+                student.MentorId = editForm.MentorId;
 
                 await _dbContext.SaveChangesAsync();
             }
