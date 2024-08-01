@@ -26,13 +26,19 @@
 
         public MentorFormDTO? Mentor { get; set; }
 
-        public Relative? Relative{ get; set; }
+        public Relative? Relative { get; set; }
 
         /// <summary>
         /// TODO: check what type should be the excel file
         /// </summary>
         public byte[]? Roadmap { get; set; }
 
-        //public FileContentResult FileContentResult { get; set; }
+        public string? Description { get; set; }
+
+        public string? Skills { get; set; }
+
+        public string? Homework { get; set; }
+
+        public byte[]? Image { get; set; }
     }
 }

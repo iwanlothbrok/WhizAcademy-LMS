@@ -2,79 +2,73 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function AddStudent() {
+    const [step, setStep] = useState(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [priceForHour, setPriceForHour] = useState('');
     const [address, setAddress] = useState('');
-    const [relativeId, setRelativeId] = useState('');
     const [mentorId, setMentorId] = useState('');
     const [roadmap, setRoadmap] = useState(null);
-    const [loading, setLoading] = useState(false); // Loading state
-    const [alert, setAlert] = useState(null); // State to manage alerts
+    const [photo, setPhoto] = useState(null);
+    const [skills, setSkills] = useState('');
+    const [description, setDescription] = useState('');
+    const [homework, setHomework] = useState('');
 
+    const [loading, setLoading] = useState(false);
+    const [alert, setAlert] = useState(null);
     const [mentors, setMentors] = useState([]);
     const navigate = useNavigate();
 
-    // setting mentors for options select
     useEffect(() => {
         const fetchMentors = async () => {
             setLoading(true);
-
             try {
                 const response = await fetch('https://localhost:44357/api/mentors/all');
                 if (!response.ok) {
                     showAlert('Failed to fetch mentors', 'Be Warned', 'red');
                     return;
                 }
-
                 const data = await response.json();
                 setMentors(data);
-
-                console.log(data);
             } catch (error) {
                 showAlert('An error occurred while fetching mentors.', 'Be Warned', 'red');
             } finally {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 500);
+                setLoading(false);
             }
         };
-
         fetchMentors();
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
         const formData = new FormData();
         formData.append('Name', name);
-        formData.append('Email', email ? email : 'няма въведен имейл');
+        formData.append('Email', email);
         formData.append('PhoneNumber', phoneNumber);
         formData.append('PriceForHour', priceForHour);
         formData.append('Address', address);
         formData.append('MentorId', mentorId);
         formData.append('Roadmap', roadmap);
+        formData.append('Photo', photo);
+        formData.append('Description', description);
+        formData.append('Skills', skills);
+        formData.append('Homework', homework);
 
-        console.log(formData);
         try {
             const response = await fetch('https://localhost:44357/api/students/add/', {
                 method: 'POST',
                 body: formData,
             });
-
             if (!response.ok) {
                 const errorText = await response.text();
                 showAlert(errorText, 'Be Warned', 'red');
-                console.log(errorText);
                 return;
             }
-
             showAlert('Student added successfully', 'Success', 'green');
             navigate("/");
         } catch (error) {
-            console.error('Error:', error);
             showAlert('Failed to add student', 'Be Warned', 'red');
         } finally {
             setLoading(false);
@@ -85,105 +79,178 @@ export default function AddStudent() {
         setAlert({ message, title, color });
         setTimeout(() => {
             setAlert(null);
-        }, 4000); // Hide alert after 4 seconds
+        }, 4000);
     };
 
+    const nextStep = () => setStep((prev) => Math.min(prev + 1, 3));
+    const prevStep = () => setStep((prev) => Math.max(prev - 1, 1));
+
     return (
-        <div className="w-screen h-screen flex justify-center items-center mt-16 p-3">
+        <div className="w-screen p-4 flex justify-center items-center flex-col">
             {alert && (
-                <div className={`absolute bg-${alert.color}-100 top-0 left-1/2 transform -translate-x-1/2 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4 mb-4`} role="alert">
+                <div className={`fixed top-4 left-1/2 transform -translate-x-1/2 bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-4`}>
                     <p className="font-bold">{alert.title}</p>
                     <p>{alert.message}</p>
                 </div>
             )}
-            <div className="bg-white px-6 py-10 rounded shadow-md w-full max-w-md">
+            <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center text-red-600">Добави Студент</h2>
-                <form className="text-lg" onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-gray-700">Две Имена</label>
-                        <input
-                            id="name"
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder='Янаки Янакиев'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                            required
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <label htmlFor="phoneNumber" className="block text-gray-700">Телефонен Номер</label>
-                        <input
-                            id="phoneNumber"
-                            type="tel"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            placeholder='+359 88 888 8888'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="priceForHours" className="block text-gray-700">Цена за час</label>
-                        <input
-                            id="priceForHours"
-                            type="number"
-                            step="0.01"
-                            value={priceForHour}
-                            onChange={(e) => setPriceForHour(e.target.value)}
-                            placeholder='150'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                        />
-                    </div>
-
-                    <div className="mb-4">
-                        <label htmlFor="address" className="block text-gray-700">Адрес</label>
-                        <input
-                            id="address"
-                            type="text"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            placeholder='Sofia, blok 40'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                        />
-                    </div>
-                    <div className="mb-4">
-
-                        <label htmlFor="mentors" className="block text-gray-700">Ментор</label>
-                        <select id="mentors" onChange={(e) => setMentorId(e.target.value)} className=" bg-black text-white border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-green-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option value="" disabled selected>Избери Ментор</option>
-                            {mentors.map(x => (
-                                <option key={x.id} value={x.id}>{x.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700">Имейл</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder='example@example.com'
-                            className="w-full p-2 border bg-black text-white border-gray-300 rounded mt-1"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="roadmap" className="block text-gray-700">Пътека За Обучение</label>
-                        <input
-                            id="roadmap"
-                            type="file"
-                            onChange={(e) => setRoadmap(e.target.files[0])}
-                            className="w-full p-2 border bg-gray-50 text-gray-900 border-gray-300 rounded-lg mt-1"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className={`w-full p-2 rounded transform transition-transform duration-300 ${loading ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-800 hover:scale-105'}`}
-                        disabled={loading}
-                    >
-                        {loading ? 'Зарежда...' : 'ДОБАВИ'}
-                    </button>
+                <form onSubmit={handleSubmit}>
+                    {step === 1 && (
+                        <div className="space-y-4">
+                            <div>
+                                <label htmlFor="name" className="block text-gray-700">Две Имена</label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    placeholder='Янаки Янакиев'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="email" className="block text-gray-700">Имейл</label>
+                                <input
+                                    id="email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder='example@example.com'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="phoneNumber" className="block text-gray-700">Телефонен Номер</label>
+                                <input
+                                    id="phoneNumber"
+                                    type="tel"
+                                    value={phoneNumber}
+                                    onChange={(e) => setPhoneNumber(e.target.value)}
+                                    placeholder='+359 88 888 8888'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div className="flex justify-between">
+                                <button type="button" onClick={nextStep} className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">
+                                    Напред
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {step === 2 && (
+                        <div className="space-y-4">
+                            <div>
+                                <label htmlFor="address" className="block text-gray-700">Адрес</label>
+                                <input
+                                    id="address"
+                                    type="text"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
+                                    placeholder='Sofia, blok 40'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="priceForHours" className="block text-gray-700">Цена за час</label>
+                                <input
+                                    id="priceForHours"
+                                    type="number"
+                                    step="0.01"
+                                    value={priceForHour}
+                                    onChange={(e) => setPriceForHour(e.target.value)}
+                                    placeholder='150'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="description" className="block text-gray-700">Информация за ученика</label>
+                                <textarea
+                                    id="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder='Топ ученик...знае Х, Y и Z'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    rows="3"
+                                />
+                            </div>
+                            <div className="flex justify-between">
+                                <button type="button" onClick={prevStep} className="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400">
+                                    Назад
+                                </button>
+                                <button type="button" onClick={nextStep} className="bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">
+                                    Напред
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    {step === 3 && (
+                        <div className="space-y-4">
+                            <div>
+                                <label htmlFor="skills" className="block text-gray-700">Умения</label>
+                                <textarea
+                                    id="skills"
+                                    value={skills}
+                                    onChange={(e) => setSkills(e.target.value)}
+                                    placeholder='.Net, React, arrays...'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    rows="2"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="homework" className="block text-gray-700">Домашна работа</label>
+                                <textarea
+                                    id="homework"
+                                    value={homework}
+                                    onChange={(e) => setHomework(e.target.value)}
+                                    placeholder='.Net, React, arrays...'
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    rows="2"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="mentors" className="block text-gray-700">Ментор</label>
+                                <select
+                                    id="mentors"
+                                    value={mentorId}
+                                    onChange={(e) => setMentorId(e.target.value)}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                >
+                                    <option value="" disabled>Избери Ментор</option>
+                                    {mentors.map(mentor => (
+                                        <option key={mentor.id} value={mentor.id}>{mentor.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label htmlFor="photo" className="block text-gray-700">Снимка</label>
+                                <input
+                                    id="photo"
+                                    type="file"
+                                    onChange={(e) => setPhoto(e.target.files[0])}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="roadmap" className="block text-gray-700">Пътека За Обучение</label>
+                                <input
+                                    id="roadmap"
+                                    type="file"
+                                    onChange={(e) => setRoadmap(e.target.files[0])}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                            </div>
+                            <div className="flex justify-between">
+                                <button type="button" onClick={prevStep} className="bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400">
+                                    Назад
+                                </button>
+                                <button type="submit" className={`bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 ${loading ? 'bg-gray-400' : ''}`} disabled={loading}>
+                                    {loading ? 'Зарежда...' : 'ДОБАВИ'}
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </form>
             </div>
         </div>
