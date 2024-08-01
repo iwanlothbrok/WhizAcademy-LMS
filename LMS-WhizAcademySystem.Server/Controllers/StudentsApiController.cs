@@ -1,20 +1,14 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
     using LMS_WhizAcademySystem.Core.DTOs;
-    using LMS_WhizAcademySystem.Core.Services;
     using LMS_WhizAcademySystem.Core.Services.Interfaces;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/students")]
     [ApiController]
-    public class StudentsApiController : ControllerBase
+    public class StudentsApiController(IStudentService studentService) : ControllerBase
     {
-        private readonly IStudentService _studentService;
-
-        public StudentsApiController(IStudentService studentService)
-        {
-            this._studentService = studentService;
-        }
+        private readonly IStudentService _studentService = studentService;
 
         // TODO: change the dto | add the student service
         [HttpPost("add")] // api/students/add

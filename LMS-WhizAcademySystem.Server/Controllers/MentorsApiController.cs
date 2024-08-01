@@ -7,17 +7,12 @@
 
 	[Route("api/mentors")]
 	[ApiController]
-	public class MentorsApiController : ControllerBase
+	public class MentorsApiController(IMentorService mentorService) : ControllerBase
 	{
-		private readonly IMentorService _mentorService;
+		private readonly IMentorService _mentorService = mentorService;
 
-		public MentorsApiController(IMentorService mentorService)
-		{
-			this._mentorService = mentorService;
-		}
-
-		// GET: api/mentors/all
-		[HttpGet("all")]
+        // GET: api/mentors/all
+        [HttpGet("all")]
 		public async Task<IEnumerable<MentorInformationDTO>> Get()
 		{
 			IEnumerable<MentorInformationDTO> mentors =  await _mentorService.GetAll();

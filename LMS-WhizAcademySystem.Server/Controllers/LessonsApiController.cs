@@ -1,23 +1,18 @@
 ﻿namespace LMS_WhizAcademySystem.Server.Controllers
 {
-	using LMS_WhizAcademySystem.Core.DTOs;
-	using LMS_WhizAcademySystem.Core.Services.Interfaces;
-	using Microsoft.AspNetCore.Mvc;
-	using System.Globalization;
+    using LMS_WhizAcademySystem.Core.DTOs;
+    using LMS_WhizAcademySystem.Core.Services.Interfaces;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Globalization;
 
-	[Route("api/lessons")]
+    [Route("api/lessons")]
 	[ApiController]
-	public class LessonsApiController : ControllerBase
+	public class LessonsApiController(ILessonService lessonService) : ControllerBase
 	{
-		private readonly ILessonService _lessonService;
+		private readonly ILessonService _lessonService = lessonService;
 		const string format = "ddd MMM dd yyyy HH:mm:ss 'GMT'zzz '(Eastern European Summer Time)'";
 
-		public LessonsApiController(ILessonService lessonService)
-		{
-			_lessonService = lessonService;
-		}
-
-		[HttpPost("add")] // api/event/add
+        [HttpPost("add")] // api/event/add
 		public async Task<IActionResult> Post([FromBody] LessonFormDTO model)
 		{
 			if (model == null)

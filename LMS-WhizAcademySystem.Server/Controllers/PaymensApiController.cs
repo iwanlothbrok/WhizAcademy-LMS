@@ -6,14 +6,9 @@
 
     [Route("api/payment")]
     [ApiController]
-    public class PaymentsApiController : ControllerBase
+    public class PaymentsApiController(IPaymentService paymentService) : ControllerBase
     {
-        private readonly IPaymentService _paymentService;
-
-        public PaymentsApiController(IPaymentService paymentService)
-        {
-            this._paymentService = paymentService;
-        }
+        private readonly IPaymentService _paymentService = paymentService;
 
         [HttpPost("add")] // api/payment/add
         public async Task<IActionResult> Add([FromForm] PaymentFormDTO payment) //[
