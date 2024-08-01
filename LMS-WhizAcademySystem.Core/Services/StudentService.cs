@@ -19,7 +19,7 @@
             this._dbContext = dbContext;
             this.mapper = mapper;
         }
-        public async Task Add(StudentFormDTO student, IFormFile? roadmap)
+        public async Task Add(StudentFormDTO student, IFormFile? roadmap, IFormFile? photo)
         {
             if (roadmap != null && roadmap.Length > 0)
             {
@@ -27,6 +27,15 @@
                 {
                     await roadmap.CopyToAsync(memoryStream);
                     student.Roadmap = memoryStream.ToArray();
+                }
+            }
+
+            if (photo != null && photo.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await photo.CopyToAsync(memoryStream);
+                    student.Image = memoryStream.ToArray();
                 }
             }
 

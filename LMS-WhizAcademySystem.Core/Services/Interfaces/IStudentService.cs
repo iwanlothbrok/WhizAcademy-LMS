@@ -6,7 +6,7 @@
 
     public interface IStudentService
     {
-        Task Add(StudentFormDTO student, IFormFile roadmap);
+        Task Add(StudentFormDTO student, IFormFile roadmap, IFormFile photo);
 
         Task Edit(StudentFormDTO editForm);
         Task Delete(int id);
