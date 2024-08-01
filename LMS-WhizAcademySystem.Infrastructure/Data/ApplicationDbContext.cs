@@ -37,13 +37,7 @@ namespace LMS_WhizAcademySystem.Infrastructure.Data
 			  .HasForeignKey(l => l.StudentId)
 			  .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
 
-			builder.Entity<WeekProgress>()
-		  .HasOne(l => l.Student)
-		  .WithMany(s => s.Progresses)
-		  .HasForeignKey(l => l.StudentId)
-		  .OnDelete(DeleteBehavior.Restrict); // Avoid multiple cascade paths
-
-            builder.Entity<Mentor>()
+		            builder.Entity<Mentor>()
                 .HasMany(m => m.Students)
                 .WithOne(s => s.Mentor)
                 .HasForeignKey(m => m.MentorId)

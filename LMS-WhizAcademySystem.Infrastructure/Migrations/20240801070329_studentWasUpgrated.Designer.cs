@@ -3,6 +3,7 @@ using System;
 using LMS_WhizAcademySystem.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240801070329_studentWasUpgrated")]
+    partial class studentWasUpgrated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,9 +170,6 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
 
                     b.Property<string>("Homework")
                         .HasColumnType("text");
-
-                    b.Property<byte[]>("Image")
-                        .HasColumnType("bytea");
 
                     b.Property<int>("MentorId")
                         .HasColumnType("integer");
