@@ -7,7 +7,7 @@ export default function ShowStudents() {
     const [alert, setAlert] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3;
+    const itemsPerPage = 4;
 
     const navigate = useNavigate();
 
@@ -142,7 +142,7 @@ export default function ShowStudents() {
     };
 
     return (
-        <div className="w-screen p-4 flex justify-center items-center flex-col">
+        <div className="w-screen  flex justify-center items-center flex-col">
             {alert && (
                 <div className={`bg-${alert.color}-100 border-l-4 border-${alert.color}-500 text-${alert.color}-700 p-5 mb-4`} role="alert">
                     <p className="font-bold">{alert.title}</p>
@@ -156,8 +156,8 @@ export default function ShowStudents() {
             )}
 
 
-            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-5xl mb-4">
-                <h1 className="text-3xl font-bold mb-6 text-center text-red-700">Студенти</h1>
+            <div className="bg-gray-600 p-5 rounded shadow-md w-full max-w-6xl mb-4">
+                <h1 className="text-3xl font-bold mb-6 text-center text-red-500">Студенти</h1>
                 <input
                     type="text"
                     placeholder="Потърси по имейл, имена или тел. номер"
@@ -170,13 +170,13 @@ export default function ShowStudents() {
                         <thead className="bg-red-500 text-white">
                             <tr>
                                 <th className="py-2 px-4 text-left">Имена</th>
-                                <th className="py-2 px-4 text-left">Имейл</th>
+                                {/* <th className="py-2 px-4 text-left">Имейл</th> */}
                                 <th className="py-2 px-4 text-left">Телефонен Номер</th>
                                 <th className="py-2 px-4 text-left">Цена на Урок</th>
                                 <th className="py-2 px-4 text-left">Не Платени Уроци</th>
-                                <th className="py-2 px-4 text-left">Адрес</th>
+                                {/* <th className="py-2 px-4 text-left">Адрес</th> */}
                                 <th className="py-2 px-4 text-left">Ментор</th>
-                                <th className="py-2 px-4 text-left">Разплащател</th>
+                                {/* <th className="py-2 px-4 text-left">Разплащател</th> */}
                                 <th className="py-2 px-4 text-left">Функции</th>
                             </tr>
                         </thead>
@@ -184,9 +184,9 @@ export default function ShowStudents() {
                             {currentStudents.map((student, index) => (
                                 <tr key={student.id} className={`border-t ${getRowBgColorClass(index)}  hover:bg-red-400 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{student.name}</td>
-                                    <td className="py-2 px-4">{student.email}</td>
+                                    {/* <td className="py-2 px-4">{student.email}</td> */}
                                     <td className="py-2 px-4">{student.phoneNumber}</td>
-                                    <td className="py-2 px-4">${student.priceForHour.toLocaleString()}</td>
+                                    <td className="py-2 px-4">${student.photo}</td>
                                     <td className="py-2 px-4">
                                         {student.unpaidLessons}
                                         <button
@@ -203,24 +203,30 @@ export default function ShowStudents() {
                                             -
                                         </button>
                                     </td>
-                                    <td className="py-2 px-4">{student.address}</td>
+                                    {/* <td className="py-2 px-4">{student.address}</td> */}
                                     <td className="py-2 px-4">{student.mentor ? student.mentor.name : 'няма добаве'}</td>
-                                    <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавен'}</td>
+                                    {/* <td className="py-2 px-4">{student.relative ? student.relative.name : 'няма добавен'}</td> */}
                                     <td className="py-2 px-4">
                                         <button
-                                            className="bg-yellow-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-yellow-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"
+                                            className="bg-yellow-500 text-white px-2 py-2 m-1 rounded shadow hover:bg-yellow-700 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleDelete(student.id)}
                                         >
                                             Изтрий
                                         </button>
                                         <button
-                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
+                                            className="bg-blue-500 text-white px-2 py-2  m-1 rounded hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleEdit(student.id)}
                                         >
                                             Промяна
                                         </button>
                                         <button
-                                            className="bg-purple-600 text-white px-2 py-2 my-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
+                                            className="bg-green-500 text-white px-2 py-2 my-1 rounded hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
+                                            onClick={() => handleEdit(student.id)}
+                                        >
+                                            Детайли
+                                        </button>
+                                        <button
+                                            className="bg-purple-600 text-white px-2 py-2 m-1 rounded shadow hover:bg-purple-900 transition duration-300 ease-in-out transform hover:scale-105"
                                             onClick={() => handleProgress(student.id)}
                                         >
                                             Прогрес
