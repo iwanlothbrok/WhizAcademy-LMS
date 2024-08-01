@@ -36,7 +36,7 @@ export default function ShowStudents() {
 
     useEffect(() => {
         fetchStudents();
-    }, []);    
+    }, []);
 
     const handleEdit = (id) => {
         navigate(`/edit-student/${id}`);
@@ -82,10 +82,6 @@ export default function ShowStudents() {
             await fetchStudents(); // Refresh the payments after increasing the lesson count
         } catch (error) {
             showAlert('An error occurred', 'Be Warned', 'red');
-        } finally {
-            setTimeout(() => {
-                setLoading(false);
-            }, 300);
         }
     };
 
@@ -104,17 +100,13 @@ export default function ShowStudents() {
             await fetchStudents(); // Refresh the payments after decreasing the lesson count
         } catch (error) {
             showAlert('An error occurred', 'Be Warned', 'red');
-        } finally {
-            setTimeout(() => {
-                setLoading(false);
-            }, 300);
         }
     };
 
 
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-red-500', 'bg-red-600','bg-red-700'];
+        const colors = ['bg-red-500', 'bg-red-600', 'bg-red-700'];
         return colors[index % colors.length];
     };
 

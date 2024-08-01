@@ -268,9 +268,9 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Student", b =>
                 {
                     b.HasOne("LMS_WhizAcademySystem.Infrastructure.Models.Mentor", "Mentor")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("MentorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Mentor");
@@ -285,6 +285,11 @@ namespace LMS_WhizAcademySystem.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Mentor", b =>
+                {
+                    b.Navigation("Students");
                 });
 
             modelBuilder.Entity("LMS_WhizAcademySystem.Infrastructure.Models.Student", b =>

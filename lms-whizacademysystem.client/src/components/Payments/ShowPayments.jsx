@@ -140,7 +140,18 @@ export default function ShowPayments() {
     const handleNextPage = () => {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
+    function getFormattedDate(dateString) {
+        let date = new Date(dateString);
 
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        let hours = date.getHours().toString().padStart(2, '0');
+        let minutes = date.getMinutes().toString().padStart(2, '0');
+        let seconds = date.getSeconds().toString().padStart(2, '0');
+
+        return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    }
     return (
         <div className="w-screen p-4 flex justify-center items-center flex-col">
             {alert && (
@@ -203,7 +214,7 @@ export default function ShowPayments() {
                                             -
                                         </button>
                                     </td>
-                                    <td className="py-2 px-4">{new Date(payment.paymentDate).toLocaleDateString()}</td>
+                                    <td className="py-2 px-4">{getFormattedDate(payment.paymentDate)}</td>
                                     <td className="py-2 px-4">
                                         <button
                                             className="bg-red-500 text-white px-2 py-2 my-1 rounded shadow hover:bg-red-700 mr-2 transition duration-300 ease-in-out transform hover:scale-105"

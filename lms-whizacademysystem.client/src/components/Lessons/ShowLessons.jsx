@@ -98,6 +98,20 @@ export default function ShowLessons() {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
+    function getFormattedDate(dateString) {
+        let date = new Date(dateString);
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        let hours = date.getHours().toString().padStart(2, '0');
+        let minutes = date.getMinutes().toString().padStart(2, '0');
+        let seconds = date.getSeconds().toString().padStart(2, '0');
+
+        return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    }
+
+
 
     return (
         <div className="w-screen p-2 mt-10 flex justify-center items-center flex-col">
@@ -129,7 +143,7 @@ export default function ShowLessons() {
                         <thead className="bg-blue-600 text-white">
                             <tr>
                                 <th className="py-2 px-4 text-left">Заглавие</th>
-                                <th className="py-2 px-4 text-left">Описание</th>
+                                <th className="py-2 px-6 text-left">Описание</th>
                                 <th className="py-2 px-4 text-left">Начало</th>
                                 <th className="py-2 px-4 text-left">Край</th>
                                 <th className="py-2 px-4 text-left">Ментор</th>
@@ -142,8 +156,8 @@ export default function ShowLessons() {
                                 <tr key={lesson.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-blue-900 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{lesson.title}</td>
                                     <td className="py-2 px-4">{lesson.description}</td>
-                                    <td className="py-2 px-4">{lesson.startingDate.toLocaleString()}</td>
-                                    <td className="py-2 px-4">${lesson.endingDate.toLocaleString()}</td>
+                                    <td className="py-2 px-4">{getFormattedDate(lesson.startingDate)}</td>
+                                    <td className="py-2 px-4">{getFormattedDate(lesson.endingDate)}</td>
                                     <td className="py-2 px-4">{lesson.mentor.name}</td>
                                     <td className="py-2 px-4">{lesson.student.name}</td>
                                     <td className="py-2 px-4">

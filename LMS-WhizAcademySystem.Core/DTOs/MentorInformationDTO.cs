@@ -9,14 +9,15 @@
 
         public string Email { get; set; } = null!;
 
-        public int LessonsCount { get; set; }
-
         public decimal EarnedMoney { get; set; }
 
         public DateTime LastLessonDate { get; set; }
 
         public List<Student> Students = new List<Student>();
+        public List<Lesson> Lessons = new List<Lesson>();
 
         public int StudentsCount => Students.Count;
+        public int LessonsCount => Lessons.Count;
+
     }
 }

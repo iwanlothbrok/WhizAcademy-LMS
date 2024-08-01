@@ -39,7 +39,7 @@ export default function ShowMentors() {
     }, []);
 
     const getRowBgColorClass = (index) => {
-        const colors = ['bg-green-200', 'bg-green-300', 'bg-green-400'];
+        const colors = ['bg-green-700', 'bg-green-900', 'bg-green-800'];
         return colors[index % colors.length];
     };
 
@@ -98,6 +98,18 @@ export default function ShowMentors() {
         if (currentPage < totalPages) setCurrentPage(currentPage + 1);
     };
 
+    function getFormattedDate(dateString) {
+        let date = new Date(dateString);
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, '0');
+        let day = date.getDate().toString().padStart(2, '0');
+        let hours = date.getHours().toString().padStart(2, '0');
+        let minutes = date.getMinutes().toString().padStart(2, '0');
+        let seconds = date.getSeconds().toString().padStart(2, '0');
+
+        return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
+    }
 
     return (
         <div className="w-screen p-2 mt-10 flex justify-center items-center flex-col">
@@ -126,7 +138,7 @@ export default function ShowMentors() {
 
                 <div className="overflow-x-auto">
                     <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
-                        <thead className="bg-green-600 text-white">
+                        <thead className="bg-green-900 text-white">
                             <tr>
                                 <th className="py-2 px-4 text-left">Имена</th>
                                 <th className="py-2 px-4 text-left">Имейл</th>
@@ -137,14 +149,14 @@ export default function ShowMentors() {
                                 <th className="py-2 px-4 text-left">Операции</th>
                             </tr>
                         </thead>
-                        <tbody className="text-gray-700">
+                        <tbody className="text-white">
                             {currentMentors.map((mentor, index) => (
-                                <tr key={mentor.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-500 transition duration-300 ease-in-out`}>
+                                <tr key={mentor.id} className={`border-t ${getRowBgColorClass(index)} hover:bg-green-800 transition duration-300 ease-in-out`}>
                                     <td className="py-2 px-4">{mentor.name}</td>
                                     <td className="py-2 px-4">{mentor.email}</td>
                                     <td className="py-2 px-4">{mentor.lessonsCount}</td>
                                     <td className="py-2 px-4">${mentor.earnedMoney.toLocaleString()}</td>
-                                    <td className="py-2 px-4">{new Date(mentor.lastLessonDate).toLocaleString()}</td>
+                                    <td className="py-2 px-4">{getFormattedDate(mentor.lastLessonDate)}</td>
                                     <td className="py-2 px-4">{mentor.studentsCount}</td>
                                     <td className="py-2 px-4">
                                         <button
